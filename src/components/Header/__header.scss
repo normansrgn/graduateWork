@@ -1,0 +1,54 @@
+.header {
+  padding: 19px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__navBlock {
+    gap: 150px;
+    padding: 16px;
+    background-color: #151515;
+    border-radius: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & ol {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      & li {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+
+    & img {
+        width: 50px;
+    }
+    & input {
+      background-color: #292929;
+      border-radius: 10px;
+      color: white;
+      border: none;
+      padding: 10px;
+      &::placeholder {
+        color: #6a6a6a;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
