@@ -1,5 +1,8 @@
 .header {
-  padding: 19px;
+  // background: url(./bgk.svg) no-repeat right 180px center;
+  // height: 1117px;
+  padding: 25px;
+
 
   &__container {
     display: flex;
@@ -8,12 +11,13 @@
   }
 
   &__navBlock {
-    gap: 150px;
+    width: 1000px;
+    // gap: 150px;
     padding: 16px;
     background-color: #151515;
     border-radius: 19px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     & ol {
@@ -34,7 +38,7 @@
     align-items: center;
 
     & img {
-        width: 50px;
+      width: 50px;
     }
     & input {
       background-color: #292929;
