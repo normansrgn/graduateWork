@@ -18,7 +18,7 @@ export default class SneakersPromo extends Component {
 
             <nav className="sneaker__nav">
               <ol>
-                <li>air jordan</li>
+                <li className="sneaker__li">air jordan</li>
                 <li>nike</li>
                 <li>dior</li>
                 <li>zara</li>
