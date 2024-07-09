@@ -1,6 +1,5 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { Container } from "react-bootstrap";
-
 import "./__prom.scss";
 import image from "./image.png";
 

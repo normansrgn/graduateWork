@@ -1,0 +1,36 @@
+.sneaker {
+  margin-top: 160px;
+
+  &__text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    & h1 {
+      font-size: 45px;
+    }
+
+    & p {
+      font-size: 18px;
+      color: rgb(121, 121, 121);
+    }
+  }
+
+  &__nav {
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+    & ol {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      & li {
+        font-size: 22px;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.WomanMan {
+  margin-top: 90px;
+
+  &__card {
+    cursor: pointer;
+  }
+
+  &__cardImage {
+    & img {
+      width: 100%;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+}
