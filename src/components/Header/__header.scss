@@ -3,7 +3,6 @@
   // height: 1117px;
   padding: 25px;
 
-
   &__container {
     display: flex;
     align-items: center;
@@ -26,9 +25,23 @@
       align-items: center;
 
       & li {
+        cursor: pointer;
         text-transform: uppercase;
         font-size: 20px;
         font-weight: bold;
+        transition: 0.1s linear;
+
+        &:hover {
+          background: linear-gradient(
+            118.79deg,
+            rgb(6, 193, 252) 2.254%,
+            rgb(172, 66, 255) 33.741%,
+            rgb(255, 0, 214) 57.356%,
+            rgb(255, 0, 61) 90.232%
+          );
+          -webkit-background-clip: text;
+          color: transparent;
+        }
       }
     }
   }

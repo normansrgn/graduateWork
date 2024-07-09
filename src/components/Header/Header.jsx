@@ -20,18 +20,10 @@ export default class Header extends Component {
           <div className="header__navBlock">
             <nav>
               <ol>
-                <li>
-                  <a href=""> new &Featured </a>
-                </li>
-                <li>
-                  <a href=""> men </a>
-                </li>
-                <li>
-                  <a href=""> women </a>
-                </li>
-                <li>
-                  <a href="">Kids</a>
-                </li>
+                <li>new &Featured</li>
+                <li>men</li>
+                <li>women</li>
+                <li>Kids</li>
               </ol>
             </nav>
 
