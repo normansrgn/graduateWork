@@ -2,6 +2,7 @@
   margin-top: 140px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
 
   &__container {
@@ -63,10 +64,17 @@
       rgb(255, 0, 214) 57.356%,
       rgb(255, 0, 61) 90.232%
     );
+    transition: 0.5s linear;
   }
 
   &__collectiobBtn {
     background: none;
     border: 2px solid rgb(254 1 214);
+    transition: 0.5s linear;
+  }
+
+  &__hrImg {
+    margin-top: 210px;
+    width: 100%;
   }
 }

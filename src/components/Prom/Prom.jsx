@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Container } from "react-bootstrap";
 
 import "./__prom.scss";
+import image from "./image.png";
 
 export default class Prom extends Component {
   render() {
@@ -22,6 +23,7 @@ export default class Prom extends Component {
             <button className="prom__collectiobBtn">ALL COLLECTIONS</button>
           </div>
         </Container>
+        <img className="prom__hrImg" src={image} alt="" />
       </section>
     );
   }
