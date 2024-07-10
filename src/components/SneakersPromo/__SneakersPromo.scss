@@ -18,6 +18,27 @@
       color: rgb(121, 121, 121);
     }
   }
+  &__cards {
+    margin-top: 90px;
+  }
+
+  &__card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 30px;
+
+    padding: 15px;
+
+    height: 450px;
+    border-radius: 15px;
+    background-color: #0c0c0c;
+
+    & img {
+      width: 100%;
+    }
+  }
 
   &__nav {
     margin-top: 90px;
@@ -30,7 +51,87 @@
 
       & li {
         font-size: 22px;
+        cursor: pointer;
+
+        transition: 0.1s linear;
+        &:hover {
+          background: linear-gradient(
+            118.79deg,
+            rgb(6, 193, 252) 2.254%,
+            rgb(172, 66, 255) 33.741%,
+            rgb(255, 0, 214) 57.356%,
+            rgb(255, 0, 61) 90.232%
+          );
+          -webkit-background-clip: text;
+          color: transparent;
+        }
       }
     }
   }
+
+  &__cardText {
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    gap: 20px;
+
+    & h2 {
+      font-size: 23px;
+      font-weight: 600;
+    }
+  }
+
+  &__cardPrice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & span {
+      font-size: 28px;
+      font-weight: 600;
+      background: linear-gradient(
+        118.79deg,
+        rgb(6, 193, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(255, 0, 214) 57.356%,
+        rgb(255, 0, 61) 90.232%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    & button {
+      border: none;
+      border-radius: 13px;
+      font-weight: 600;
+      color: white;
+      padding: 10px;
+      font-size: 15px;
+      background: linear-gradient(
+        118.79deg,
+        rgb(6, 193, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(255, 0, 214) 57.356%,
+        rgb(255, 0, 61) 90.232%
+      );
+      transition: 0.5s linear;
+    }
+  }
+}
+
+.sneaker__nav ol li {
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.sneaker__nav ol li.active {
+  background: linear-gradient(
+    118.79deg,
+    rgb(6, 193, 252) 2.254%,
+    rgb(172, 66, 255) 33.741%,
+    rgb(255, 0, 214) 57.356%,
+    rgb(255, 0, 61) 90.232%
+  );
+  -webkit-background-clip: text;
+  color: transparent;
 }
