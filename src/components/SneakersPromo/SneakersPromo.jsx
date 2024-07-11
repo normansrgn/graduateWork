@@ -74,12 +74,14 @@ export default class SneakersPromo extends Component {
               </ol>
             </nav>
           </div>
-
           <Row className="sneaker__cards">
             {filteredSneakers.slice(0, 3).map((sneaker) => (
               <SneakerCard key={sneaker.title} {...sneaker} />
             ))}
           </Row>
+          <div className="sneaker__button">
+            <button className="sneaker__btn">View allg</button>
+          </div>
         </Container>
       </section>
     );
