@@ -83,6 +83,7 @@ export default class SneakersPromo extends Component {
             <button className="sneaker__btn">View allg</button>
           </div>
         </Container>
+            
       </section>
     );
   }
