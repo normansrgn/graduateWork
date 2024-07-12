@@ -1,0 +1,35 @@
+.footer {
+  margin: 145px 0px 100px 0px;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    gap: 340px;
+  }
+
+  &__linkTitle {
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  &__links {
+    & ol {
+      padding: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      & li {
+        cursor: pointer;
+        font-size: 18px;
+        color: #a7a7a7;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__icons {
+    align-items: center;
+    gap: 20px;
+    display: flex;
+  }
+}

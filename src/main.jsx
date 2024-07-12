@@ -7,6 +7,7 @@ import Prom from "./components/Prom/Prom";
 import MenWomen from "./components/MenWomen/MenWomen";
 import SneakersPromo from "./components/SneakersPromo/SneakersPromo";
 import PromoSlider from "./components/PromoSlider/PromoSlider";
+import Footer from "./components/Footer/Footer";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -15,5 +16,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <MenWomen />
     <SneakersPromo />
     <PromoSlider />
+    <Footer />
   </React.StrictMode>
 );
