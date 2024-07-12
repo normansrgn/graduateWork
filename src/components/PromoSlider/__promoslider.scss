@@ -1,8 +1,21 @@
 .promoslider {
+  position: relative;
   margin-top: 117px;
   background-image: url(./img/image.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   height: 788px;
+  display: flex;
+  justify-content: last baseline;
+
+  &__text {
+    font-size: 120px;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute; /* Абсолютное позиционирование относительно родительского элемента */
+    bottom: 0; /* Расположить текст внизу */
+    left: 0; /* Расположить текст слева */
+    margin: 10px; /* Дополнительный отступ от края, по желанию */
+  }
 }
