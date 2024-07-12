@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
+
 import "./__SneakersPromo.scss";
+
 import { sneakers } from "./data";
 import SneakerCard from "./SneakersCard";
 
@@ -80,7 +82,7 @@ export default class SneakersPromo extends Component {
             ))}
           </Row>
           <div className="sneaker__button">
-            <button className="sneaker__btn">View allg</button>
+            <button className="sneaker__btn">View all</button>
           </div>
         </Container>
             

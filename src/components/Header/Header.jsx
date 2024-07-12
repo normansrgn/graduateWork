@@ -1,5 +1,4 @@
-import { Component } from "react";
-
+import { Component } from "react"
 import { Container } from "react-bootstrap";
 
 import "./__header.scss";
@@ -16,7 +15,6 @@ export default class Header extends Component {
               <img src={logo} alt="" />
             </a>
           </div>
-
           <div className="header__navBlock">
             <nav>
               <ol>
@@ -29,6 +27,7 @@ export default class Header extends Component {
 
             <div className="header__form">
               <input type="text" placeholder="Search" />
+              
             </div>
           </div>
         </Container>

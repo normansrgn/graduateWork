@@ -1,5 +1,5 @@
 .footer {
-  margin: 145px 0px 100px 0px;
+  padding: 145px 0px 129px 0px;
   &__container {
     display: flex;
     justify-content: space-between;
@@ -23,6 +23,12 @@
         font-size: 18px;
         color: #a7a7a7;
         font-weight: 600;
+        transition: 0.2s ease;
+        &:hover {
+          margin-bottom: 6px;
+          margin-left: 5px;
+          color: white;
+        }
       }
     }
   }
