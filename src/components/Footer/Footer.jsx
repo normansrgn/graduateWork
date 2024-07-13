@@ -27,7 +27,6 @@ export default class Footer extends Component {
               <li>Redeem</li>
               <li>Legal</li>
               <li>Help</li>
-              <li>Corporate Gift card</li>
             </ol>
           </div>
           <div className="footer__links">
