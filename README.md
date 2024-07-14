@@ -1,8 +1,18 @@
-# React + Vite
+# Online sneaker store
+## Описание
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Проект был разработан в качетстве дипломной работы для 4 курса специальности 09.02.07 "Информационные системы и программирование Квалификация: Разработчик веб и мультимедийных приложений"
 
-Currently, two official plugins are available:
+## Используемые технологии:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* `HTML`
+* `SCSS`
+* `REACT`
+* `JavaScript`
+* `Bootstrap`
+
+
+## Запуск проекта 
+
+Для запуска проекта достатачно перейти по ссылке указанной в описании репозитория или по ссылке указанной ниже: <br>  normansrgn.github.io/graduateWork/
+
