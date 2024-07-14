@@ -1,6 +1,6 @@
 function SneakerCard(props) {
   return (
-    <div className="col-xxl-4">
+    <div className="col-xxl-4 col-sm-6 col-md-7">
       <div className="sneaker__card">
         <img src={props.img} alt="" />
         <div className="sneaker__cardText">
