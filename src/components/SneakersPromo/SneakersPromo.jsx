@@ -77,7 +77,7 @@ export default class SneakersPromo extends Component {
               </ol>
             </nav>
           </div>
-          <Row className="sneaker__cards">
+          <Row className="sneaker__row">
             {filteredSneakers.slice(0, 3).map((sneaker) => (
               <SneakerCard key={sneaker.title} {...sneaker} />
             ))}

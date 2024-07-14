@@ -18,7 +18,9 @@
       color: rgb(121, 121, 121);
     }
   }
-  &__cards {
+  &__row {
+    display: flex;
+    justify-content: center;
     margin-top: 90px;
   }
 
