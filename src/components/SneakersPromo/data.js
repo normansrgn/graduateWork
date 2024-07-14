@@ -14,10 +14,11 @@ export const sneakers = [
     img: img02,
   },
   {
-    title: "Air Jordan 1 Mid",
+    title: "Air Jordan 2 Mid",
     price: "200",
     img: img03,
   },
+
   {
     title: "Nike Air Max",
     price: "180",
@@ -32,6 +33,11 @@ export const sneakers = [
     title: "Dior B23",
     price: "1000",
     img: img03,
+  },
+  {
+    title: "Zara Casual",
+    price: "80",
+    img: img01,
   },
   {
     title: "Zara Casual",

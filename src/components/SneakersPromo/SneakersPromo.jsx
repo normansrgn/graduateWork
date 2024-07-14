@@ -4,6 +4,7 @@ import { Container, Row } from "react-bootstrap";
 import "./__SneakersPromo.scss";
 
 import { sneakers } from "./data";
+
 import SneakerCard from "./SneakersCard";
 
 export default class SneakersPromo extends Component {
