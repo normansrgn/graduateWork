@@ -17,8 +17,8 @@ export default class Header extends Component {
             </a>
           </div>
           <HeaderNav />
-        </Container>
+        </Container> 
       </header>
     );
-  }
+  } 
 }
