@@ -40,11 +40,6 @@ export const sneakers = [
     img: img01,
   },
   {
-    title: "Zara Casual",
-    price: "80",
-    img: img01,
-  },
-  {
     title: "Adidas Ultraboost",
     price: "160",
     img: img02,

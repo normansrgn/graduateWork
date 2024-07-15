@@ -11,7 +11,7 @@ export default class Header extends Component {
       <header className="header">
         <Container className="header__container">
           <div className="header__logo">
-            <a href="">
+            <a href="">  
               <img src={logo} alt="" />
             </a> 
           </div>
