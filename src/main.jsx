@@ -10,12 +10,14 @@ import PromoSlider from "./components/PromoSlider/PromoSlider";
 import Footer from "./components/Footer/Footer";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.Fragment>
     <Header />
+
     <Prom />
     <MenWomen />
     <SneakersPromo />
     <PromoSlider />
+
     <Footer />
-  </React.StrictMode>
+  </React.Fragment>
 );

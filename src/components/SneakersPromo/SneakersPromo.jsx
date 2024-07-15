@@ -34,7 +34,6 @@ export default class SneakersPromo extends Component {
           <div className="sneaker__text">
             <h1>Browse our best collections</h1>
             <p>
-              {" "}
               Lorem ipsum dolor sit amet consectetur. Est eros in commodo
               pellentesque neque tempus imperdiet enim a. Sit morbi convallis
               suscipit vitae lacus vitae id urna pharetra.
