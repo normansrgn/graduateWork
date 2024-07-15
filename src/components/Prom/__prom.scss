@@ -58,15 +58,23 @@
   }
 
   &__shopBtn {
+    padding: 15px;
+
+    border-radius: 17px;
+    font-size: 17px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
     border: none;
     background: linear-gradient(
       118.79deg,
-      rgb(6, 193, 252) 2.254%,
+      rgb(210 6 252) 2.254%,
       rgb(172, 66, 255) 33.741%,
       rgb(255, 0, 214) 57.356%,
       rgb(255, 0, 61) 90.232%
     );
-    transition: 0.5s linear;
+    background-size: 200% 200%;
+    // animation: gradientShift 4s linear infinite;
   }
 
   &__collectiobBtn {
@@ -92,3 +100,5 @@
     background-position: 0% 50%;
   }
 }
+
+
