@@ -13,14 +13,14 @@ export default class MenWomen extends Component {
       <section className="WomanMan">
         <Container>
           <Row className="WomanMan__row">
-            <div className="col-xxl-5">
+            <div className="col-xxl-5 col-sm-5 col-md-6">
               <div className="WomanMan__card">
                 <div className="WomanMan__cardImage">
                   <img src={man} alt="" />
                 </div>
               </div>
             </div>
-            <div className="col-xxl-5">
+            <div className="col-xxl-5 col-sm-5 col-md-6">
               <div className="WomanMan__card">
                 <div className="WomanMan__cardImage">
                   <img src={woman} alt="" />

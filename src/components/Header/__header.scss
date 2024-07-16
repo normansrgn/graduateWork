@@ -69,3 +69,24 @@
     }
   }
 }
+
+@media (max-width: 1260px) {
+  .header__navBlock {
+    width: 800px;
+  }
+}
+
+@media (max-width: 989px) {
+  .header__navBlock {
+    width: 600px;
+  }
+  .header__navBlock ol li {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 774px) {
+  .header__navBlock {
+    display: none;
+  }
+}

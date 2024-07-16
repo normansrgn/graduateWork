@@ -74,7 +74,7 @@
       rgb(177, 0, 255) 90.232%
     );
     background-size: 200% 200%;
-    // animation: gradientShift 4s linear infinite;
+    animation: gradientShift 6s linear infinite;
   }
 
   &__collectiobBtn {
@@ -110,5 +110,18 @@
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 760px) {
+  .prom {
+    & h1 {
+      width: auto;
+      font-size: 45px;
+    }
+
+    & p {
+      width: auto;
+    }
   }
 }
