@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-
 import { Container, Row } from "react-bootstrap";
 
-import { sneakers } from "./data";
-import SneakerCard from "./SneakersCard";
 import "./__SneakersPromo.scss";
+import SneakerCard from "./SneakersCard";
+
+import { sneakers } from "./data";
 
 const brands = ["air jordan", "nike", "dior", "zara", "adidas"];
 
