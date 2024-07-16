@@ -6,7 +6,6 @@ function HeaderNav() {
           <li>new & Featured</li>
           <li>men</li>
           <li>women</li>
-          <li>Kids</li>
         </ol>
       </nav>
 
