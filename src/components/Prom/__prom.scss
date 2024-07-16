@@ -118,10 +118,21 @@
     & h1 {
       width: auto;
       font-size: 45px;
+      line-height: normal;
     }
 
     & p {
       width: auto;
     }
+  }
+}
+
+@media (max-width: 420px) {
+  .prom__buttons button {
+    font-size: 14px;
+  }
+
+  .prom p {
+    font-size: 14px;
   }
 }

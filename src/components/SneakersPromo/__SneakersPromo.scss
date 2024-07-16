@@ -166,3 +166,27 @@
   -webkit-background-clip: text;
   color: transparent;
 }
+
+@media (max-width: 770px) {
+  .sneaker__nav {
+    & li {
+      font-size: 15px;
+    }
+
+    & ol {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .sneaker__text {
+    & h1 {
+      font-size: 35px;
+    }
+
+    & p {
+      font-size: 12px;
+    }
+  }
+}
