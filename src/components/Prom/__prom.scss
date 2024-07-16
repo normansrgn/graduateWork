@@ -68,13 +68,13 @@
     border: none;
     background: linear-gradient(
       118.79deg,
-      rgb(210 6 252) 2.254%,
+      rgb(210, 6, 252) 2.254%,
       rgb(172, 66, 255) 33.741%,
-      rgb(255, 0, 214) 57.356%,
-      rgb(255, 0, 61) 90.232%
+      rgb(237 28 224) 57.356%,
+      rgb(177, 0, 255) 90.232%
     );
     background-size: 200% 200%;
-    animation: gradientShift 4s linear infinite;
+    // animation: gradientShift 4s linear infinite;
   }
 
   &__collectiobBtn {
@@ -105,11 +105,10 @@
   0% {
     background-position: 0% 50%;
   }
-  50% {
+  70% {
     background-position: 100% 50%;
   }
   100% {
     background-position: 0% 50%;
   }
 }
-
