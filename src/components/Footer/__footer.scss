@@ -1,5 +1,4 @@
 .footer {
-  display: none;
   padding: 145px 0px 129px 0px;
   &__container {
     display: flex;
@@ -38,5 +37,17 @@
     align-items: center;
     gap: 20px;
     display: flex;
+  }
+}
+
+@media (max-width: 1188px) {
+  .footer {
+    padding: 60px 0px 129px 0px;
+
+    &__container {
+      flex-wrap: wrap;
+      gap: 100px;
+      justify-content: start;
+    }
   }
 }
