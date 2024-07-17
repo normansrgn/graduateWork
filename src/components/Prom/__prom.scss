@@ -115,6 +115,12 @@
 
 @media (max-width: 760px) {
   .prom {
+    margin-top: 60px;
+
+    &__hrImg {
+      margin-top: 100px;
+    }
+
     & h1 {
       width: auto;
       font-size: 45px;
