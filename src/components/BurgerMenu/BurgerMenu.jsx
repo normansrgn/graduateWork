@@ -16,26 +16,15 @@ const BurgerMenu = () => {
       </button>
       <aside className={`burger__container ${isOpen ? "open" : ""}`}>
         <div className="burger__content">
-          <nav className="nav_bar burger_nav">
-            <ul className="navigation_item">
-              <li>
-                <a href="./profile.html" className="navigation_link">
-                  <i className="fa-regular fa-user"></i> Home
-                </a>
-              </li>
-              <li>
-                <a href="./basket.html" className="navigation_link">
-                  <i className="fa-solid fa-basket-shopping"></i> About
-                </a>
-              </li>
-
-              <li>
-                <a href="./basket.html" className="navigation_link">
-                  <i className="fa-solid fa-basket-shopping"></i> Lab
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <div className="burger__nav">
+            <nav>
+              <ol>
+                <li>new & Featured</li>
+                <li>men</li>
+                <li>women</li>
+              </ol>
+            </nav>
+          </div>
         </div>
       </aside>
     </div>
