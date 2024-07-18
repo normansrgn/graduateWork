@@ -3,7 +3,12 @@
   &__container {
     display: flex;
     justify-content: space-between;
-    gap: 340px;
+  }
+
+  &__dowlandIcons {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
   }
 
   &__linkTitle {
