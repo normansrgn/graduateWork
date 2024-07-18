@@ -1,3 +1,6 @@
+import user from "./NavICons/user.svg";
+import basket from "./NavICons/basket.svg";
+
 function HeaderNav() {
   return (
     <div className="header__navBlock">
@@ -9,8 +12,13 @@ function HeaderNav() {
         </ol>
       </nav>
 
-      <div className="header__form">
-        <input type="text" placeholder="Search" />
+      <div className="header__navIc">
+        <a href="">
+          <img src={user} alt="" />
+        </a>
+        <a href="">
+          <img src={basket} alt="" />
+        </a>
       </div>
     </div>
   );

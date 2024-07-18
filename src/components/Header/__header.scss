@@ -46,26 +46,12 @@
     }
   }
 
-  &__form {
-    display: flex;
+  &__navIc {
     align-items: center;
-
+    gap: 10px;
+    display: flex;
     & img {
-      width: 50px;
-    }
-    & input {
-      background-color: #292929;
-      border-radius: 10px;
-      color: white;
-      border: none;
-      padding: 10px;
-      &::placeholder {
-        color: #6a6a6a;
-      }
-
-      &:focus {
-        outline: none;
-      }
+      cursor: pointer;
     }
   }
 }
