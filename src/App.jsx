@@ -21,5 +21,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Footer />
   </React.Fragment>
 );
-
 export default App;
