@@ -6,9 +6,15 @@ function HeaderNav() {
     <div className="header__navBlock">
       <nav>
         <ol>
-          <li>new & Featured</li>
-          <li>men</li>
-          <li>women</li>
+          <a href="">
+            <li>new & Featured</li>
+          </a>
+          <a href="">
+            <li>men</li>
+          </a>
+          <a href="">
+            <li>women</li>
+          </a>
         </ol>
       </nav>
 

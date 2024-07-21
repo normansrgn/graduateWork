@@ -52,6 +52,11 @@
     display: flex;
     & img {
       cursor: pointer;
+      transition: 0.2s linear;
+      &:hover {
+        transform: scale(1.1);
+        transition: 0.2s linear;
+      }
     }
   }
 }

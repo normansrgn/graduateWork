@@ -19,7 +19,6 @@ export default class Header extends Component {
             </a>
           </div>
           <HeaderNav />
-
           <BurgerMenu />
         </Container>
       </header>
