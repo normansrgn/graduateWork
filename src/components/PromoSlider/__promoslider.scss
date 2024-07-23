@@ -19,3 +19,9 @@
     margin: 10px; /* Дополнительный отступ от края, по желанию */
   }
 }
+
+@media (max-width: 400px) {
+  .promoslider__text {
+    font-size: 98px;
+  }
+}
