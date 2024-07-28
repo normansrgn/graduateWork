@@ -1,22 +1,26 @@
 import user from "./NavICons/user.svg";
 import basket from "./NavICons/basket.svg";
 
+import { Link, Router } from "react-router-dom";
+
 function HeaderNav() {
   return (
     <div className="header__navBlock">
-      <nav>
-        <ol>
-          <a href="">
-            <li>new & Featured</li>
-          </a>
-          <a href="">
-            <li>men</li>
-          </a>
-          <a href="">
-            <li>women</li>
-          </a>
-        </ol>
-      </nav>
+
+        <nav>
+          <ol>
+            <a href="">
+              <li>new & Featured</li>
+            </a>
+            <a href="">
+              <li>men</li>
+            </a>
+            <a href="">
+              <li>women</li>
+            </a>
+          </ol>
+        </nav>
+
 
       <div className="header__navIc">
         <div className="header__navIcon">

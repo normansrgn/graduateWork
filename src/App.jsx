@@ -8,11 +8,11 @@ import MenWomen from "./components/MenWomen/MenWomen";
 import SneakersPromo from "./components/SneakersPromo/SneakersPromo";
 import PromoSlider from "./components/PromoSlider/PromoSlider";
 import Footer from "./components/Footer/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.Fragment>
     <Header />
-
     <Prom />
     <MenWomen />
     <SneakersPromo />
