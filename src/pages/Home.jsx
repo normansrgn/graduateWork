@@ -1,20 +1,20 @@
-import React from "react";
-import Header from "../components/Header/Header";
-
+import React, { Component } from "react";
 import Prom from "../components/Prom/Prom";
 import MenWomen from "../components/MenWomen/MenWomen";
 import SneakersPromo from "../components/SneakersPromo/SneakersPromo";
 import PromoSlider from "../components/PromoSlider/PromoSlider";
 
-function Home() {
-  return (
-    <>
-      <Prom />
-      <MenWomen />
-      <SneakersPromo />
-      <PromoSlider />
-    </>
-  );
-}
+export default class Home extends Component {
+  render() {
+    return (
+      <React.Fragment>
 
-export default Home;
+        <Prom />
+        <MenWomen />
+        <SneakersPromo />
+        <PromoSlider />
+        
+      </React.Fragment>
+    );
+  }
+}
