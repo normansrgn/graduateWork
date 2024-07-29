@@ -17,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="home" element={<Home />} />
         <Route path="men" element={<Men />} />
         <Route path="women" element={<Women />} />
+
       </Routes>
       <Footer />
     </React.Fragment>
