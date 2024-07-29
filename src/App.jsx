@@ -9,12 +9,13 @@ import Home from "./pages/Home"; // Импортируем Home как комп�
 import Men from "./pages/Men";
 import Women from "./pages/Women";
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <React.Fragment>
       <Header />
       <Routes>
-        <Route path="home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="men" element={<Men />} />
         <Route path="women" element={<Women />} />
         <Route path="*" element={<Home />} />
