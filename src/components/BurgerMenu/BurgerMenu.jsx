@@ -1,6 +1,8 @@
 import { Component } from "react";
 import React, { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 import "./__burgermenu.scss";
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,15 +21,15 @@ const BurgerMenu = () => {
           <div className="burger__nav">
             <nav>
               <ol>
-                <a href="">
+                <Link to="/home">
                   <li>new & Featured</li>
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/men">
                   <li>men</li>
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/women">
                   <li>women</li>
-                </a>
+                </Link>
               </ol>
             </nav>
           </div>
