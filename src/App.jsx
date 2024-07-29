@@ -14,10 +14,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.Fragment>
       <Header />
       <Routes>
-        <Route path="home" element={<Home />} />
-        <Route path="men" element={<Men />} />
-        <Route path="women" element={<Women />} />
-
+        <Route path="/home" element={<Home />} />
+        <Route path="/men" element={<Men />} />
+        <Route path="/women" element={<Women />} />
+        <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
     </React.Fragment>
