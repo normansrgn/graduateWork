@@ -1,6 +1,6 @@
 import { Component } from "react";
-
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import "./__footer.scss";
 
@@ -47,8 +47,12 @@ export default class Footer extends Component {
             <ol>
               <li>About</li>
               <li>Categories</li>
-              <li>Men</li>
-              <li>Women</li>
+              <Link to="men">
+                <li>Men</li>
+              </Link>
+              <Link to="women">
+                <li>Women</li>
+              </Link>
               <li>Find a store</li>
             </ol>
           </div>
