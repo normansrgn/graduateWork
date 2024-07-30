@@ -17,8 +17,21 @@ export default class SneakersPromo extends Component {
         sneaker.title.toLowerCase().includes(initialBrand)
       ),
       activeBrand: initialBrand,
+      isMobile: window.innerWidth <= 768
     };
   }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.setState({ isMobile: window.innerWidth <= 768 });
+  };
 
   filterSneakers = (brand) => {
     const filtered = sneakers.filter((sneaker) =>
@@ -27,8 +40,13 @@ export default class SneakersPromo extends Component {
     this.setState({ filteredSneakers: filtered, activeBrand: brand });
   };
 
+  handleSelectChange = (event) => {
+    const brand = event.target.value;
+    this.filterSneakers(brand);
+  };
+
   render() {
-    const { activeBrand, filteredSneakers } = this.state;
+    const { activeBrand, filteredSneakers, isMobile } = this.state;
 
     return (
       <section className="sneaker">
@@ -40,19 +58,33 @@ export default class SneakersPromo extends Component {
               pellentesque neque tempus imperdiet enim a. Sit morbi convallis
               suscipit vitae lacus vitae id urna pharetra.
             </p>
-            <nav className="sneaker__nav">
-              <ol>
+            {isMobile ? (
+              <select
+                className="sneaker__select"
+                value={activeBrand}
+                onChange={this.handleSelectChange}
+              >
                 {brands.map((brand) => (
-                  <li
-                    key={brand}
-                    className={`${activeBrand === brand ? "active" : ""}`}
-                    onClick={() => this.filterSneakers(brand)}
-                  >
+                  <option key={brand} value={brand}>
                     {brand}
-                  </li>
+                  </option>
                 ))}
-              </ol>
-            </nav>
+              </select>
+            ) : (
+              <nav className="sneaker__nav">
+                <ol>
+                  {brands.map((brand) => (
+                    <li
+                      key={brand}
+                      className={`${activeBrand === brand ? "active" : ""}`}
+                      onClick={() => this.filterSneakers(brand)}
+                    >
+                      {brand}
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
           </div>
           <Row className="sneaker__row">
             {filteredSneakers.slice(0, 3).map((sneaker) => (

@@ -1,6 +1,26 @@
 .sneaker {
   margin-top: 160px;
 
+  &__select {
+    &:focus {
+      outline: none;
+    }
+    background: none;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 10px;
+    padding: 10px;
+
+    background: linear-gradient(
+      118.79deg,
+      rgb(6, 193, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(255, 0, 214) 57.356%,
+      rgb(255, 0, 61) 90.232%
+    );
+  }
+
   &__text {
     text-align: center;
     display: flex;
@@ -167,6 +187,14 @@
   color: transparent;
 }
 
+.sneaker__nav {
+  display: block;
+}
+
+.sneaker__select {
+  display: none;
+}
+
 @media (max-width: 770px) {
   .sneaker__nav {
     & li {
@@ -176,6 +204,23 @@
     & ol {
       flex-wrap: wrap;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .sneaker__nav {
+    display: none;
+  }
+
+  .sneaker__row {
+    margin-top: 15px !important;
+  }
+
+  .sneaker__select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
   }
 }
 
