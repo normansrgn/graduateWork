@@ -1,7 +1,9 @@
 import { Component } from "react";
-import MenPage from "../components/MenSneakerPage/MenSneakerPage";
 import { Container } from "react-bootstrap";
+
 import SneakersPromoMen from "../components/MenSneakerPage/SneakersPromoMen/SneakersPromo";
+
+import MenPage from "../components/MenSneakerPage/MenSneakerPage";
 
 export default class Men extends Component {
   render() {
