@@ -6,14 +6,14 @@ import SneakersPromoMen from "../components/MenSneakerPage/SneakersPromoMen/Snea
 export default class Men extends Component {
   render() {
     return (
-      <>
+      <React.Fragment>
         <Container>
           <div className="men">
             <MenPage />
             <SneakersPromoMen />
           </div>
         </Container>
-      </>
+      </React.Fragment>
     );
   }
 }
