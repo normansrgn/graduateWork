@@ -30,7 +30,7 @@ export default class SneakersPromo extends Component {
   }
 
   handleResize = () => {
-    this.setState({ isMobile: window.innerWidth <= 768 });
+    this.setState({ isMobile: window.innerWidth <= 765 });
   };
 
   filterSneakers = (brand) => {
