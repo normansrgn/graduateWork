@@ -7,14 +7,14 @@ import PromoSlider from "../components/PromoSlider/PromoSlider";
 export default class Home extends Component {
   render() {
     return (
-      <React.Fragment>
+      <>
 
         <Prom />
         <MenWomen />
         <SneakersPromo />
         <PromoSlider />
         
-      </React.Fragment>
+      </>
     );
   }
 }
