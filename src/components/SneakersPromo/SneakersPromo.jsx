@@ -47,7 +47,6 @@ export default class SneakersPromo extends Component {
 
   render() {
     const { activeBrand, filteredSneakers, isMobile } = this.state;
-
     return (
       <>
         <section className="sneaker">
