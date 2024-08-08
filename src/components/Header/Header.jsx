@@ -13,6 +13,7 @@ import logo from "./logo.svg";
 // Header component with logo, navigation links, and burger menu.
 export default class Header extends Component {
   render() {
+    
     return (
       <>
         <header className="header">
