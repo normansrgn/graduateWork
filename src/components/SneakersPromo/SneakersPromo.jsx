@@ -45,6 +45,7 @@ export default class SneakersPromo extends Component {
     this.filterSneakers(brand);
   };
 
+  //Snseaker page load
   render() {
     const { activeBrand, filteredSneakers, isMobile } = this.state;
     return (
