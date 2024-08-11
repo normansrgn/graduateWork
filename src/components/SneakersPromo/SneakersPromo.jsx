@@ -91,7 +91,7 @@ export default class SneakersPromo extends Component {
               {filteredSneakers.slice(0, 3).map((sneaker) => (
                 <SneakerCard key={sneaker.title} {...sneaker} />
               ))}
-            </Row>
+            </Row> 
             <div className="sneaker__button">
               <button className="sneaker__btn">View all</button>
             </div>
