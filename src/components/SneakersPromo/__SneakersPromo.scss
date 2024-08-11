@@ -50,19 +50,27 @@
     flex-direction: column;
     gap: 25px;
     margin-bottom: 30px;
-
     padding: 15px;
-
     border-radius: 15px;
     background-color: #111111;
     transition: 0.2s linear;
-
+  
     & img {
       width: 100%;
     }
-
-    &:hover {
-      background-color: #1b1b1b;
+  
+    // Hover для устройств с более широким экраном
+    @media (min-width: 768px) {
+      &:hover {
+        background-color: #1b1b1b;
+      }
+    }
+  
+    // Active для мобильных устройств
+    @media (max-width: 767px) {
+      &:active {
+        background-color: #1b1b1b;
+      }
     }
   }
 
