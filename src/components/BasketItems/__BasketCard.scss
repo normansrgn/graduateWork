@@ -9,6 +9,12 @@
   padding: 22px;
   gap: 30px;
   max-width: 100%;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #1b1b1b;
+  }
 
   &__title {
     font-size: 24px;
@@ -36,6 +42,38 @@
   }
 }
 
+.basketCardInfo {
+  margin-top: 30px;
+  background-color: #151515;
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // width: 600px;
+  padding: 22px;
+  gap: 30px;
+  max-width: 100%;
+
+  &__title {
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+  &__price {
+    font-size: 19px;
+    font-weight: 600;
+    background: linear-gradient(
+      118.79deg,
+      rgb(6, 193, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(255, 0, 214) 57.356%,
+      rgb(255, 0, 61) 90.232%
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
 .basketButton {
   margin-top: 30px;
   border: none;
@@ -45,9 +83,15 @@
   border-radius: 17px;
   font-weight: 600;
   color: white;
-  background: linear-gradient(118.79deg, rgb(210, 6, 252) 2.254%, rgb(172, 66, 255) 33.741%, rgb(237, 28, 224) 57.356%, rgb(177, 0, 255) 90.232%);
-    background-size: 200% 200%;
-    animation: gradientShift 6s linear infinite;
+  background: linear-gradient(
+    118.79deg,
+    rgb(210, 6, 252) 2.254%,
+    rgb(172, 66, 255) 33.741%,
+    rgb(237, 28, 224) 57.356%,
+    rgb(177, 0, 255) 90.232%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 6s linear infinite;
 }
 
 @media (max-width: 688px) {
