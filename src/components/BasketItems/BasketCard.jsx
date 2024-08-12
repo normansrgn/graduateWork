@@ -15,6 +15,15 @@ function BasketCard() {
           <div className="basketCard__price">$200</div>
         </section>
       </div>
+      <div className="col-xxl-6">
+        <section className="basketCard">
+          <div className="basketCard__title">ИТОГО:</div>
+          <div className="basketCard__price">$200</div>
+        </section>
+      </div>
+      <div className="col-xxl-6">
+        <button className="basketButton">ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>
+      </div>
     </>
   );
 }

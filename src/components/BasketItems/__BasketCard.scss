@@ -10,7 +10,6 @@
   gap: 30px;
   max-width: 100%;
 
-
   &__title {
     font-size: 24px;
     font-weight: 600;
@@ -20,6 +19,15 @@
   &__price {
     font-weight: 600;
     font-size: 24px;
+    background: linear-gradient(
+      118.79deg,
+      rgb(6, 193, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(255, 0, 214) 57.356%,
+      rgb(255, 0, 61) 90.232%
+    );
+    -webkit-background-clip: text;
+    color: transparent;
   }
 
   &__image {
@@ -28,8 +36,20 @@
   }
 }
 
+.basketButton {
+  margin-top: 30px;
+  border: none;
+  width: 100%;
+  padding: 15px;
+  border-radius: 17px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(118.79deg, rgb(210, 6, 252) 2.254%, rgb(172, 66, 255) 33.741%, rgb(237, 28, 224) 57.356%, rgb(177, 0, 255) 90.232%);
+    background-size: 200% 200%;
+    animation: gradientShift 6s linear infinite;
+}
 
-@media (max-width:688px) {
+@media (max-width: 688px) {
   .basketCard {
     flex-direction: column;
 
@@ -39,9 +59,8 @@
   }
 }
 
-@media (max-width:344px) {
+@media (max-width: 344px) {
   .basketCard {
-
     &__title {
       font-size: 20px;
     }
@@ -50,12 +69,10 @@
       font-size: 20px;
     }
   }
-
 }
 
-@media (max-width:302px) {
+@media (max-width: 302px) {
   .basketCard {
-
     &__title {
       font-size: 17px;
     }
