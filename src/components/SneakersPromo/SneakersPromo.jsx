@@ -9,30 +9,16 @@ import { sneakers } from "./data";
 const brands = ["air jordan", "nike", "dior", "zara", "adidas"];
 
 export default class SneakersPromo extends Component {
-  constructor(props) {
-    super(props);
-    const initialBrand = "air jordan";
-    this.state = {
-      filteredSneakers: sneakers.filter((sneaker) =>
-        sneaker.title.toLowerCase().includes(initialBrand)
-      ),
-      activeBrand: initialBrand,
-      isMobile: window.innerWidth <= 768,
-    };
-  }
 
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
   }
-
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
   }
-
   handleResize = () => {
     this.setState({ isMobile: window.innerWidth <= 765 });
   };
-
   filterSneakers = (brand) => {
     const filtered = sneakers.filter((sneaker) =>
       sneaker.title.toLowerCase().includes(brand)
@@ -45,7 +31,18 @@ export default class SneakersPromo extends Component {
     this.filterSneakers(brand);
   };
 
-  //Snseaker page load
+  constructor(props) {
+    super(props);
+    const initialBrand = "air jordan";
+    this.state = {
+      filteredSneakers: sneakers.filter((sneaker) =>
+        sneaker.title.toLowerCase().includes(initialBrand)
+      ),
+      activeBrand: initialBrand,
+      isMobile: window.innerWidth <= 768,
+    };
+  }
+
   render() {
     const { activeBrand, filteredSneakers, isMobile } = this.state;
     return (
