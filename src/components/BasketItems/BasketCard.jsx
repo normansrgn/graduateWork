@@ -4,6 +4,7 @@ import "./__BasketCard.scss";
 function BasketCard() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [removingItems, setRemovingItems] = useState([]);
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -14,18 +15,33 @@ function BasketCard() {
   }, []);
 
   const removeFromCart = (indexToRemove) => {
-    const updatedCart = cartItems.filter((_, index) => index !== indexToRemove);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    setCartItems(updatedCart);
+    setRemovingItems([...removingItems, indexToRemove]);
 
-    const total = updatedCart.reduce((sum, item) => sum + item.price, 0);
-    setTotalPrice(total);
+    setTimeout(() => {
+      const updatedCart = cartItems.filter(
+        (_, index) => index !== indexToRemove
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setCartItems(updatedCart);
+
+      const total = updatedCart.reduce((sum, item) => sum + item.price, 0);
+      setTotalPrice(total);
+
+      setRemovingItems(
+        removingItems.filter((index) => index !== indexToRemove)
+      );
+    }, 500); // Delay to allow the animation to play
   };
 
   return (
     <>
       {cartItems.map((item, index) => (
-        <div key={index} className="col-xxl-6 ">
+        <div
+          key={index}
+          className={`col-xxl-6 basketCard__container ${
+            removingItems.includes(index) ? "basketCard__removing" : ""
+          }`}
+        >
           <section className="basketCard">
             <img
               src={item.img}
