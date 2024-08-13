@@ -16,6 +16,13 @@
     background-color: #1b1b1b;
   }
 
+  &__removeButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+  }
+
   &__title {
     font-size: 24px;
     font-weight: 600;
@@ -93,6 +100,7 @@
   background-size: 200% 200%;
   animation: gradientShift 6s linear infinite;
 }
+
 
 @media (max-width: 688px) {
   .basketCard {
