@@ -1,10 +1,9 @@
-import { Component } from "react";
 import React, { useState } from "react";
+import "./__burgermenu.scss"; // Предполагается, что стили находятся в этом файле
+import "../Header/__header.scss";
 
 import { Link } from "react-router-dom";
 
-import "./__burgermenu.scss";
-import "../Header/__header.scss";
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -12,16 +11,29 @@ const BurgerMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = (e) => {
+    // Закрываем меню, если клик произошел вне содержимого меню
+    if (!e.target.classList.contains("burger__content")) {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <div className="burger_menu">
       <button id="burger__btn" type="button" onClick={toggleMenu}>
-        <span id="burgerSpan"></span>
+        <span
+          id="burgerSpan"
+          className={isOpen ? "btn-open-animation" : ""}
+        ></span>
       </button>
-      <aside className={`burger__container ${isOpen ? "open" : ""}`}>
+      <aside
+        className={`burger__container ${isOpen ? "open" : ""}`}
+        onClick={closeMenu}
+      >
         <div className="burger__content">
-          <div className="burger__nav">
-            <nav>
-              <ol>
+          <div className="burger__content">
+            <nav className="burger__nav">
+              <ol className="burgerMenu_list">
                 <Link to="/">
                   <li>home</li>
                 </Link>
