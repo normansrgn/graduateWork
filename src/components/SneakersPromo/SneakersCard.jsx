@@ -1,17 +1,18 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SneakerCard(props) {
   const [showNotification, setShowNotification] = useState(false);
 
   const addToCart = () => {
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
     const newItem = {
       img: props.img,
       title: props.title,
-      price: props.price
+      price: props.price,
     };
     currentCart.push(newItem);
-    localStorage.setItem('cart', JSON.stringify(currentCart));
+    localStorage.setItem("cart", JSON.stringify(currentCart));
 
     // Показываем уведомление
     setShowNotification(true);
@@ -36,9 +37,9 @@ function SneakerCard(props) {
       </div>
 
       {showNotification && (
-        <div className="notification">
-          Товар добавлен в корзину!
-        </div>
+        <Link to="/basket">
+          <div className="notification">Товар добавлен в корзину!</div>
+        </Link>
       )}
     </div>
   );

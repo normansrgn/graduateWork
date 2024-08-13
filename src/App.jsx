@@ -9,11 +9,12 @@ import Home from "./pages/Home"; // Импортируем Home как комп�
 import Men from "./pages/Men";
 import Women from "./pages/Women";
 import Basket from "./pages/Basket";
-
+import ScrollToTop from "./components/ScrollTop/ScrollTop";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <React.Fragment>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
