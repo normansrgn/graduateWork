@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 function SneakerCard(props) {
+  const [showNotification, setShowNotification] = useState(false);
+
   const addToCart = () => {
     const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
     const newItem = {
@@ -10,6 +12,14 @@ function SneakerCard(props) {
     };
     currentCart.push(newItem);
     localStorage.setItem('cart', JSON.stringify(currentCart));
+
+    // Показываем уведомление
+    setShowNotification(true);
+
+    // Скрываем уведомление через 3 секунды
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
   };
 
   return (
@@ -24,6 +34,12 @@ function SneakerCard(props) {
           </div>
         </div>
       </div>
+
+      {showNotification && (
+        <div className="notification">
+          Товар добавлен в корзину!
+        </div>
+      )}
     </div>
   );
 }
