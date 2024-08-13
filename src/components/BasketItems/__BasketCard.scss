@@ -125,12 +125,47 @@
 
 
 
-@media (max-width: 688px) {
+@media (max-width: 767px) {
   .basketCard {
-    flex-direction: column;
+
+    &__title {
+      font-size: 15px;
+    }
 
     &__image {
-      width: 100%;
+      width: 120px;
+    }
+  }
+}
+
+@media (max-width: 509px) {
+  .basketCard {
+
+    &__title {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    &__image {
+      width: 110px;
+    }
+
+    &__price {
+      font-size: 17px;
+    }
+  }
+}
+
+
+@media (max-width: 400px) {
+  .basketCard {
+
+    &__title {
+      font-size: 10px;
+    }
+
+    &__image {
+      width: 90px;
     }
   }
 }
