@@ -1,29 +1,29 @@
-.burger_nav {
-  display: flex;
-  /* flex-direction: column; */
-} 
-
 .burger_menu {
-  display: none;
-}
-
-.burger__container {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: -100%;
-  visibility: hidden;
-  transition: .3s;
+  position: relative;
   z-index: 5000;
 }
 
-.burger__content {
-  padding: 10px 0px;
+.burger__container {
+  width: 85%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: -85%; /* Меню за пределами правого края */
+  visibility: hidden;
+  transition: right 0.3s ease, visibility 0.3s ease;
+  z-index: 5001;
   background: #111111;
-  width: 74%;
+}
+
+.burger__container.open {
+  right: 0; /* Положение меню при открытии */
+  visibility: visible;
+}
+
+.burger__content {
+  padding: 18px 0px;
   height: 100%;
-  color: black;
+  color: white;
 }
 
 .burgerMenu_list {
@@ -31,17 +31,15 @@
   flex-direction: column;
   gap: 10px;
 
-  & li {
+  a {
+    text-decoration: none;
+  }
+
+  li {
     font-size: 19px;
     color: white;
     text-transform: uppercase;
   }
-}
-
-.burger__container.open {
-  left: 0;
-  visibility: visible;
-  transition: .3s;
 }
 
 #burger__btn {
@@ -55,7 +53,8 @@
   align-items: center;
   gap: 0.375rem;
   position: relative;
-  z-index: 5001;
+  z-index: 5002;
+  margin-left: auto;
 }
 
 #burger__btn span {
@@ -91,23 +90,42 @@
 #burger__btn .btn-open-animation {
   width: 2rem;
   transform: rotate(45deg);
-  transition: transform 0.3s;
 }
 
 #burger__btn .btn-open-animation::after {
   transform: rotate(90deg);
   top: 0;
-  transition: all 0.3s;
 }
 
 #burger__btn .btn-open-animation::before {
   opacity: 0;
-  transition: opacity 0.2s;
 }
 
-.foooter_section {
-  height: 90px;
+/* Размытый фон */
+.blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 5000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 3s, opacity 0.3s ease;
 }
+
+.blur-background.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header__navIc {
+  display: flex;
+  gap: 10px;
+}
+
 
 @media (max-width: 774px) {
   .burger_menu {
