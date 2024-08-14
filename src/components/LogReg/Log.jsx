@@ -10,7 +10,7 @@ function Login() {
     <>
       <section className="login">
         <Container className="login__container">
-          <h1 className="login__title">Войти</h1>
+          <h1 className="login__title">Вход</h1>
           <form action="" className="login__form">
             <input type="text" className="login__input" placeholder="Логин" />
             <input
