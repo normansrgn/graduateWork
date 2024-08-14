@@ -48,7 +48,7 @@ function BasketCard() {
       {cartItems.length === 0 ? (
         <section className="basketCard__emty">
           <span>Ваша корзина пуста</span>
-          <Link to="/men">
+          <Link to="home">
             <button>Перейти к покупкам</button>
           </Link>
         </section>
