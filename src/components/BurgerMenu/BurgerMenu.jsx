@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./__burgermenu.scss";
+import "./__burgermenu.scss"; // Предполагается, что стили находятся в этом файле
 import "../Header/__header.scss";
+
 import { Link } from "react-router-dom";
 
 const BurgerMenu = () => {
@@ -10,14 +11,14 @@ const BurgerMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const closeMenu = (e) => {
-    if (!e.target.closest(".burger__content")) {
-      setIsOpen(false);
-    }
-  };
-
   const handleLinkClick = () => {
     setIsOpen(false);
+  };
+
+  const closeMenuOnOutsideClick = (e) => {
+    if (e.target.classList.contains("burger__container")) {
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -30,7 +31,7 @@ const BurgerMenu = () => {
       </button>
       <aside
         className={`burger__container ${isOpen ? "open" : ""}`}
-        onClick={closeMenu}
+        onClick={closeMenuOnOutsideClick}
       >
         <div className="burger__content">
           <nav className="burger__nav">
@@ -63,7 +64,6 @@ const BurgerMenu = () => {
                           x1="0%"
                           y1="0%"
                           x2="100%"
-                          y2="100%"
                         >
                           <stop
                             offset="0%"
@@ -114,7 +114,6 @@ const BurgerMenu = () => {
                           x1="0%"
                           y1="0%"
                           x2="100%"
-                          y2="100%"
                         >
                           <stop
                             offset="0%"
@@ -155,11 +154,7 @@ const BurgerMenu = () => {
           </nav>
         </div>
       </aside>
-      {/* Размытый фон */}
-      <div
-        className={`blur-background ${isOpen ? "visible" : ""}`}
-        onClick={toggleMenu}
-      ></div>
+      <div className={`blur-background ${isOpen ? "show" : ""}`} onClick={() => setIsOpen(false)}></div>
     </div>
   );
 };

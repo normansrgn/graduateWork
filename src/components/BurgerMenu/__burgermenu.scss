@@ -1,5 +1,6 @@
 .burger_menu {
   position: relative;
+  display: none;
   z-index: 5000;
 }
 
@@ -101,20 +102,41 @@
   opacity: 0;
 }
 
-/* Размытый фон */
 .blur-background {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
-  z-index: 5000;
-  visibility: hidden;
+  z-index: 4000; /* Убедитесь, что z-index ниже, чем у бургер-меню */
   opacity: 0;
-  transition: visibility 3s, opacity 0.3s ease;
+  pointer-events: none; /* Не блокировать клики на элементы ниже */
+  transition: opacity 0.3s ease;
 }
+
+.blur-background.show {
+  opacity: 1;
+  pointer-events: auto; /* Включить клики на элементы ниже */
+}
+
+
+
+
+/* Размытый фон */
+// .blur-background {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   background: rgba(0, 0, 0, 0.5);
+//   backdrop-filter: blur(10px);
+//   z-index: 5000;
+//   visibility: hidden;
+//   opacity: 0;
+// }
 
 .blur-background.visible {
   visibility: visible;
@@ -125,7 +147,6 @@
   display: flex;
   gap: 10px;
 }
-
 
 @media (max-width: 774px) {
   .burger_menu {
