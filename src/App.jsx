@@ -11,6 +11,7 @@ import Women from "./pages/Women";
 import Basket from "./pages/Basket";
 import ScrollToTop from "./components/ScrollTop/ScrollTop";
 import Log from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -23,8 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="women" element={<Women />} />
         <Route path="basket" element={<Basket />} />
         <Route path="log" element={<Log />} />
-
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </React.Fragment>
