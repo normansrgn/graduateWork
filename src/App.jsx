@@ -22,8 +22,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="men" element={<Men />} />
         <Route path="women" element={<Women />} />
         <Route path="basket" element={<Basket />} />
-        <Route path="*" element={<Home />} />
         <Route path="log" element={<Log />} />
+
+        <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
     </React.Fragment>
