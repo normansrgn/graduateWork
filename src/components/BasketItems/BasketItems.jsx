@@ -10,7 +10,6 @@ function BasketItems() {
     <>
       <section className="basketItem">
         <Container className="basketItem__container">
-          <h1 className="basketItem__title">Корзина</h1>
           <BasketCard />
         </Container>
       </section>
