@@ -9,7 +9,7 @@ function NotfondComp() {
     <>
       <section className="notfound">
         <Container className="notfound__container">
-          <h1> Page is non found</h1>
+          <h1> Page is not found</h1>
         </Container>
       </section>
     </>
