@@ -1,0 +1,71 @@
+.login {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 55px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    & input {
+      color: white;
+      background-color: #151515;
+      border-radius: 19px;
+      border: none;
+      padding: 18px;
+      width: 320px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__button {
+    width: 100%;
+    & button {
+      width: 100%;
+      border-radius: 19px;
+      padding: 14px;
+      border: none;
+      color: white;
+      background: linear-gradient(
+        118.79deg,
+        rgb(210, 6, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(237, 28, 224) 57.356%,
+        rgb(177, 0, 255) 90.232%
+      );
+      background-size: 200% 200%;
+      animation: gradientShift 6s linear infinite;
+    }
+  }
+
+  &__btnText {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 11px;
+
+    & span {
+      background: linear-gradient(
+        118.79deg,
+        rgb(210, 6, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(237, 28, 224) 57.356%,
+        rgb(177, 0, 255) 90.232%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 200% 200%;
+      animation: gradientAnimation 9s linear infinite;
+    }
+  }
+}

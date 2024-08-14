@@ -10,6 +10,7 @@ import Men from "./pages/Men";
 import Women from "./pages/Women";
 import Basket from "./pages/Basket";
 import ScrollToTop from "./components/ScrollTop/ScrollTop";
+import Log from "./pages/Login";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="women" element={<Women />} />
         <Route path="basket" element={<Basket />} />
         <Route path="*" element={<Home />} />
+        <Route path="log" element={<Log />} />
       </Routes>
       <Footer />
     </React.Fragment>

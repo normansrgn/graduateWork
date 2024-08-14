@@ -20,7 +20,7 @@ function SneakerCard(props) {
     // Скрываем уведомление через 3 секунды
     setTimeout(() => {
       setShowNotification(false);
-    }, 3000);
+    }, 2000);
   };
 
   return (
