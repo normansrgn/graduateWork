@@ -9,7 +9,7 @@ function SneakerCard(props) {
     const newItem = {
       img: props.img,
       title: props.title,
-      price: props.price,
+      price: props.price,  
     };
     currentCart.push(newItem);
     localStorage.setItem("cart", JSON.stringify(currentCart));
