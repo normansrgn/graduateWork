@@ -158,6 +158,11 @@
 }
 
 @media (max-width: 767px) {
+
+  .basketItem__title {
+    margin-top: 28px;
+  }
+
   .basketCard {
     &__title {
       font-size: 15px;
