@@ -13,7 +13,6 @@ function SneakerCard(props) {
     };
     currentCart.push(newItem);
     localStorage.setItem("cart", JSON.stringify(currentCart));
-
     // Показываем уведомление
     setShowNotification(true);
 
