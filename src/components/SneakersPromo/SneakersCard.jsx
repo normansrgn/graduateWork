@@ -11,9 +11,10 @@ function SneakerCard(props) {
       title: props.title,
       price: props.price,  
     };
+    
     currentCart.push(newItem);
     localStorage.setItem("cart", JSON.stringify(currentCart));
-    
+
     // Показываем уведомление
     setShowNotification(true);
 
