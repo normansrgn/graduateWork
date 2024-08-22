@@ -19,7 +19,9 @@ function Login() {
               placeholder="Пароль"
             />
             <div className="login__button">
-              <button>Войти</button>
+              <Link to="/">
+                <button>Войти</button>
+              </Link>
               <div className="login__btnText">
                 <Link to="/">
                   <span>Зарегистрироваться</span>
