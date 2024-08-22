@@ -3,7 +3,7 @@ import "./__BasketCard.scss";
 
 import { Link } from "react-router-dom";
 
-function BasketCard() {
+function  BasketCard() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [removingItems, setRemovingItems] = useState([]);
