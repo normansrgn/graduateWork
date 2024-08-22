@@ -6,6 +6,8 @@
   align-items: center;
 
   &__container {
+    margin-top: 70px;
+
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -115,7 +117,10 @@
 
 @media (max-width: 760px) {
   .prom {
-    margin-top: 60px;
+
+    &__container {
+      margin-top: 10px;
+    }
 
     &__hrImg {
       margin-top: 100px;

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -12,7 +11,11 @@ function Login() {
         <Container className="login__container">
           <h1 className="login__title">Вход</h1>
           <form action="" className="login__form">
-            <input type="text" className="login__input" placeholder="Логин" />
+            <input
+              type="text"
+              className="login__input"
+              placeholder="Номер телефона"
+            />
             <input
               type="password"
               className="login__input"
