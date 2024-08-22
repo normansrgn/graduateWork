@@ -48,7 +48,7 @@ const BurgerMenu = () => {
               <Link to="/women" onClick={handleLinkClick}>
                 <li>women</li>
               </Link>
-              <div className="header__navIc">
+              <div className="header__navIc burger_menu__bavIcon">
                 <Link to="/Log" onClick={handleLinkClick}>
                   <div className="header__navIcon">
                     <svg
