@@ -18,14 +18,16 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.Fragment>
       <ScrollToTop />
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="men" element={<Men />} />
-        <Route path="women" element={<Women />} />
-        <Route path="basket" element={<Basket />} />
-        <Route path="log" element={<Log />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="men" element={<Men />} />
+          <Route path="women" element={<Women />} />
+          <Route path="basket" element={<Basket />} />
+          <Route path="log" element={<Log />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </main>
       <Footer />
     </React.Fragment>
   </BrowserRouter>

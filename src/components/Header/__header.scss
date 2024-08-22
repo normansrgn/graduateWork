@@ -1,7 +1,18 @@
 .header {
-  // background: url(./bgk.svg) no-repeat right 180px center;
-  // height: 1117px;
   padding: 25px;
+  z-index: 1000;
+  position: fixed;
+  background-color: black;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+
+  &--visible {
+    transform: translateY(0);
+  }
+
+  &--hidden {
+    transform: translateY(-100%);
+  }
 
   &__container {
     display: flex;
