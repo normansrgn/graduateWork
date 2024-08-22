@@ -22,7 +22,7 @@
 }
 
 .burger__content {
-  padding: 35px 0px;
+  padding: 30px 0px;
   height: 100%;
   color: white;
 }
@@ -30,14 +30,14 @@
 .burgerMenu_list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 36px;
 
   a {
     text-decoration: none;
   }
 
   li {
-    font-size: 19px;
+    font-size: 28px;
     color: white;
     text-transform: uppercase;
   }
