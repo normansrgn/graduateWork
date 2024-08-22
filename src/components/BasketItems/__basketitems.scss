@@ -9,3 +9,11 @@
         font-size: 55px;
     }
 }
+
+
+@media (max-width: 600px) {
+    .basketItem__title {
+        text-align: center;
+        font-size: 40px;
+    }
+}
