@@ -12,7 +12,7 @@ function Login() {
           <h1 className="login__title">Вход</h1>
           <form action="" className="login__form">
             <input
-              type="text"
+              type="number"
               className="login__input"
               placeholder="Номер телефона"
             />
