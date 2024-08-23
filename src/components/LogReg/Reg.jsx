@@ -9,7 +9,7 @@ function Registr() {
     <>
       <section className="reg">
         <Container className="login__container">
-          <h1 className="login__title">Регистрация</h1>
+          <h1 className="reg__title">Регистрация</h1>
           <form action="" className="login__form">
             <input type="text" className="login__input" placeholder="Имя" />
             <input type="number" className="login__input" placeholder="Номер телефона" />
