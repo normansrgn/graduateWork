@@ -119,7 +119,15 @@
 }
 
 @media (max-width: 774px) {
-  .header__navBlock {
-    display: none;
+  .header {
+    &__logo {
+      & img {
+        width: 55px;
+      }
+    }
+
+    &__navBlock {
+      display: none;
+    }
   }
 }

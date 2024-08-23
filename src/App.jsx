@@ -11,6 +11,7 @@ import Women from "./pages/Women";
 import Basket from "./pages/Basket";
 import ScrollToTop from "./components/ScrollTop/ScrollTop";
 import Log from "./pages/Login";
+import Reg from "./pages/Registration";
 // import NotFound from "./pages/NotFound";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="women" element={<Women />} />
           <Route path="basket" element={<Basket />} />
           <Route path="log" element={<Log />} />
+          <Route path="reg" element={<Reg />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>

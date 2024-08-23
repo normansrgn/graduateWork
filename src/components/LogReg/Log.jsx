@@ -26,7 +26,7 @@ function Login() {
                 <button>Войти</button>
               </Link>
               <div className="login__btnText">
-                <Link to="/">
+                <Link to="/reg">
                   <span>Зарегистрироваться</span>
                 </Link>
                 , если первый раз на сайте
