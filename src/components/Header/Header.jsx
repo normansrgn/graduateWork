@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -7,21 +7,20 @@ import "./__header.scss";
 import HeaderNav from "./HeaderNav";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
-
 import logo from "./logo.svg";
 
 // Header component with logo, navigation links, and burger menu.
 export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
-  let lastScrollPos = 0;
+  const lastScrollPos = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      setScrollUp(currentScrollPos < lastScrollPos || currentScrollPos === 0);
-      lastScrollPos = currentScrollPos;
+      setScrollUp(currentScrollPos < lastScrollPos.current || currentScrollPos === 0);
+      lastScrollPos.current = currentScrollPos;
     };
-
+    
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
