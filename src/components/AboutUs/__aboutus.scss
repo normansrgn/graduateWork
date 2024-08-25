@@ -38,3 +38,17 @@
     animation: gradientShift 6s linear infinite;
   }
 }
+
+
+@media (max-width: 700px) {
+  .aboutus {
+
+    &__title {
+      font-size: 40px;
+    }
+
+    &__btn {
+      font-size: 15px;
+    }
+  }
+}
