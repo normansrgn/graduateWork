@@ -48,6 +48,9 @@ const BurgerMenu = () => {
               <Link to="/women" onClick={handleLinkClick}>
                 <li>women</li>
               </Link>
+              <Link to="/aboutus" onClick={handleLinkClick}>
+                <li>About us</li>
+              </Link>
               <div className="header__navIc burger_menu__bavIcon">
                 <Link to="/Log" onClick={handleLinkClick}>
                   <div className="header__navIcon">
@@ -59,12 +62,7 @@ const BurgerMenu = () => {
                       fill="rgba(255,254,254,1)"
                     >
                       <defs>
-                        <linearGradient
-                          id="gradient"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                        >
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%">
                           <stop
                             offset="0%"
                             style={{
@@ -109,12 +107,7 @@ const BurgerMenu = () => {
                       fill="rgba(255,255,255,1)"
                     >
                       <defs>
-                        <linearGradient
-                          id="gradient"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                        >
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%">
                           <stop
                             offset="0%"
                             style={{
@@ -154,7 +147,10 @@ const BurgerMenu = () => {
           </nav>
         </div>
       </aside>
-      <div className={`blur-background ${isOpen ? "show" : ""}`} onClick={() => setIsOpen(false)}></div>
+      <div
+        className={`blur-background ${isOpen ? "show" : ""}`}
+        onClick={() => setIsOpen(false)}
+      ></div>
     </div>
   );
 };
