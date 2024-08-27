@@ -1,13 +1,41 @@
-// src/components/CheckoutPage.jsx
-import React from "react";
-
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import "./__check.scss";
+import axios from "axios";
 
 function CheckoutPage() {
   const location = useLocation();
   const { cartItems, totalPrice } = location.state;
+
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    address: "",
+    telegramId: "" // Новое поле для Telegram ID
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    axios
+      .post("http://localhost:3001/send-order", {
+        ...formData,
+        cartItems,
+        totalPrice,
+      })
+      .then((response) => {
+        alert("Заказ отправлен!");
+      })
+      .catch((error) => {
+        console.error("Ошибка при отправке заказа:", error);
+        alert("Ошибка при отправке заказа");
+      });
+  };
 
   return (
     <>
@@ -20,15 +48,41 @@ function CheckoutPage() {
         <div className="userInfo">
           <div className="userInfo__content">
             <form action="" className="userInfo__form">
-              <input type="text" placeholder="Имя и Фамилия" />
-              <input type="number" placeholder="Телефон" />
-              <input type="text" placeholder="Электронная Почта" />
-            </form>
-          </div>
-          <div className="userInfo__content">
-            <h2 className="userInfo__title">Адрес доставки</h2>
-            <form action="" className="userInfo__form">
-              <input type="text" placeholder="Ваш адрес" />
+              <input
+                type="text"
+                placeholder="Имя и Фамилия"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+              <input
+                type="number"
+                placeholder="Телефон"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                placeholder="Электронная Почта"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                placeholder="Ваш адрес"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                placeholder="Ваш Telegram ID"
+                name="telegramId"
+                value={formData.telegramId}
+                onChange={handleInputChange}
+              />
             </form>
           </div>
         </div>
@@ -59,7 +113,10 @@ function CheckoutPage() {
                   <span>К оплате:</span> <span>${totalPrice}</span>
                 </div>
 
-                <button className="checkoutPage__confirmButton">
+                <button
+                  className="checkoutPage__confirmButton"
+                  onClick={handleSubmit}
+                >
                   Перейти к оплате
                 </button>
               </div>
