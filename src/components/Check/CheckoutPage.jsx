@@ -22,7 +22,7 @@ function CheckoutPage() {
             <form action="" className="userInfo__form">
               <input type="text" placeholder="Имя и Фамилия" />
               <input type="number" placeholder="Телефон" />
-              <input type="text" placeholder="Почта" />
+              <input type="text" placeholder="Электронная Почта" />
             </form>
           </div>
           <div className="userInfo__content">
