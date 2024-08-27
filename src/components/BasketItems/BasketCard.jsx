@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./__BasketCard.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function  BasketCard() {
+function BasketCard() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [removingItems, setRemovingItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -40,7 +41,11 @@ function  BasketCard() {
       setRemovingItems(
         removingItems.filter((index) => index !== indexToRemove)
       );
-    }, 500); // Delay to allow the animation to play
+    }, 500);
+  };
+
+  const handleCheckout = () => {
+    navigate("/checkout", { state: { cartItems, totalPrice } });
   };
 
   return (
@@ -89,7 +94,9 @@ function  BasketCard() {
             </section>
           </div>
           <div className="col-xxl-6">
-            <button className="basketButton">ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>
+            <button className="basketButton" onClick={handleCheckout}>
+              ПЕРЕЙТИ К ОФОРМЛЕНИЮ
+            </button>
           </div>
         </>
       )}

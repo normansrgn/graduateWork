@@ -13,6 +13,7 @@ import ScrollToTop from "./components/ScrollTop/ScrollTop";
 import Log from "./pages/Login";
 import Reg from "./pages/Registration";
 import AboutUs from "./pages/AboutUs";
+import CheckoutPage from "./components/Check/CheckoutPage";``
 // import NotFound from "./pages/NotFound";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="log" element={<Log />} />
           <Route path="reg" element={<Reg />} />
           <Route path="AboutUs" element={<AboutUs />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
