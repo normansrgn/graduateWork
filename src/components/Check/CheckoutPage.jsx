@@ -56,7 +56,7 @@ function CheckoutPage() {
                   ))}
                 </div>
                 <div className="checkoutPage__total">
-                  <span>К оплате:</span> <span>${totalPrice}</span>
+                  <div>К оплате:</div> <span>${totalPrice}</span>
                 </div>
 
                 <button className="checkoutPage__confirmButton">

@@ -2,14 +2,12 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-
-
 }
 
 .userInfo {
-display: flex;
-flex-direction: column;
-gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   width: 100%;
   max-width: 100%;
 
@@ -98,6 +96,7 @@ gap: 40px;
   }
 
   &__total {
+    text-align: center;
     font-size: 17px;
     font-weight: 600;
     text-transform: uppercase;
@@ -110,6 +109,20 @@ gap: 40px;
     padding: 22px;
     gap: 10px;
     max-width: 100%;
+
+    & span {
+      font-size: 19px;
+      font-weight: 600;
+      background: linear-gradient(
+        118.79deg,
+        rgb(6, 193, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(255, 0, 214) 57.356%,
+        rgb(255, 0, 61) 90.232%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
   }
 
   &__confirmButton {
@@ -134,7 +147,6 @@ gap: 40px;
 }
 
 @media (max-width: 796px) {
-
   .userInfo {
     &__title {
       text-align: center;
@@ -156,6 +168,9 @@ gap: 40px;
     &__image {
       width: 120px;
     }
+    &__total {
+      justify-content: center;
+    }
   }
 }
 
@@ -174,8 +189,6 @@ gap: 40px;
       font-size: 17px;
     }
   }
-
-  
 }
 
 @media (max-width: 400px) {
