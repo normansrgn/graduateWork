@@ -31,7 +31,7 @@ function SneakerCard(props) {
         <div className="sneaker__cardText">
           <h2 className="sneaker__cardTitle">{props.title}</h2>
           <div className="sneaker__cardPrice">
-            <span>${props.price}</span>
+            <span>{props.price}₽</span>
             <button onClick={addToCart}>BY NOW</button>
           </div>
         </div>

@@ -76,7 +76,7 @@ function BasketCard() {
                 />
                 <div className="basketCard__title">{item.title}</div>
                 <div className="basketCard__price">
-                  ${item.price}
+                  {item.price}₽
                   <button
                     onClick={() => removeFromCart(index)}
                     className="basketCard__removeButton"
@@ -90,7 +90,7 @@ function BasketCard() {
           <div className="col-xxl-6">
             <section className="basketCardInfo">
               <div className="basketCardInfo__title">ИТОГО:</div>
-              <div className="basketCardInfo__price">${totalPrice}</div>
+              <div className="basketCardInfo__price">{totalPrice}₽</div>
             </section>
           </div>
           <div className="col-xxl-6">
