@@ -7,14 +7,14 @@
 .userInfo {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   width: 100%;
   max-width: 100%;
 
   &__form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
 
     & input {
       width: 100%;
@@ -41,7 +41,7 @@
     margin-bottom: 30px;
   }
   &__items {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -100,7 +100,6 @@
     font-size: 17px;
     font-weight: 600;
     text-transform: uppercase;
-    margin-top: 30px;
     background-color: #151515;
     border-radius: 19px;
     display: flex;
