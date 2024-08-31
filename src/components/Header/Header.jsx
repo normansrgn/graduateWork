@@ -25,7 +25,7 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);  
+  }, []);    
 
   return (
     <header className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}>
