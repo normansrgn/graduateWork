@@ -9,7 +9,6 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 import logo from "./logo.svg";
 
-
 // Header component with logo, navigation links, and burger menu.
 export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
