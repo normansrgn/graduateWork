@@ -1,15 +1,18 @@
 import { Component } from "react";
-import WomenSneak from "../components/WomenSneaker/WomenSneaker";
-import SneakersPromoMen from "../components/WomenSneaker/SneakersPromoMen/SneakersPromo";
-
 import { Container } from "react-bootstrap";
-export default class WomenPg extends Component {
+import SneakersPromoMen from "../components/WomenSneakerPage/SneakersPromoMen/SneakersPromo";
+
+import WomenPage from "../components/WomenSneakerPage/WomenSneakerPage";
+
+export default class Women extends Component {
   render() {
     return (
       <>
         <Container>
-          <WomenSneak />
-          <SneakersPromoMen />
+          <div className="men">
+            <WomenPage />
+            <SneakersPromoMen />
+          </div>
         </Container>
       </>
     );
