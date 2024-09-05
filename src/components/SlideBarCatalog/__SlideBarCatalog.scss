@@ -1,11 +1,11 @@
 .slideee {
   display: flex;
   position: sticky;
-  top: 20px; // Отступ сверху, чтобы слайдбар не прилипал вплотную
+  top: 20px; 
   flex-direction: column;
   gap: 20px;
-  align-self: flex-start; // Прижимаем к началу при прокрутке
-  height: fit-content; // Высота для фиксации
+  align-self: flex-start; 
+  height: fit-content; 
 }
 
 .SlideBarCatalog {
