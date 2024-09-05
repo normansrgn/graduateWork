@@ -1,9 +1,8 @@
 .SlideBarCatalog {
   background-color: #151515;
-  padding: 40px 100px 0px 30px;
+  padding: 30px 100px 30px 30px;
   border-radius: 19px;
   width: 100%;
-  height: 600px;
 
   &__title {
     font-size: 25px;
@@ -28,6 +27,12 @@
       font-size: 19px;
     }
   }
+}
+
+.SlideBarCatalog__container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 @media (max-width: 1000px) {
