@@ -9,5 +9,5 @@ export default class MenPage extends Component {
         <h1 className="menPage__title">MEN SNEAKERS</h1>
       </div>
     );
-  }
+}
 }

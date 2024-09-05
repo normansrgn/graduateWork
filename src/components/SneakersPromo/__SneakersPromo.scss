@@ -1,4 +1,11 @@
 .sneaker {
+
+  &__cnt {
+    display: flex;
+
+    gap: 20px;
+  }
+
   &__select {
     &:focus {
       outline: none;
@@ -40,7 +47,6 @@
   &__row {
     display: flex;
     justify-content: center;
-    margin-top: 50px !important;
   }
 
   &__card {
@@ -263,7 +269,7 @@
   }
 
   .sneaker__row {
-    margin-top: 15px !important;
+    // margin-top: 15px !important;
   }
 
   .sneaker__select {

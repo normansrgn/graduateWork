@@ -5,15 +5,22 @@ import "./__SneakersPromo.scss";
 
 import SneakerCard from "./SneakersCard";
 import { sneakers } from "./data";
+import SlideBarCatalog from "../../SlideBarCatalog/SlideBarCatalog";
 
 export default class SneakersPromoMen extends Component {
+
   render() {
     return (
-      <Row className="sneaker__row">
-        {sneakers.map((sneaker) => (
-          <SneakerCard key={sneaker.title} {...sneaker} />
-        ))}
-      </Row>
+      <>
+        <section className="sneaker__cnt">
+          <SlideBarCatalog />
+          <Row className="sneaker__row">
+            {sneakers.map((sneaker) => (
+              <SneakerCard key={sneaker.title} {...sneaker} />
+            ))}
+          </Row>
+        </section>
+      </>
     );
   }
 }
