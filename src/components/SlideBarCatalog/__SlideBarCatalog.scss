@@ -1,3 +1,13 @@
+.slideee {
+  display: flex;
+  position: sticky;
+  top: 20px; // Отступ сверху, чтобы слайдбар не прилипал вплотную
+  flex-direction: column;
+  gap: 20px;
+  align-self: flex-start; // Прижимаем к началу при прокрутке
+  height: fit-content; // Высота для фиксации
+}
+
 .SlideBarCatalog {
   background-color: #151515;
   padding: 30px 100px 30px 30px;
@@ -27,12 +37,6 @@
       font-size: 19px;
     }
   }
-}
-
-.SlideBarCatalog__container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 @media (max-width: 1000px) {

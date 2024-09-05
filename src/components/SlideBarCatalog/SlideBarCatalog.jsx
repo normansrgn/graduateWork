@@ -5,7 +5,7 @@ import "./__SlideBarCatalog.scss";
 export default function SlideBarCatalog() {
   return (
     <>
-      <section className="SlideBarCatalog__container">
+      <section className="slideee">
         <div className="SlideBarCatalog">
           <div className="SlideBarCatalog__brands">
             <h1 className="SlideBarCatalog__title">Бренд:</h1>
