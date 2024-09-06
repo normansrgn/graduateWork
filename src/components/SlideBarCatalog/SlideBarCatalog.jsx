@@ -83,6 +83,49 @@ export default function SlideBarCatalog() {
             </div>
           </div>
         </div>
+        <div className="SlideBarCatalog">
+          <div className="SlideBarCatalog__brands">
+            <h1 className="SlideBarCatalog__title">Размер:</h1>
+            <div className="SlideBarCatalog__filterList">
+              <div className="SlideBarCatalog__filterItem">
+                <input
+                  type="checkbox"
+                  readonly
+                  name="41"
+                  className="SlideBarCatalog__filterItemChecbox"
+                />
+                <label for="41">41</label>
+              </div>
+              <div className="SlideBarCatalog__filterItem">
+                <input
+                  type="checkbox"
+                  readonly
+                  name="42"
+                  className="SlideBarCatalog__filterItemChecbox"
+                />
+                <label for="42">42</label>
+              </div>
+              <div className="SlideBarCatalog__filterItem">
+                <input
+                  type="checkbox"
+                  readonly
+                  name="43"
+                  className="SlideBarCatalog__filterItemChecbox"
+                />
+                <label for="43">43</label>
+              </div>
+              <div className="SlideBarCatalog__filterItem">
+                <input
+                  type="checkbox"
+                  readonly
+                  name="44"
+                  className="SlideBarCatalog__filterItemChecbox"
+                />
+                <label for="44">44</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );

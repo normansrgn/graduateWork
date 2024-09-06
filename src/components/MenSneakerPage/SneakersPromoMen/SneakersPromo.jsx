@@ -8,17 +8,21 @@ import { sneakers } from "./data";
 import SlideBarCatalog from "../../SlideBarCatalog/SlideBarCatalog";
 
 export default class SneakersPromoMen extends Component {
-
   render() {
     return (
       <>
         <section className="sneaker__cnt">
           <SlideBarCatalog />
-          <Row className="sneaker__row">
-            {sneakers.map((sneaker) => (
-              <SneakerCard key={sneaker.title} {...sneaker} />
-            ))}
-          </Row>
+          <div className="sneaker__CardCont">
+            <div className="sneaker__PriceFiltr">
+              <span>Сортировка по: цена (убыванию)</span>
+            </div>
+            <Row className="sneaker__row">
+              {sneakers.map((sneaker) => (
+                <SneakerCard key={sneaker.title} {...sneaker} />
+              ))}
+            </Row>
+          </div>
         </section>
       </>
     );
