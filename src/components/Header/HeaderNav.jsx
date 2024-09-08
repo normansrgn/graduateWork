@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-import user from "./NavICons/user.svg";
-import basket from "./NavICons/basket.svg";
+import { NavLink, Link, useLocation } from "react-router-dom";
 
 function HeaderNav() {
+  const location = useLocation();
+
   return (
     <>
       <div className="header__navBlock">
@@ -26,7 +26,11 @@ function HeaderNav() {
 
         <div className="header__navIc">
           <Link to="/log">
-            <div className="header__navIcon">
+            <div
+              className={`header__navIcon ${
+                location.pathname === "/log" ? "active" : ""
+              }`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -34,6 +38,7 @@ function HeaderNav() {
                 height="24"
                 fill="rgba(255,254,254,1)"
               >
+                {/* Gradient для иконки */}
                 <defs>
                   <linearGradient
                     id="gradient"
@@ -64,8 +69,13 @@ function HeaderNav() {
               </svg>
             </div>
           </Link>
+
           <Link to="/basket">
-            <div className="header__navIcon">
+            <div
+              className={`header__navIcon ${
+                location.pathname === "/basket" ? "active" : ""
+              }`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

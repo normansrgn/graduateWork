@@ -15,7 +15,13 @@ export default class SneakersPromoMen extends Component {
           <SlideBarCatalog />
           <div className="sneaker__CardCont">
             <div className="sneaker__PriceFiltr">
-              <span>Сортировка по: цена (убыванию)</span>
+              <span>
+                Сортировка по: цена{" "}
+                <select name="" id="">
+                  <option value="">возрастанию</option>
+                  <option value="">убыванию</option>
+                </select>
+              </span>
             </div>
             <Row className="sneaker__row">
               {sneakers.map((sneaker) => (
