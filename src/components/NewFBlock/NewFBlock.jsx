@@ -1,7 +1,10 @@
 import React from "react";
 
 import "./__NewFBlock.scss";
+
 import MMY from "./MMY.png";
+import imgg from "./image.png";
+
 
 export default function NewFBlock() {
   return (

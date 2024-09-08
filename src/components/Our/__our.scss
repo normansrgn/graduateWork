@@ -1,73 +1,79 @@
 .our {
-    margin-top: 70px;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  &__images {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  
-    &__images {
-      display: flex;
-      gap: 20px;
+    gap: 20px;
+  }
+
+  &__mainContainer {
+    border-radius: 19px;
+    position: relative;
+    width: 614px;
+    cursor: pointer;
+    overflow: hidden; // Добавлено для предотвращения выхода картинки за границы блока
+
+    &:hover .our__textOverlay {
+      opacity: 1;
+      visibility: visible;
     }
-  
-    &__mainContainer {
-      position: relative;
-      width: 613px;
-      cursor: pointer;
-  
-      &:hover .our__textOverlay {
-        opacity: 1;
-        visibility: visible;
-      }
-  
-      &:hover .our__main {
-        filter: brightness(60%);
-      }
-    }
-  
-    &__main {
-      width: 100%;
-      transition: filter 0.3s ease;
-    }
-  
-    &__secImages {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    &__secImageContainer {
-      position: relative;
-      width: 500px;
-  
-      &:hover .our__textOverlay {
-        opacity: 1;
-        visibility: visible;
-      }
-  
-      &:hover img {
-        filter: brightness(60%);
-      }
-    }
-  
-    &__secImageContainer img,
-    &__main {
-      width: 100%;
-      cursor: pointer;
-      transition: filter 0.3s ease;
-    }
-  
-    &__textOverlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      text-align: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &:hover .our__main {
+      filter: brightness(60%);
+      transform: scale(1.05); // Увеличение при наведении
     }
   }
+
+  &__main {
+    width: 100%;
+    transition: filter 0.5s ease, transform 0.3s ease; // Добавлено для плавного увеличения
+  }
+
+  &__secImages {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__secImageContainer {
+    border-radius: 19px;
+    position: relative;
+    width: 500px;
+    cursor: pointer;
+    overflow: hidden; // Добавлено для предотвращения выхода картинки за границы блока
+
+    &:hover .our__textOverlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &:hover img {
+      filter: brightness(60%);
+      transform: scale(1.05); // Увеличение при наведении
+    }
+  }
+
+  &__secImageContainer img,
+  &__main {
+    width: 100%;
+    transition: filter 0.3s ease, transform 0.3s ease; // Добавлено для плавного увеличения
+  }
+
+  &__textOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+}

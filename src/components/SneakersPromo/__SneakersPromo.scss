@@ -1,5 +1,4 @@
 .sneaker {
-
   &__cnt {
     display: flex;
 
@@ -11,6 +10,25 @@
     padding: 15px;
     background-color: #151515;
     border-radius: 19px;
+
+    & span {
+      display: flex;
+      // gap: 8px;
+    }
+
+    & select {
+      background: none;
+      // font-size: 14px;
+      border: none;
+      text-align: center;
+      color: white;
+      padding: 2px;
+      border-radius: 19px;
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   &__CardCont {
@@ -222,7 +240,6 @@
 }
 
 .notification {
-
   // width: 100%;
   position: fixed;
   top: 20px;
