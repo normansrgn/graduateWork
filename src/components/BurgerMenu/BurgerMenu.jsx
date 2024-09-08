@@ -39,7 +39,7 @@ const BurgerMenu = () => {
               <Link to="/" onClick={handleLinkClick}>
                 <li>home</li>
               </Link>
-              <Link to="/home" onClick={handleLinkClick}>
+              <Link to="/new-featured" onClick={handleLinkClick}>
                 <li>new & Featured</li>
               </Link>
               <Link to="/men" onClick={handleLinkClick}>
