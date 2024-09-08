@@ -38,9 +38,9 @@ export default function NewFProm() {
               <SwiperSlide>
                 <img src={img} alt="Slide 1" />
               </SwiperSlide>
-              {/* <SwiperSlide>
+              <SwiperSlide>
                 <img src={img} alt="Slide 2" />
-              </SwiperSlide> */}
+              </SwiperSlide>
             </Swiper>
           </div>
         </section>
