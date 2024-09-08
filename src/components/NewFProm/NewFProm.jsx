@@ -4,14 +4,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/autoplay"; 
+import "swiper/css/autoplay";
 
 import { Navigation, Pagination, Autoplay } from "swiper";
 
 import img from "./image.png";
 import PromImg from "./promImg.png";
 
-import "./__NewFProm.scss"; 
+import "./__NewFProm.scss";
+import NewFBlock from "../NewFBlock/NewFBlock";
 
 export default function NewFProm() {
   return (
@@ -24,15 +25,15 @@ export default function NewFProm() {
           </div>
           <div className="newFeautered__slider">
             <Swiper
-              modules={[Navigation, Pagination, Autoplay]} 
+              modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={30}
               loop={true}
               slidesPerView={1}
               navigation
               pagination={{ clickable: true }}
               autoplay={{
-                delay: 3000, 
-                disableOnInteraction: false, 
+                delay: 3000,
+                disableOnInteraction: false,
               }}
             >
               <SwiperSlide>
@@ -47,6 +48,9 @@ export default function NewFProm() {
       </Container>
 
       <img className="newFeautered__img" src={PromImg} alt="" />
+      <Container>
+        <NewFBlock />
+      </Container>
     </>
   );
 }
