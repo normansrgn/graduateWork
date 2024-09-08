@@ -1,0 +1,9 @@
+.newFtrends {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 60px;
+  &__title {
+    text-align: center;
+  }
+}

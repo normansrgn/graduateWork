@@ -12,7 +12,6 @@ import img from "./image.png";
 import PromImg from "./promImg.png";
 
 import "./__NewFProm.scss";
-import NewFBlock from "../NewFBlock/NewFBlock";
 
 export default function NewFProm() {
   return (
@@ -39,18 +38,16 @@ export default function NewFProm() {
               <SwiperSlide>
                 <img src={img} alt="Slide 1" />
               </SwiperSlide>
-              <SwiperSlide>
+              {/* <SwiperSlide>
                 <img src={img} alt="Slide 2" />
-              </SwiperSlide>
+              </SwiperSlide> */}
             </Swiper>
           </div>
         </section>
       </Container>
 
       <img className="newFeautered__img" src={PromImg} alt="" />
-      <Container>
-        <NewFBlock />
-      </Container>
+    
     </>
   );
 }
