@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import NewFProm from "../components/NewFProm/NewFProm";
 import NewFBlock from "../components/NewFBlock/NewFBlock";
 import NewFeatTreends from "../components/NewFeatTreends/NewFeatTreends";
+import Our from "../components/Our/Our";
 
 export default function NewFeautered() {
   return (
@@ -13,6 +14,7 @@ export default function NewFeautered() {
         <Container>
           <NewFBlock />
           <NewFeatTreends />
+          <Our />
         </Container>
       </section>
     </>
