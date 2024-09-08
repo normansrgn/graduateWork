@@ -4,19 +4,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/autoplay"; // Импортируем стили для автоплея
+import "swiper/css/autoplay"; 
 
 import { Navigation, Pagination, Autoplay } from "swiper";
 
 import img from "./image.png";
 import PromImg from "./promImg.png";
 
-import "./__NewFProm.scss"; // Ваши стили
+import "./__NewFProm.scss"; 
 
 export default function NewFProm() {
   return (
     <>
-      <Container>
+      <Container className="newFeautered__container">
         <section className="newFeautered">
           <div className="newFeautered__title">
             <h1>Step Into Style with Our Trendy Shoes!</h1>
@@ -24,15 +24,15 @@ export default function NewFProm() {
           </div>
           <div className="newFeautered__slider">
             <Swiper
-              modules={[Navigation, Pagination, Autoplay]} // Подключаем модули
+              modules={[Navigation, Pagination, Autoplay]} 
               spaceBetween={30}
               loop={true}
               slidesPerView={1}
               navigation
               pagination={{ clickable: true }}
               autoplay={{
-                delay: 3000, // Интервал в 1 секунду (1000 миллисекунд)
-                disableOnInteraction: false, // Не останавливать автоплей при взаимодействии
+                delay: 3000, 
+                disableOnInteraction: false, 
               }}
             >
               <SwiperSlide>
@@ -41,7 +41,6 @@ export default function NewFProm() {
               <SwiperSlide>
                 <img src={img} alt="Slide 2" />
               </SwiperSlide>
-              {/* Добавьте больше слайдов по необходимости */}
             </Swiper>
           </div>
         </section>

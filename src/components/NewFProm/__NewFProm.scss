@@ -1,8 +1,11 @@
 .newFeautered {
   display: flex;
   align-items: center;
-
   justify-content: space-between;
+
+  &__container {
+    margin-top: 100px;
+  }
 
   &__img {
     margin-top: 50px;
@@ -64,27 +67,26 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: #b669be; /* Цвет стрелок (красный в этом примере) */
-  border-radius: 50%; /* Круглая форма стрелок */
-  padding: 10px; /* Отступы вокруг стрелок */
+  color: #b669be; 
+  border-radius: 50%; 
+  padding: 10px; 
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: #ffffff; /* Цвет стрелок при наведении */
+  color: #ffffff; 
 }
 
 .swiper-pagination-bullet {
-  background-color: #b669be; /* Цвет точек пагинации (красный в этом примере) */
+  background-color: #ffffff; 
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #ffffff; /* Цвет активной точки пагинации */
+  background-color: #b669be; 
 }
 
-/* Для дополнительных настроек */
 .swiper-pagination {
-  bottom: 10px; /* Расположение пагинации снизу */
+  bottom: 10px; 
 }
 
 
