@@ -14,6 +14,7 @@ import Log from "./pages/Login";
 import Reg from "./pages/Registration";
 import AboutUs from "./pages/AboutUs";
 import CheckoutPage from "./components/Check/CheckoutPage";``
+import NewFeautered from "./pages/NewFeautered";
 // import NotFound from "./pages/NotFound";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -31,6 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="reg" element={<Reg />} />
           <Route path="AboutUs" element={<AboutUs />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/new-featured" element={<NewFeautered />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>

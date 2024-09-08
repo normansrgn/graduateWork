@@ -21,7 +21,8 @@
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
-    "sass": "^1.77.6"
+    "sass": "^1.77.6",
+    "swiper": "^7.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

@@ -1,0 +1,80 @@
+.newFeautered {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+
+  &__slider {
+    & img {
+      border-radius: 19px;
+      width: 100%;
+    }
+    max-width: 100%;
+    width: 600px;
+    border-radius: 19px;
+  }
+
+  &__title {
+    & h1 {
+      //   width: 500px;
+      font-weight: bold;
+      font-size: 46px;
+      background: linear-gradient(
+        118.79deg,
+        rgb(6, 193, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(255, 0, 214) 57.356%,
+        rgb(255, 0, 61) 90.232%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 200% 200%;
+      animation: gradientAnimation 3s linear infinite;
+    }
+
+    & button {
+      padding: 15px;
+      width: 205px;
+      border-radius: 17px;
+      font-size: 17px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 600;
+      background: linear-gradient(
+        118.79deg,
+        rgb(210, 6, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(237, 28, 224) 57.356%,
+        rgb(177, 0, 255) 90.232%
+      );
+      background-size: 200% 200%;
+      animation: gradientShift;
+      border: none;
+    }
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #b669be; /* Цвет стрелок (красный в этом примере) */
+  border-radius: 50%; /* Круглая форма стрелок */
+  padding: 10px; /* Отступы вокруг стрелок */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #ffffff; /* Цвет стрелок при наведении */
+}
+
+.swiper-pagination-bullet {
+  background-color: #b669be; /* Цвет точек пагинации (красный в этом примере) */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffffff; /* Цвет активной точки пагинации */
+}
+
+/* Для дополнительных настроек */
+.swiper-pagination {
+  bottom: 10px; /* Расположение пагинации снизу */
+}
