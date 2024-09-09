@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home"; // Импортируем Home как компонент
+import Home from "./pages/Home";
 import Men from "./pages/Men";
 import Women from "./pages/Women";
 import Basket from "./pages/Basket";
@@ -13,15 +13,21 @@ import ScrollToTop from "./components/ScrollTop/ScrollTop";
 import Log from "./pages/Login";
 import Reg from "./pages/Registration";
 import AboutUs from "./pages/AboutUs";
-import CheckoutPage from "./components/Check/CheckoutPage";``
+import CheckoutPage from "./components/Check/CheckoutPage";
 import NewFeautered from "./pages/NewFeautered";
-// import NotFound from "./pages/NotFound";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+function App() {
+  const location = useLocation();
+  
+  // Список маршрутов, на которых не должны отображаться Header и Footer
+  const noHeaderFooterRoutes = ["/reg", "/log", "/checkout"];
+
+  const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(location.pathname);
+
+  return (
     <React.Fragment>
       <ScrollToTop />
-      <Header />
+      {!shouldHideHeaderFooter && <Header />}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -36,8 +42,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
-      <Footer />
+      {!shouldHideHeaderFooter && <Footer />}
     </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <App />
   </BrowserRouter>
 );
 
