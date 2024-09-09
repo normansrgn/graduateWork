@@ -1,0 +1,50 @@
+.SubscribeUs {
+    margin-top: 90px;
+  display: flex;
+  justify-content: center;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #11162C;
+    border-radius: 19px;
+    width: 900px;
+    padding: 73px 0px 73px 40px;
+
+    & h1 {
+        font-size: 23px;
+        font-weight: 600;
+
+        & span {
+            color: #BC74E2;
+            font-weight: 600;
+        }
+    }
+
+    & input {
+        padding: 8px;
+        border-radius: 13px;
+        border: none;
+        width: 600px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    & button {
+        width: 150px;
+        padding: 6px;
+        border-radius: 34px;
+        border: none;
+        cursor: pointer;
+        background-color: #BC74E2;
+        color: white;
+
+        &:focus {
+            outline: none;
+        }
+    }
+  }
+}

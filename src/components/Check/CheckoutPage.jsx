@@ -55,6 +55,9 @@ function CheckoutPage() {
                     </div>
                   ))}
                 </div>
+                <form action="" className="userInfo__form">
+                  <input type="text" placeholder="Промокод" />
+                </form>
                 <div className="checkoutPage__total">
                   <div>К оплате:</div> <span>{totalPrice}₽</span>
                 </div>

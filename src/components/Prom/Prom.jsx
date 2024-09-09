@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import "./__prom.scss";
+
 import image from "./image.png";
+import pro from "./pro.png";
 
 export default class Prom extends Component {
   render() {
