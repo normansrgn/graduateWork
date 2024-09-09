@@ -8,7 +8,7 @@ function Login() {
   return (
     <>
       <section className="login">
-        <Container className="login__container">
+        <div className="login__container">
           <h1 className="login__title">Вход</h1>
           <form action="" className="login__form">
             <input
@@ -33,7 +33,7 @@ function Login() {
               </div>
             </div>
           </form>
-        </Container>
+        </div>
       </section>
     </>
   );

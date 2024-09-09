@@ -2,7 +2,7 @@ import React from "react";
 
 import "../components/LogReg/__logReg.scss";
 
-import imgggg from "../components/LogReg/image.png";
+import imgggg from "../components/LogReg/image.jpg";
 
 import Login from "../components/LogReg/Log";
 
