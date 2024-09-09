@@ -15,10 +15,8 @@ function SneakerCard(props) {
     currentCart.push(newItem);
     localStorage.setItem("cart", JSON.stringify(currentCart));
 
-    // Показываем уведомление
     setShowNotification(true);
 
-    // Скрываем уведомление через 3 секунды
     setTimeout(() => {
       setShowNotification(false);
     }, 2000);
