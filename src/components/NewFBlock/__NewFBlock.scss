@@ -1,5 +1,5 @@
 .NewFBlock {
-    margin-top: 70px;
+  margin-top: 70px;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -17,27 +17,33 @@
     & h1 {
       position: absolute;
       top: 7%;
-      left: 60%;
+      left: 62%;
       transform: translateX(-50%);
       color: #bc74e2;
       font-size: 68px;
       font-weight: bold;
       max-width: 80%;
       z-index: 1;
+      transition: transform 0.5s ease-in-out; /* Добавляем плавный переход */
+    }
+
+    & h1.scrolled {
+      transform: translateX(-70%); /* Смещение при скролле */
     }
 
     & button {
-        border-radius: 19px;
-        text-align: center;
-        font-size: 14px;
-        padding: 7px;
-        width: 200px;
-        border: none;
-        background-color: #9745B8;
-        color: white;
-        cursor: pointer;
+      border-radius: 19px;
+      text-align: center;
+      font-size: 14px;
+      padding: 7px;
+      width: 200px;
+      border: none;
+      background-color: #9745B8;
+      color: white;
+      cursor: pointer;
     }
   }
+
   & p {
     width: 513px;
     color: #cccccc;

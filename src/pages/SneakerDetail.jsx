@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { sneakers } from '../components/MenSneakerPage/SneakersPromoMen/data';
+import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { sneakers } from "../components/MenSneakerPage/SneakersPromoMen/data";
+import { Container } from "react-bootstrap";
+import "./SneakerDetail.scss";
 
 function SneakerDetail() {
   const { id } = useParams();
@@ -29,19 +31,25 @@ function SneakerDetail() {
   };
 
   return (
-    <div className="sneaker__detail">
-      <div className="sneaker__card">
-        <img src={sneaker.img} alt={sneaker.title} />
-        <div className="sneaker__cardText">
-          <h2 className="sneaker__cardTitle">{sneaker.title}</h2>
-          <div className="sneaker__cardPrice">
-            <span>{sneaker.price}₽</span>
-            <button onClick={handleAddToCart}>Купить</button>
+    <section className="sneaker__detail">
+      <Container>
+        <div className="sneaker__card">
+          <img src={sneaker.img} alt={sneaker.title} />
+          <div className="sneaker__cardText">
+            <h2 className="sneaker__cardTitle">{sneaker.title}</h2>
+            <div className="sneaker__cardPrice">
+              <span>{sneaker.price}₽</span>
+              <button onClick={handleAddToCart}>Купить</button>
+            </div>
           </div>
         </div>
-      </div>
-      {showNotification && <div className="notification">Товар добавлен в корзину!</div>}
-    </div>
+        {showNotification && (
+          <Link to="/basket">
+          <div className="notification">Товар добавлен в корзину!</div>
+          </Link>
+        )}
+      </Container>
+    </section>
   );
 }
 
