@@ -25,7 +25,7 @@ export default class SneakersPromoMen extends Component {
             </div>
             <Row className="sneaker__row">
               {sneakers.map((sneaker) => (
-                <SneakerCard key={sneaker.title} {...sneaker} />
+                <SneakerCard key={sneaker.id} {...sneaker} />
               ))}
             </Row>
           </div>

@@ -9,7 +9,6 @@ import { sneakers } from "./data";
 const brands = ["air jordan", "nike", "dior", "zara", "adidas"];
 
 export default class SneakersPromo extends Component {
-
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
   }
@@ -86,9 +85,9 @@ export default class SneakersPromo extends Component {
             </div>
             <Row className="sneaker__row">
               {filteredSneakers.slice(0, 3).map((sneaker) => (
-                <SneakerCard key={sneaker.title} {...sneaker} />
+                <SneakerCard key={sneaker.id} {...sneaker} />
               ))}
-            </Row> 
+            </Row>
             <div className="sneaker__button">
               <button className="sneaker__btn">View all</button>
             </div>
