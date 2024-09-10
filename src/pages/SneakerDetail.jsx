@@ -1,21 +1,46 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { sneakers } from "../components/SneakersPromo/data"; // Импортируйте данные о товарах
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { sneakers } from '../components/MenSneakerPage/SneakersPromoMen/data';
 
 function SneakerDetail() {
-  const { id } = useParams(); // Получаем ID из URL параметра
-  const sneaker = sneakers.find((item, index) => index.toString() === id); // Ищем товар по ID
+  const { id } = useParams();
+  const [showNotification, setShowNotification] = useState(false);
+
+  const sneaker = sneakers.find((s) => s.id === parseInt(id));
 
   if (!sneaker) {
     return <h2>Товар не найден</h2>;
   }
 
+  const handleAddToCart = () => {
+    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const newItem = {
+      img: sneaker.img,
+      title: sneaker.title,
+      price: sneaker.price,
+    };
+    currentCart.push(newItem);
+    localStorage.setItem("cart", JSON.stringify(currentCart));
+
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
+
   return (
     <div className="sneaker__detail">
-      <img src={sneaker.img} alt={sneaker.title} />
-      <h2>{sneaker.title}</h2>
-      <p>Цена: {sneaker.price}₽</p>
-      <button>Добавить в корзину</button>
+      <div className="sneaker__card">
+        <img src={sneaker.img} alt={sneaker.title} />
+        <div className="sneaker__cardText">
+          <h2 className="sneaker__cardTitle">{sneaker.title}</h2>
+          <div className="sneaker__cardPrice">
+            <span>{sneaker.price}₽</span>
+            <button onClick={handleAddToCart}>Купить</button>
+          </div>
+        </div>
+      </div>
+      {showNotification && <div className="notification">Товар добавлен в корзину!</div>}
     </div>
   );
 }

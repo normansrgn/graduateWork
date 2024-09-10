@@ -15,19 +15,22 @@ import Reg from "./pages/Registration";
 import AboutUs from "./pages/AboutUs";
 import CheckoutPage from "./components/Check/CheckoutPage";
 import NewFeautered from "./pages/NewFeautered";
+import SneakerDetail from "./pages/SneakerDetail";
 
 function App() {
   const location = useLocation();
-  
+
   // Список маршрутов, на которых не должны отображаться Header и Footer
   const noHeaderFooterRoutes = ["/reg", "/log", "/checkout"];
 
-  const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(location.pathname);
+  const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(
+    location.pathname
+  );
 
   return (
     <React.Fragment>
+      <Header />
       <ScrollToTop />
-      {!shouldHideHeaderFooter && <Header />}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -39,10 +42,11 @@ function App() {
           <Route path="AboutUs" element={<AboutUs />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/new-featured" element={<NewFeautered />} />
+          <Route path="/sneaker/:id" element={<SneakerDetail />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
-      {!shouldHideHeaderFooter && <Footer />}
+      <Footer />
     </React.Fragment>
   );
 }
