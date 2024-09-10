@@ -9,13 +9,10 @@ function SneakerDetail() {
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
 
-  // Преобразуем id в число
   const sneakerId = parseInt(id);
 
-  // Поиск кроссовок в мужском массиве
   let sneaker = menSneakers.find((s) => s.id === sneakerId);
 
-  // Если не найдено, то ищем в женском массиве
   if (!sneaker) {
     sneaker = womenSneakers.find((s) => s.id === sneakerId);
   }
