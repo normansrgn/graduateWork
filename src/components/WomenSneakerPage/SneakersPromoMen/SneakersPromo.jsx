@@ -4,7 +4,7 @@ import { Container, Row } from "react-bootstrap";
 import "./__SneakersPromo.scss";
 
 import SneakerCard from "./SneakersCard";
-import { sneakers } from "./data";
+import { womenSneakers } from "./data";
 import SlideBarCatalog from "../../SlideBarCatalog/SlideBarCatalog";
 
 export default class SneakersPromoMen extends Component {
@@ -24,9 +24,9 @@ export default class SneakersPromoMen extends Component {
               </span>
             </div>
             <Row className="sneaker__row">
-              {sneakers.map((sneaker) => (
-                <SneakerCard key={sneaker.id} {...sneaker} />
-              ))}
+            {womenSneakers.map((sneaker) => (
+        <SneakerCard key={sneaker.id} id={sneaker.id} img={sneaker.img} title={sneaker.title} price={sneaker.price} />
+      ))}
             </Row>
           </div>
         </section>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { sneakers } from "../components/MenSneakerPage/SneakersPromoMen/data";
+import { menSneakers } from "../components/MenSneakerPage/SneakersPromoMen/data";
+import { womenSneakers } from "../components/WomenSneakerPage/SneakersPromoMen/data";
 import { Container } from "react-bootstrap";
 import "./SneakerDetail.scss";
 
@@ -8,7 +9,16 @@ function SneakerDetail() {
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
 
-  const sneaker = sneakers.find((s) => s.id === parseInt(id));
+  // Преобразуем id в число
+  const sneakerId = parseInt(id);
+
+  // Поиск кроссовок в мужском массиве
+  let sneaker = menSneakers.find((s) => s.id === sneakerId);
+
+  // Если не найдено, то ищем в женском массиве
+  if (!sneaker) {
+    sneaker = womenSneakers.find((s) => s.id === sneakerId);
+  }
 
   if (!sneaker) {
     return <h2>Товар не найден</h2>;
@@ -45,7 +55,7 @@ function SneakerDetail() {
         </div>
         {showNotification && (
           <Link to="/basket">
-          <div className="notification">Товар добавлен в корзину!</div>
+            <div className="notification">Товар добавлен в корзину!</div>
           </Link>
         )}
       </Container>

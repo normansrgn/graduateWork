@@ -2,7 +2,7 @@ import img01 from "./images/1.png";
 import img02 from "./images/2.png";
 import img03 from "./images/3.png";
 
-export const sneakers = [
+export const menSneakers = [
   {
     id: 1,
     title: "Air Jordan",
