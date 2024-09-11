@@ -12,7 +12,7 @@ export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
   const lastScrollPos = useRef(0);
 
-  useEffect(() => {const handleScroll = () => {
+  useEffect(() => { const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       setScrollUp(currentScrollPos < lastScrollPos.current || currentScrollPos === 0);
       lastScrollPos.current = currentScrollPos;
