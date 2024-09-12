@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
-import "./__SneakersPromo.scss";
+import "../../SneakersPromo/__SneakersPromo.scss";
 
 import SneakerCard from "./SneakersCard";
 import { menSneakers } from "./data";
