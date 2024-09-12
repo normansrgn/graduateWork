@@ -3,6 +3,13 @@
   align-items: center;
   justify-content: space-between;
 
+  &__sliderImg {
+
+    & img {
+      border-radius: 19px;
+    }
+  }
+
   &__container {
     margin-top: 100px;
   }

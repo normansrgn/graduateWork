@@ -8,7 +8,6 @@ import "./SneakerDetail.scss";
 function SneakerDetail() {
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
-
   const sneakerId = parseInt(id);
 
   let sneaker = menSneakers.find((s) => s.id === sneakerId);

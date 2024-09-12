@@ -35,10 +35,10 @@ export default function NewFProm() {
                 disableOnInteraction: false,
               }}
             >
-              <SwiperSlide>
+              <SwiperSlide className="newFeautered__sliderImg">
                 <img src={img} alt="Slide 1" />
               </SwiperSlide>
-              <SwiperSlide>
+              <SwiperSlide className="newFeautered__sliderImg">
                 <img src={img} alt="Slide 2" />
               </SwiperSlide>
             </Swiper>
