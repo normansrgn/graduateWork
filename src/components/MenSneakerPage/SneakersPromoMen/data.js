@@ -6,7 +6,7 @@ export const menSneakers = [
   {
     id: 1,
     title: "Air Jordan",
-    price: "200",
+    price: "210",
     img: img01,
   },
   {

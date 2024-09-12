@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header/Header";
@@ -19,14 +19,10 @@ import SneakerDetail from "./pages/SneakerDetail";
 
 function App() {
   const location = useLocation();
-
-  // Список маршрутов, на которых не должны отображаться Header и Footer
-  const noHeaderFooterRoutes = ["/reg", "/log", "/checkout"];
-
-  const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(
-    location.pathname
-  );
-
+  // const noHeaderFooterRoutes = ["/reg", "/log", "/checkout"];
+  // const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(
+  //   location.pathname
+// );
 
   return (
     <React.Fragment>
@@ -51,11 +47,5 @@ function App() {
     </React.Fragment>
   );
 }
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
 
 export default App;
