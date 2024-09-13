@@ -5,7 +5,7 @@ import img03 from "./images/3.png";
 export const menSneakers = [
   {
     id: 1,
-    title: "Air Jordan",
+    title: "Nike Air Jordan",
     price: "6299",
     img: img01,
   },

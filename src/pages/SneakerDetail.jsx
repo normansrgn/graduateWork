@@ -47,7 +47,7 @@ function SneakerDetail() {
             <h2 className="SneakerDetail__cardTitle">{sneaker.title}</h2>
             <div className="SneakerDetail__cardPrice">
               <span>{sneaker.price}₽</span>
-              <button onClick={handleAddToCart}>Купить</button>
+              <button onClick={handleAddToCart}>Добавить в корзину</button>
             </div>
           </div>
         </div>
