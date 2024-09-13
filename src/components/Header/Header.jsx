@@ -12,19 +12,24 @@ export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
   const lastScrollPos = useRef(0);
 
-  useEffect(() => { const handleScroll = () => {
+  useEffect(() => {
+    const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      setScrollUp(currentScrollPos < lastScrollPos.current || currentScrollPos === 0);
+      if (currentScrollPos === 0) {
+        setScrollUp(true); 
+      } else {
+        setScrollUp(currentScrollPos < lastScrollPos.current);
+      }
       lastScrollPos.current = currentScrollPos;
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-    };  
-  }, []);    
+    };
+  }, []);
 
-  return (  
+  return (
     <header className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}>
       <Container className="header__container">
         <div className="header__logo">
