@@ -1,0 +1,60 @@
+.SneakerDetail {
+  &__img {
+    width: 500px;
+
+    & img {
+      width: 100%;
+    }
+  }
+
+  &__pageCont {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__cardPrice {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    & span {
+      font-size: 30px;
+    }
+
+    & button {
+      width: 230px;
+      padding: 10px;
+      border-radius: 19px;
+      background: linear-gradient(
+        118.79deg,
+        rgb(210, 6, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(237, 28, 224) 57.356%,
+        rgb(177, 0, 255) 90.232%
+      );
+      background-size: 200% 200%;
+      animation: gradientShift;
+      border: none;
+      color: white;
+      font-size: 17px;
+      font-weight: 600;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+
+    & h2 {
+      font-size: 40px;
+    }
+  }
+
+  &__aboutItem {
+    margin-top: 60px;
+  }
+}
