@@ -24,7 +24,7 @@ function Login() {
                 </svg>
               </i>
               <input
-                type="tel"
+                type="number"
                 className="login__input"
                 placeholder="Номер телефона"
               />

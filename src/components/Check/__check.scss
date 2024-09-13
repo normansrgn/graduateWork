@@ -11,6 +11,16 @@
   width: 100%;
   max-width: 100%;
 
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
@@ -21,9 +31,10 @@
       max-width: 100%;
       background-color: #151515;
       border: none;
-      padding: 25px;
+      padding: 17px;
       font-size: 20px;
-      border-radius: 19px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
       color: white;
 
       &:focus {
@@ -192,6 +203,13 @@
     &__itemTitle {
       font-size: 14px;
       text-align: center;
+    }
+  }
+
+  .userInfo {
+    &__titleAdres {
+      text-align: center;
+      font-size: 20px;
     }
   }
 }
