@@ -87,22 +87,21 @@
     padding: 9px;
     transition: transform 0.4s ease;
     & svg {
-      fill: currentColor; /* Используем currentColor для корректного применения цвета */
-      transition: fill 0.4s ease; /* Плавный переход для цвета */
+      fill: currentColor; 
+      transition: fill 0.4s ease; 
     }
 
     &:hover {
-      color: transparent; /* Делаем текст прозрачным, чтобы видеть градиент */
-      background-clip: text; /* Ограничиваем фон текстом */
+      color: transparent; 
+      background-clip: text; 
       -webkit-background-clip: text;
     }
 
     &:hover svg path {
-      fill: url(#gradient); /* Используем градиент для заливки */
+      fill: url(#gradient); 
     }
   }
 
-    //... твои существующие стили
   
     &__navIcon {
       cursor: pointer;
@@ -113,19 +112,19 @@
       transition: transform 0.4s ease;
   
       & svg {
-        fill: currentColor; /* Используем currentColor для корректного применения цвета */
-        transition: fill 0.4s ease; /* Плавный переход для цвета */
+        fill: currentColor; 
+        transition: fill 0.4s ease; 
       }
   
       // Стили при наведении
       &:hover,
-      &.active { // Добавляем стили для активного состояния
-        color: transparent; /* Делаем текст прозрачным, чтобы видеть градиент */
-        background-clip: text; /* Ограничиваем фон текстом */
+      &.active { 
+        color: transparent; 
+        background-clip: text; 
         -webkit-background-clip: text;
   
         svg path {
-          fill: url(#gradient); /* Используем градиент для заливки */
+          fill: url(#gradient); 
         }
       }
     }
