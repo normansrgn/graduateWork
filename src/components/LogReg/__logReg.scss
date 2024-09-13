@@ -14,17 +14,31 @@
     font-size: 55px;
   }
 
+  &__input {
+    display: flex;
+    align-items: center;
+
+    & i {
+      border-bottom-left-radius: 10px;
+      border-top-left-radius: 10px;
+      padding: 18px;
+      background-color: #111;
+    }
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     & input {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
       color: white;
       background-color: #151515;
-      border-radius: 19px;
+      // border-radius: 19px;
       border: none;
-      padding: 18px;
+      padding: 20px;
       width: 320px;
 
       &:focus {
@@ -37,7 +51,7 @@
     width: 100%;
     & button {
       width: 100%;
-      border-radius: 19px;
+      border-radius: 10px;
       padding: 14px;
       border: none;
       color: white;
@@ -93,5 +107,16 @@
     &__title {
       font-size: 40px;
     }
+  }
+}
+
+@media (max-width: 490px) {
+  .login {
+      &__form {
+
+        & input {
+          width: 280px;
+        }
+      }
   }
 }
