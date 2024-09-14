@@ -13,25 +13,31 @@
   }
 
   &__cardPrice {
+    padding: 20px;
     display: flex;
     gap: 10px;
     flex-direction: column;
+    border-radius: 19px;
+    background-color: #151515;
+    height: fit-content;
+    width: 270px;
 
     & span {
       font-size: 30px;
     }
 
     & button {
-      width: 200px;
+      width: 100%;
       padding: 10px;
-      border-radius: 19px;
-      background: linear-gradient(
-        118.79deg,
-        rgb(210, 6, 252) 2.254%,
-        rgb(172, 66, 255) 33.741%,
-        rgb(237, 28, 224) 57.356%,
-        rgb(177, 0, 255) 90.232%
-      );
+      border-radius: 10px;
+      // background: linear-gradient(
+      //   118.79deg,
+      //   rgb(210, 6, 252) 2.254%,
+      //   rgb(172, 66, 255) 33.741%,
+      //   rgb(237, 28, 224) 57.356%,
+      //   rgb(177, 0, 255) 90.232%
+      // );
+      background-color: #292929;
       background-size: 200% 200%;
       animation: gradientShift;
       border: none;
@@ -42,15 +48,20 @@
       &:focus {
         outline: none;
       }
+
+      &:hover {
+        background-color: #202020;
+      }
     }
   }
 
   &__text {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    width: 70%;
 
     & h2 {
-      font-size: 40px;
+      font-size: 30px;
     }
   }
 
