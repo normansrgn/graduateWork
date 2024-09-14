@@ -23,6 +23,15 @@ export default function SlideBarCatalog() {
                 <input
                   type="checkbox"
                   readonly
+                  name="Osiris"
+                  className="SlideBarCatalog__filterItemChecbox"
+                />
+                <label for="Osiris">Osiris</label>
+              </div>
+              <div className="SlideBarCatalog__filterItem">
+                <input
+                  type="checkbox"
+                  readonly
                   name="Adidas"
                   className="SlideBarCatalog__filterItemChecbox"
                 />
