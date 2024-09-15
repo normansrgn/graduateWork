@@ -10,7 +10,7 @@ import logo from "./logo.svg";
 
 export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
-  const lastScrollPos = useRef(0);
+  const lastScrollPos = useRef(0); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +18,7 @@ export default function Header() {
       if (currentScrollPos === 0) {
         setScrollUp(true); 
       } else {
-      setScrollUp(currentScrollPos < lastScrolPos.current);
+        setScrollUp(currentScrollPos < lastScrollPos.current);
       }
       lastScrollPos.current = currentScrollPos;
     };
