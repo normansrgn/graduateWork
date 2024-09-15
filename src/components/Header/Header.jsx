@@ -22,6 +22,7 @@ export default function Header() {
       }
       lastScrollPos.current = currentScrollPos;
     };
+    
 
     window.addEventListener("scroll", handleScroll);
     return () => {
