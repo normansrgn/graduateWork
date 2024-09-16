@@ -19,7 +19,7 @@ export default class Prom extends Component {
           </p>
           <div className="prom__buttons">
             <button className="prom__shopBtn">SHOP NOW</button>
-            <button className="prom__collectiobBtn">ALL COLLECTIONS</button>
+            {/* <button className="prom__collectiobBtn">ALL COLLECTIONS</button> */}
           </div>
         </Container>
         <img className="prom__hrImg" src={image} alt="" />
