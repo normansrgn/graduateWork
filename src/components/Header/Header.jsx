@@ -10,13 +10,13 @@ import logo from "./logo.svg";
 
 export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
-  const lastScrollPos = useRef(0); 
+  const lastScrollPos = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       if (currentScrollPos === 0) {
-        setScrollUp(true); 
+        setScrollUp(true);
       } else {
         setScrollUp(currentScrollPos < lastScrollPos.current);
       }
@@ -30,7 +30,9 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}>
+    <header
+      className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
+    >
       <Container className="header__container">
         <div className="header__logo">
           <Link to="/">
