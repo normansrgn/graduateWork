@@ -27,14 +27,14 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, []); 
 
-  return (
+   return (
     <header
       className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
     >
       <Container className="header__container">
-        <div className="header__logo">
+        <div className="header__logo"> 
           <Link to="/">
             <img src={logo} alt="Logo" />
           </Link>
