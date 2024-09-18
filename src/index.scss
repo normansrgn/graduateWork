@@ -4,9 +4,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-
-
-
 * {
   font-family: inherit;
 }
@@ -14,6 +11,22 @@
 html {
   scroll-behavior: smooth;
   /* overflow-y: hidden; */
+}
+
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.8) !important;
+   padding-left: calc(var(--bs-gutter-x)* .1) !important; 
+  margin-right: auto;
+  margin-left: auto;
 }
 
 body {
@@ -39,12 +52,14 @@ a {
 }
 
 li {
-    list-style-type: none !important;
+  list-style-type: none !important;
 }
 
-dl, ol, ul {
-   margin-bottom: auto !important; 
-   margin-top: auto !important; 
+dl,
+ol,
+ul {
+  margin-bottom: auto !important;
+  margin-top: auto !important;
 }
 
 @media (max-width: 668px) {
