@@ -8,7 +8,7 @@ import HeaderNav from "./HeaderNav";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import logo from "./logo.svg";
 
-export default function Header() {
+ export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
   const lastScrollPos = useRef(0);
 
@@ -28,7 +28,7 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []); 
-
+ 
    return (
     <header
       className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
