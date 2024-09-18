@@ -13,21 +13,6 @@ html {
   /* overflow-y: hidden; */
 }
 
-.container,
-.container-fluid,
-.container-lg,
-.container-md,
-.container-sm,
-.container-xl,
-.container-xxl {
-  --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
-  width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * 0.8) !important;
-   padding-left: calc(var(--bs-gutter-x)* .1) !important; 
-  margin-right: auto;
-  margin-left: auto;
-}
 
 body {
   animation: fade 0.1s;
