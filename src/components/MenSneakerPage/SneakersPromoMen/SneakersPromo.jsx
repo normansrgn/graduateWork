@@ -3,7 +3,7 @@ import { Container, Row } from "react-bootstrap";
 
 import "../../SneakersPromo/__SneakersPromo.scss";
 
-import SneakerCard from "./SneakersCard";
+import SneakerCard from "../../SneakersPromo/SneakersCard";
 import { menSneakers } from "./data";
 import SlideBarCatalog from "../../SlideBarCatalog/SlideBarCatalog";
 
@@ -11,7 +11,7 @@ export default class SneakersPromoMen extends Component {
   render() {
     return (
       <>
-        <section className="sneaker__cnt">
+      <section className="sneaker__cnt">
           <SlideBarCatalog />
           <div className="sneaker__CardCont">
             <div className="sneaker__PriceFiltr">

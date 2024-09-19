@@ -29,7 +29,6 @@ export default class SneakersPromo extends Component {
     const brand = event.target.value;
     this.filterSneakers(brand);
   };
-
   constructor(props) {
     super(props);
     const initialBrand = "air jordan";
@@ -41,7 +40,6 @@ export default class SneakersPromo extends Component {
       isMobile: window.innerWidth <= 768,
     };
   }
-
   render() {
     const { activeBrand, filteredSneakers, isMobile } = this.state;
     return (

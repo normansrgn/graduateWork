@@ -4,7 +4,7 @@ import { Container, Row } from "react-bootstrap";
 import "../../SneakersPromo/__SneakersPromo.scss";
 
 
-import SneakerCard from "./SneakersCard";
+import SneakerCard from "../../SneakersPromo/SneakersCard";
 import { womenSneakers } from "./data";
 import SlideBarCatalog from "../../SlideBarCatalog/SlideBarCatalog";
 
