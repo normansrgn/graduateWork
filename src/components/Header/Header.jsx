@@ -28,7 +28,6 @@ import logo from "./logo.svg";
       window.removeEventListener("scroll", handleScroll);
     };
   }, []); 
-  
  
    return (
     <header
