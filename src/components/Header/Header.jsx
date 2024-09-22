@@ -13,6 +13,8 @@ import logo from "./logo.svg";
   const lastScrollPos = useRef(0);
 
   useEffect(() => {
+
+
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       if (currentScrollPos === 0) {
@@ -20,7 +22,7 @@ import logo from "./logo.svg";
       } else {
         setScrollUp(currentScrollPos < lastScrollPos.current);
       }
-      lastScrollPos.current = currentScrollPos;
+      lastScrollPos.current = currentScrollPoœs;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -35,7 +37,7 @@ import logo from "./logo.svg";
     >
       <Container className="header__container">
         <div className="header__logo"> 
-          <Link to="/">
+          <Link to="/"> 
             <img src={logo} alt="Logo" />
           </Link>
         </div>
