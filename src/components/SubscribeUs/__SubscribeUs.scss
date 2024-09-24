@@ -7,10 +7,12 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-width: 100%;
+
     background-color: #11162C;
     border-radius: 19px;
     width: 900px;
-    padding: 73px 0px 73px 40px;
+    padding: 73px 40px 73px 40px;
 
     & h1 {
         font-size: 23px;
@@ -47,4 +49,33 @@
         }
     }
   }
+}
+
+@media (max-width: 765px) {
+
+    .SubscribeUs {
+
+        &__card {
+
+            & input {
+                width: 420px;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 517px) {
+
+    .SubscribeUs {
+
+        &__card {
+
+            & input {
+            width: 280px;
+
+            }
+        }
+    }
+
 }
