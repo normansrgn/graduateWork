@@ -13,7 +13,7 @@ export default function NewFeautered() {
       <section>
         <NewFProm />
         <Container>
-          <NewFBlock />
+          {/* <NewFBlock /> */}
           <NewFeatTreends />
           <Our />
           <SubscribeUs />

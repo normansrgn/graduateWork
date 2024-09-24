@@ -105,3 +105,15 @@
     }
   }
 }
+
+@media (max-width: 996px) {
+  .newFeautered {
+   justify-content: center; 
+
+   &__title {
+    text-align: center;
+    font-size: 36px;
+    align-items: center;
+   }
+  }
+}
