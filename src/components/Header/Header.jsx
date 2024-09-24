@@ -8,13 +8,11 @@ import HeaderNav from "./HeaderNav";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import logo from "./logo.svg";
 
- export default function Header() {
+export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
   const lastScrollPos = useRef(0);
 
   useEffect(() => {
-
-
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       if (currentScrollPos === 0) {
@@ -22,7 +20,7 @@ import logo from "./logo.svg";
       } else {
         setScrollUp(currentScrollPos < lastScrollPos.current);
       }
-      lastScrollPos.current = currentScrollPoœs;
+      lastScrollPos.current = currentScrollPos; // Исправлено
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -31,7 +29,7 @@ import logo from "./logo.svg";
     };
   }, []); 
  
-   return (
+  return (
     <header
       className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
     >

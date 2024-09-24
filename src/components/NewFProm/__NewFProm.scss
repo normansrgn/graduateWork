@@ -4,7 +4,6 @@
   justify-content: space-between;
 
   &__sliderImg {
-
     & img {
       border-radius: 19px;
     }
@@ -74,32 +73,30 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: #b669be; 
-  border-radius: 50%; 
-  padding: 10px; 
+  color: #b669be;
+  border-radius: 50%;
+  padding: 10px;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .swiper-pagination-bullet {
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #b669be; 
+  background-color: #b669be;
 }
 
 .swiper-pagination {
-  bottom: 10px; 
+  bottom: 10px;
 }
-
 
 @media (max-width: 1000px) {
   .newFeautered {
-
     &__slider {
       display: none;
     }
@@ -108,12 +105,15 @@
 
 @media (max-width: 996px) {
   .newFeautered {
-   justify-content: center; 
+    justify-content: center;
 
-   &__title {
-    text-align: center;
-    font-size: 36px;
-    align-items: center;
-   }
+    &__title {
+      align-items: center;
+      & h1 {
+        text-align: center;
+        font-size: 30px;
+        align-items: center;
+      }
+    }
   }
 }
