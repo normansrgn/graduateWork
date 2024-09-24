@@ -97,22 +97,23 @@
 
 @media (max-width: 1000px) {
   .newFeautered {
+    justify-content: center;
+
     &__slider {
       display: none;
     }
-  }
-}
-
-@media (max-width: 996px) {
-  .newFeautered {
-    justify-content: center;
-
     &__title {
       align-items: center;
       & h1 {
         text-align: center;
         font-size: 30px;
         align-items: center;
+      }
+
+      & button {
+        font-size: 14px;
+        width: 170px;
+        padding: 13px;
       }
     }
   }
