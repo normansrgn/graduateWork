@@ -20,7 +20,7 @@ export default function Header() {
       } else {
         setScrollUp(currentScrollPos < lastScrollPos.current);
       }
-      lastScrollPos.current = currentScrollPos; // Исправлено
+      lastScrollPos.current = currentScrollPos; 
     };
 
     window.addEventListener("scroll", handleScroll);

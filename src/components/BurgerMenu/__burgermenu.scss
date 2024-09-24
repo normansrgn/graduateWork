@@ -1,7 +1,7 @@
 .burger_menu {
   display: none;
   position: relative;
-  z-index: 5000; /* Это значение выше, чем у размытого фона */
+  z-index: 5000; 
 
   &__bavIcon {
     justify-content: end;
@@ -16,12 +16,12 @@
   right: -85%;
   visibility: hidden;
   transition: right 0.3s ease, visibility 0.3s ease;
-  z-index: 5001; /* Это значение выше размытого фона и бургер-кнопки */
+  z-index: 5001; 
   background: #111111;
 }
 
 .burger__container.open {
-  right: 0; /* Положение меню при открытии */
+  right: 0; 
   visibility: visible;
 }
 
@@ -111,36 +111,22 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; /* Покрываем весь экран */
+  width: 100vw; 
   height: 400vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
-  backdrop-filter: blur(10px); /* Размытие */
-  z-index: 4000; /* Фон позади бургер-меню */
-  opacity: 0; /* Изначально прозрачный */
-  visibility: hidden; /* Скрыт */
-  pointer-events: none; /* Не блокируем клики, если скрыт */
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Анимация появления */
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(10px); 
+  z-index: 4000; 
+  opacity: 0; 
+  visibility: hidden; 
+  pointer-events: none; 
+  transition: opacity 0.3s ease, visibility 0.3s ease; 
 }
 
 .blur-background.show {
-  opacity: 1; /* Видимая часть */
-  visibility: visible; /* Показываем фон */
-  pointer-events: auto; /* Разрешаем клики */
+  opacity: 1; 
+  visibility: visible; 
+  pointer-events: auto; 
 }
-
-/* Размытый фон */
-// .blur-background {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   background: rgba(0, 0, 0, 0.5);
-//   backdrop-filter: blur(10px);
-//   z-index: 5000;
-//   visibility: hidden;
-//   opacity: 0;
-// }
 
 .blur-background.visible {
   visibility: visible;
