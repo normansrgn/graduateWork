@@ -83,9 +83,36 @@
   &__cardRating {
     display: flex;
     gap: 10px;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 600;
+    flex-direction: column;
+  }
+
+  &__sizes {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__size {
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #151515;
+    transition: 0.1s linear;
+
+    & span {
+      background: linear-gradient(
+        118.79deg,
+        rgb(6, 193, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(255, 0, 214) 57.356%,
+        rgb(255, 0, 61) 90.232%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    &:hover {
+      background-color: #202020;
+    }
   }
 
   &__cardRatingStar {
@@ -106,7 +133,6 @@
 
 @media (max-width: 768px) {
   .SneakerDetail {
-
     &__img {
       width: 100%;
     }
