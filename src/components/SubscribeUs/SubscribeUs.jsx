@@ -8,10 +8,10 @@ export default function SubscribeUs() {
       <section className="SubscribeUs">
         <div className="SubscribeUs__card">
           <h1 className="SubscribeUs__title">
-            Subscribe Us to get monthly voucher or <br /> <span> 25 % off</span>
+            Подпишитесь на нашу рассылку и получите скидку <span> 25 %</span>
           </h1>
-          <input type="email" placeholder="normanmagic2004@gmail.com" />
-          <button>Subscribe</button>
+          <input type="email" placeholder="Введите вашу почту" />
+          <button>Подписаться</button>
         </div>
       </section>
     </>
