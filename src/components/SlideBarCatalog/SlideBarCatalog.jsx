@@ -1,11 +1,14 @@
 import React from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 import "./__SlideBarCatalog.scss";
 
 export default function SlideBarCatalog() {
+  Aos.init({ duration: 1000 });
   return (
     <>
-      <section className="slideee">
+      <section className="slideee" data-aos="fade-up">
         <div className="SlideBarCatalog">
           <div className="SlideBarCatalog__brands">
             <h1 className="SlideBarCatalog__title">Бренд:</h1>

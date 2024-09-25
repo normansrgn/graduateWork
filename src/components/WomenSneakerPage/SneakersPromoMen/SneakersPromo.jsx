@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 import "../../SneakersPromo/__SneakersPromo.scss";
-
 
 import SneakerCard from "../../SneakersPromo/SneakersCard";
 import { womenSneakers } from "./data";
@@ -10,12 +10,13 @@ import SlideBarCatalog from "../../SlideBarCatalog/SlideBarCatalog";
 
 export default class SneakersPromoMen extends Component {
   render() {
+    Aos.init({ duration: 1000 });
     return (
       <>
         <section className="sneaker__cnt">
           <SlideBarCatalog />
           <div className="sneaker__CardCont">
-            <div className="sneaker__PriceFiltr">
+            <div className="sneaker__PriceFiltr" data-aos="fade-up">
               <span>
                 Сортировка по: цена{" "}
                 <select name="" id="">
@@ -25,9 +26,15 @@ export default class SneakersPromoMen extends Component {
               </span>
             </div>
             <Row className="sneaker__row">
-            {womenSneakers.map((sneaker) => (
-        <SneakerCard key={sneaker.id} id={sneaker.id} img={sneaker.img} title={sneaker.title} price={sneaker.price} />
-      ))}
+              {womenSneakers.map((sneaker) => (
+                <SneakerCard
+                  key={sneaker.id}
+                  id={sneaker.id}
+                  img={sneaker.img}
+                  title={sneaker.title}
+                  price={sneaker.price}
+                />
+              ))}
             </Row>
           </div>
         </section>

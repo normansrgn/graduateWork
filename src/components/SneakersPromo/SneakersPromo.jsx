@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
+import aos from "aos";
+
+import "aos/dist/aos.css";
 
 import "./__SneakersPromo.scss";
 
@@ -9,6 +12,10 @@ import { sneakers } from "./data";
 const brands = ["air jordan", "nike", "dior", "zara", "adidas"];
 
 export default class SneakersPromo extends Component {
+  componentDidMount() {
+    aos.init();
+  }
+
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
   }
@@ -45,8 +52,8 @@ export default class SneakersPromo extends Component {
     return (
       <>
         <section className="sneaker">
-          <Container className="sneaker__container">
-            <div className="sneaker__text">
+          <Container className="sneaker__container" >
+            <div className="sneaker__text" data-aos="fade-up">
               <h1>Browse our best collections</h1>
               <p>
                 Lorem ipsum dolor sit amet consectetur. Est eros in commodo
@@ -83,7 +90,7 @@ export default class SneakersPromo extends Component {
             </div>
             <Row className="sneaker__row">
               {filteredSneakers.slice(0, 3).map((sneaker) => (
-                <SneakerCard key={sneaker.id} {...sneaker} />
+                <SneakerCard  key={sneaker.id} {...sneaker} />
               ))}
             </Row>
             <div className="sneaker__button">

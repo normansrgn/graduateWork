@@ -20,22 +20,22 @@ export default function Header() {
       } else {
         setScrollUp(currentScrollPos < lastScrollPos.current);
       }
-      lastScrollPos.current = currentScrollPos; 
+      lastScrollPos.current = currentScrollPos;
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); 
- 
+  }, []);
+
   return (
     <header
       className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
     >
       <Container className="header__container">
-        <div className="header__logo"> 
-          <Link to="/"> 
+        <div className="header__logo">
+          <Link to="/">
             <img src={logo} alt="Logo" />
           </Link>
         </div>

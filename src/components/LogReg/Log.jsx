@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 import "./__logReg.scss";
 
 function Login() {
+  useEffect(() => {
+    Aos.init({
+      duration: 700,
+      once: true, // Анимация будет срабатывать один раз
+      offset: 50, // Меньшее смещение для начала анимации
+    });
+  }, []);
+
   return (
     <>
       <section className="login">
-        <div className="login__container">
+        <div className="login__container" data-aos="fade-right">
           <h1 className="login__title">Вход</h1>
           <form action="" className="login__form">
             <div className="login__input">
