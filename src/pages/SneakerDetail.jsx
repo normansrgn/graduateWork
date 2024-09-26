@@ -4,8 +4,11 @@ import { menSneakers } from "../components/MenSneakerPage/SneakersPromoMen/data"
 import { womenSneakers } from "../components/WomenSneakerPage/SneakersPromoMen/data";
 import { Container } from "react-bootstrap";
 import "./SneakerDetail.scss";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function SneakerDetail() {
+  Aos.init({ duration: 1000 });
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
   const [activeSize, setActiveSize] = useState(41); 
@@ -45,7 +48,7 @@ function SneakerDetail() {
   return (
     <section className="SneakerDetail">
       <Container className="SneakerDetail__container">
-        <div className="SneakerDetail__pageCont">
+        <div className="SneakerDetail__pageCont" data-aos="fade-down">
           <div className="SneakerDetail__img">
             <img src={sneaker.img} alt={sneaker.title} />
           </div>
@@ -83,8 +86,9 @@ function SneakerDetail() {
             </div>
           </div>
         </div>
-        <div className="SneakerDetail__aboutItem">
-          <h3>О товаре</h3>
+        <div className="SneakerDetail__aboutItem" data-aos="fade-left">
+          <h3>О кроссовках</h3>
+          <p>{sneaker.description}</p>
         </div>
         {showNotification && (
           <Link to="/basket">

@@ -107,17 +107,22 @@ function CheckoutPage() {
                 <div className="checkoutPage__items">
                   {cartItems.map((item, index) => (
                     <div key={index} className="checkoutPage__item">
-                      <img
-                        src={item.img}
-                        alt={item.title}
-                        className="checkoutPage__image"
-                      />
-                      <div className="checkoutPage__details">
-                        <span className="checkoutPage__itemTitle">
-                          {item.title}
-                        </span>
-                        <div className="basketCard__size"> {item.size}</div>
+                      <div className="checkoutPage__imageee">
+                        <img
+                          src={item.img}
+                          alt={item.title}
+                          className="checkoutPage__image"
+                        />
 
+                        <div className="checkoutPage__titleBl">
+                          <span className="checkoutPage__itemTitle">
+                            {item.title}
+                          </span>
+                          <div className="basketCard__size"> {item.size}</div>
+                        </div>
+                      </div>
+
+                      <div className="checkoutPage__details">
                         <span className="checkoutPage__itemPrice">
                           {item.price}₽
                         </span>

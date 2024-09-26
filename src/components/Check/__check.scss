@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
+
+  
 }
 
 .userInfo {
@@ -56,6 +58,11 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  &__imageee {
+    display: flex;
+    gap: 10px;
   }
 
   &__item {

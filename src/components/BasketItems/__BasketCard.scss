@@ -16,6 +16,24 @@
     background-color: #1b1b1b;
   }
 
+  &__overlay {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__titleBl {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    // justify-content: space-between;
+  }
+
+  &__priceBlock {
+    gap: 3px;
+    display: flex;
+    align-items: center;
+  }
+
   &__removeButton {
     background: none;
     border: none;
@@ -24,7 +42,7 @@
   }
 
   &__title {
-    font-size: 22px;
+    font-size: 17px;
     font-weight: 600;
     text-transform: uppercase;
   }
@@ -33,7 +51,7 @@
     display: flex;
     align-items: center;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     background: linear-gradient(
       118.79deg,
       rgb(6, 193, 252) 2.254%,
@@ -46,7 +64,7 @@
   }
 
   &__image {
-    width: 140px;
+    width: 110px;
     // max-width: 100%;
   }
 
@@ -55,7 +73,7 @@
     align-items: center;
     // margin-top: 40px;
     display: flex;
-    height:  40vh;
+    height: 40vh;
     justify-content: center;
     flex-direction: column;
     gap: 20px;
@@ -150,16 +168,15 @@
 }
 
 .basketCard__removeButton {
-  font-size: 22px;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  width: 20px;
+  // font-size: 22px;
+  // color: white;
+  // border: none;
+  // cursor: pointer;
+  // transition: background-color 0.3s;
 }
 
 @media (max-width: 767px) {
-
-
   .basketItem__title {
     margin-top: 28px;
   }
@@ -176,13 +193,9 @@
 }
 
 @media (max-width: 509px) {
-
-
   .basketButton {
     font-size: 13px;
   }
-
-
 
   .basketCard {
     &__title {
@@ -198,8 +211,6 @@
       font-size: 17px;
     }
   }
-
-
 }
 
 @media (max-width: 400px) {
@@ -207,8 +218,6 @@
     &__title {
       font-size: 14px;
     }
-
-    
 
     &__image {
       width: 90px;
