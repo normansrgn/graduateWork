@@ -39,7 +39,7 @@ function SneakerDetail() {
   };
 
   const handleSizeClick = (size) => {
-    setActiveSize(size); // Устанавливаем активный размер
+    setActiveSize(size); 
   };
 
   return (

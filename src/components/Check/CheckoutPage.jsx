@@ -116,6 +116,8 @@ function CheckoutPage() {
                         <span className="checkoutPage__itemTitle">
                           {item.title}
                         </span>
+                        <div className="basketCard__size"> {item.size}</div>
+
                         <span className="checkoutPage__itemPrice">
                           {item.price}₽
                         </span>
