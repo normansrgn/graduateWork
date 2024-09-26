@@ -8,6 +8,7 @@ import "./SneakerDetail.scss";
 function SneakerDetail() {
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
+  const [activeSize, setActiveSize] = useState(41); 
   const sneakerId = parseInt(id);
 
   let sneaker = menSneakers.find((s) => s.id === sneakerId);
@@ -26,6 +27,7 @@ function SneakerDetail() {
       img: sneaker.img,
       title: sneaker.title,
       price: sneaker.price,
+      size: activeSize, 
     };
     currentCart.push(newItem);
     localStorage.setItem("cart", JSON.stringify(currentCart));
@@ -34,6 +36,10 @@ function SneakerDetail() {
     setTimeout(() => {
       setShowNotification(false);
     }, 3000);
+  };
+
+  const handleSizeClick = (size) => {
+    setActiveSize(size); // Устанавливаем активный размер
   };
 
   return (
@@ -49,23 +55,16 @@ function SneakerDetail() {
               <div className="SneakerDetail__cardRating">
                 <span>Размер:</span>
                 <div className="SneakerDetail__sizes">
-                  <div className="SneakerDetail__size">
-                    <span>41</span>
-                  </div>
-                  <div className="SneakerDetail__size">
-                    <span>42</span>
-                  </div>
-                  <div className="SneakerDetail__size">
-                    <span>43</span>
-                  </div>
-                  <div className="SneakerDetail__size">
-                    <span>44</span>
-                  </div>
-                  <div className="SneakerDetail__size">
-                    <span>45</span>
-                  </div>
+                  {[41, 42, 43, 44, 45].map((size) => (
+                    <div
+                      key={size}
+                      className={`SneakerDetail__size ${activeSize === size ? "active" : ""}`}
+                      onClick={() => handleSizeClick(size)}
+                    >
+                      <span>{size}</span>
+                    </div>
+                  ))}
                 </div>
-                
               </div>
             </div>
             <div className="SneakerDetail__cardPrice">

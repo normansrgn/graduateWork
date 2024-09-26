@@ -75,6 +75,8 @@ function BasketCard() {
                   className="basketCard__image"
                 />
                 <div className="basketCard__title">{item.title}</div>
+                <div className="basketCard__size"> {item.size}</div>
+
                 <div className="basketCard__price">
                   {item.price}₽
                   <button
