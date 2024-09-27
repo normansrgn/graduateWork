@@ -8,7 +8,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 function SneakerDetail() {
-  Aos.init({ duration: 1000 });
+  Aos.init({ duration: 600 });
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
   const [activeSize, setActiveSize] = useState(41); 
