@@ -27,6 +27,7 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+    
   }, []);
 
   return (
