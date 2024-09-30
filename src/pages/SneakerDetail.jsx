@@ -88,7 +88,7 @@ function SneakerDetail() {
             </div>
           </div>
         </div>
-        <div className="SneakerDetail__aboutItem" data-aos="fade-left">
+        <div className="SneakerDetail__aboutItem" data-aos="fade-right">
           <h3>О кроссовках</h3>
           <p>{sneaker.description}</p>
         </div>
