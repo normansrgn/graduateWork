@@ -44,7 +44,6 @@ function SneakerDetail() {
   const handleSizeClick = (size) => {
     setActiveSize(size); 
   };
-
   return (
     <section className="SneakerDetail">
       <Container className="SneakerDetail__container">
