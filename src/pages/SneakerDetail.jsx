@@ -7,11 +7,13 @@ import "./SneakerDetail.scss";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
+import user from "../components/snealerDetImg/user.png";
+
 function SneakerDetail() {
   Aos.init({ duration: 600 });
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
-  const [activeSize, setActiveSize] = useState(41); 
+  const [activeSize, setActiveSize] = useState(41);
   const sneakerId = parseInt(id);
 
   let sneaker = menSneakers.find((s) => s.id === sneakerId);
@@ -30,7 +32,7 @@ function SneakerDetail() {
       img: sneaker.img,
       title: sneaker.title,
       price: sneaker.price,
-      size: activeSize, 
+      size: activeSize,
     };
     currentCart.push(newItem);
     localStorage.setItem("cart", JSON.stringify(currentCart));
@@ -42,8 +44,11 @@ function SneakerDetail() {
   };
 
   const handleSizeClick = (size) => {
-    setActiveSize(size); 
+    setActiveSize(size);
   };
+
+  const reviewsToShow = sneaker.reviews.slice();
+
   return (
     <section className="SneakerDetail">
       <Container className="SneakerDetail__container">
@@ -60,7 +65,9 @@ function SneakerDetail() {
                   {[41, 42, 43, 44, 45].map((size) => (
                     <div
                       key={size}
-                      className={`SneakerDetail__size ${activeSize === size ? "active" : ""}`}
+                      className={`SneakerDetail__size ${
+                        activeSize === size ? "active" : ""
+                      }`}
                       onClick={() => handleSizeClick(size)}
                     >
                       <span>{size}</span>
@@ -72,7 +79,7 @@ function SneakerDetail() {
             <div className="SneakerDetail__cardPrice">
               <span>{sneaker.price}₽</span>
               <button onClick={handleAddToCart}>
-              <svg
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="22px"
                   width="22px"
@@ -91,6 +98,24 @@ function SneakerDetail() {
           <h3>О кроссовках</h3>
           <p>{sneaker.description}</p>
         </div>
+
+          <h3>Отзывы:</h3>
+          <div className="SneakerDetail__reviews">
+          {reviewsToShow.map((review, index) => (
+            <div className="SneakerDetail__reviewsItem" key={index}>
+              <div className="SneakerDetail__reviewsItemImg">
+                <img src={user} alt={review.name} />
+              </div>
+              <div className="SneakerDetail__reviewsItemText">
+                <div className="SneakerDetail__reviewsItemTitle">{review.name}</div>
+                <div className="SneakerDetail__reviewsItemDis">
+                  {review.comment}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         {showNotification && (
           <Link to="/basket">
             <div className="notification">Товар добавлен в корзину!</div>
