@@ -27,7 +27,6 @@ function SneakerDetail() {
     return <h2>Товар не найден</h2>;
   }
 
-  // Загрузка отзывов из localStorage
   const [reviews, setReviews] = useState(() => {
     const savedReviews = localStorage.getItem(`reviews-${sneakerId}`);
     return savedReviews ? JSON.parse(savedReviews) : sneaker.reviews;
@@ -67,8 +66,8 @@ function SneakerDetail() {
       localStorage.setItem(
         `reviews-${sneakerId}`,
         JSON.stringify(updatedReviews)
-      ); // Сохранение в localStorage
-      setNewReview({ name: "", comment: "" }); // Сброс формы
+      );
+      setNewReview({ name: "", comment: "" });
     }
   };
 
@@ -117,6 +116,17 @@ function SneakerDetail() {
             </div>
           </div>
         </div>
+
+        <div className="SneakerDetail__choiceBtns">
+          <div className="SneakerDetail__choiceBtn">
+            <span> О товаре</span>
+          </div>
+          <div className="SneakerDetail__choiceBtn">
+            {" "}
+            <span> Отзывы</span>
+          </div>
+        </div>
+
         <div className="SneakerDetail__aboutItem" data-aos="fade-right">
           <h3>О кроссовках</h3>
           <p>{sneaker.description}</p>

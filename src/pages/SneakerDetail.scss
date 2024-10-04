@@ -7,6 +7,12 @@
     }
   }
 
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
   &__pageCont {
     display: flex;
     gap: 20px;
@@ -78,7 +84,7 @@
   }
 
   &__aboutItem {
-    margin-top: 60px;
+    // margin-top: 60px;
   }
 
   &__cardRating {
@@ -161,7 +167,37 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
 
+  &__choiceBtns {
+    display: flex;
+    gap: 15px;
+    // margin-bottom: 15px;
+  }
+
+  &__choiceBtn {
+    padding: 15px;
+    background-color: #151515;
+    border-radius: 19px;
+    cursor: pointer;
+
+    transition: 0.2s linear;
+    font-weight: 600;
+
+    &:hover {
+      & span {
+        color: white;
+        background: linear-gradient(
+          739.1239deg,
+          rgb(10, 193, 252) 2.254%,
+          rgb(205, 66, 255) 33.741%,
+          rgb(255, 0, 214) 57.356%,
+          rgb(255, 0, 61) 90.232%
+        );
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+    }
   }
 
   &__reviewsItem {
@@ -177,7 +213,6 @@
   }
 
   &__reviewsItemImg {
-
     & img {
       width: 55px;
       border-radius: 40px;
@@ -189,7 +224,6 @@
     flex-direction: column;
   }
 }
-
 
 @media (max-width: 1187px) {
   .SneakerDetail {
@@ -218,7 +252,7 @@
     }
 
     &__aboutItem {
-      margin-top: 20px;
+      // margin-top: 20px;
     }
   }
 }
