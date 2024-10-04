@@ -29,6 +29,7 @@ export default function Header() {
     };
   }, []);
 
+  
   return (
     <header
       className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
