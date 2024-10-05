@@ -15,6 +15,7 @@ function SneakerDetail() {
   const [showNotification, setShowNotification] = useState(false);
   const [activeSize, setActiveSize] = useState(41);
   const [newReview, setNewReview] = useState({ comment: "" });
+  const [activeSection, setActiveSection] = useState("about"); // новое состояние для отслеживания активного раздела
   const sneakerId = parseInt(id);
 
   let sneaker = menSneakers.find((s) => s.id === sneakerId);
@@ -61,8 +62,10 @@ function SneakerDetail() {
   const handleAddReview = (e) => {
     e.preventDefault();
     if (newReview.comment) {
-      // Добавляем новый отзыв в начало массива
-      const updatedReviews = [{ name: "user", comment: newReview.comment }, ...reviews];
+      const updatedReviews = [
+        { name: "user", comment: newReview.comment },
+        ...reviews,
+      ];
       setReviews(updatedReviews);
       localStorage.setItem(
         `reviews-${sneakerId}`,
@@ -70,6 +73,10 @@ function SneakerDetail() {
       );
       setNewReview({ comment: "" });
     }
+  };
+
+  const handleSectionChange = (section) => {
+    setActiveSection(section); // смена активного раздела
   };
 
   return (
@@ -119,53 +126,68 @@ function SneakerDetail() {
         </div>
 
         <div className="SneakerDetail__choiceBtns">
-          <div className="SneakerDetail__choiceBtn">
+          <div
+            className={`SneakerDetail__choiceBtn ${
+              activeSection === "about" ? "active" : ""
+            }`}
+            onClick={() => handleSectionChange("about")}
+          >
             <span> О товаре</span>
           </div>
-          <div className="SneakerDetail__choiceBtn">
-            {" "}
+          <div
+            className={`SneakerDetail__choiceBtn ${
+              activeSection === "reviews" ? "active" : ""
+            }`}
+            onClick={() => handleSectionChange("reviews")}
+          >
             <span> Отзывы</span>
           </div>
         </div>
 
-        <div className="SneakerDetail__aboutItem" data-aos="fade-right">
-          <h3>О кроссовках</h3>
-          <p>{sneaker.description}</p>
-        </div>
+        {activeSection === "about" && (
+          <div className="SneakerDetail__aboutItem" data-aos="fade-right">
+            <h3>О кроссовках</h3>
+            <p>{sneaker.description}</p>
+          </div>
+        )}
 
-        <div className="SneakerDetail__reviews" fade data-aos="fade-right">
-          <h3>Отзывы:</h3>
-          <form className="SneakerDetail__reviewForm" onSubmit={handleAddReview}>
-            <h3>Оставьте отзыв:</h3>
-            <textarea
-              name="comment"
-              placeholder="Ваш отзыв"
-              value={newReview.comment}
-              onChange={handleReviewChange}
-              required
-            ></textarea>
-            <button type="submit">Отправить отзыв</button>
-          </form>
-          {reviews.map((review, index) => (
-            <div
-              className="SneakerDetail__reviewsItem"
-              key={index}
-              data-aos="fade-up"
+        {activeSection === "reviews" && (
+          <div className="SneakerDetail__reviews" data-aos="fade-right">
+            <h3>Отзывы:</h3>
+            <form
+              className="SneakerDetail__reviewForm"
+              onSubmit={handleAddReview}
             >
-              <div className="SneakerDetail__reviewsItemImg">
-                <img src={user} alt={review.name} />
-              </div>
-              <div className="SneakerDetail__reviewsItemText">
-                <div className="SneakerDetail__reviewsItemTitle">
-                  {review.name}
+              <h3>Оставьте отзыв:</h3>
+              <textarea
+                name="comment"
+                placeholder="Ваш отзыв"
+                value={newReview.comment}
+                onChange={handleReviewChange}
+                required
+              ></textarea>
+              <button type="submit">Отправить отзыв</button>
+            </form>
+            {reviews.map((review, index) => (
+              <div
+                className="SneakerDetail__reviewsItem"
+                key={index}
+              >
+                <div className="SneakerDetail__reviewsItemImg">
+                  <img src={user} alt={review.name} />
                 </div>
-                <div className="SneakerDetail__reviewsItemDis">
-                  {review.comment}
+                <div className="SneakerDetail__reviewsItemText">
+                  <div className="SneakerDetail__reviewsItemTitle">
+                    {review.name}
+                  </div>
+                  <div className="SneakerDetail__reviewsItemDis">
+                    {review.comment}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {showNotification && (
           <Link to="/basket">

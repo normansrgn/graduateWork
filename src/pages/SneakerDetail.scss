@@ -180,13 +180,12 @@
     background-color: #151515;
     border-radius: 19px;
     cursor: pointer;
-
-    transition: 0.2s linear;
     font-weight: 600;
 
-    &:hover {
+    // Убираем transition отсюда
+    &:hover,
+    &.active {
       & span {
-        color: white;
         background: linear-gradient(
           739.1239deg,
           rgb(10, 193, 252) 2.254%,
@@ -197,6 +196,11 @@
         -webkit-background-clip: text;
         color: transparent;
       }
+    }
+
+    // Добавляем transition на span
+    & span {
+      transition: color 0.2s ease;
     }
   }
 
