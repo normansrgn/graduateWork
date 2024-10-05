@@ -14,7 +14,7 @@ function SneakerDetail() {
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
   const [activeSize, setActiveSize] = useState(41);
-  const [newReview, setNewReview] = useState({ name: "", comment: "" });
+  const [newReview, setNewReview] = useState({ comment: "" });
   const sneakerId = parseInt(id);
 
   let sneaker = menSneakers.find((s) => s.id === sneakerId);
@@ -60,14 +60,15 @@ function SneakerDetail() {
 
   const handleAddReview = (e) => {
     e.preventDefault();
-    if (newReview.name && newReview.comment) {
-      const updatedReviews = [...reviews, newReview];
+    if (newReview.comment) {
+      // Добавляем новый отзыв в начало массива
+      const updatedReviews = [{ name: "user", comment: newReview.comment }, ...reviews];
       setReviews(updatedReviews);
       localStorage.setItem(
         `reviews-${sneakerId}`,
         JSON.stringify(updatedReviews)
       );
-      setNewReview({ name: "", comment: "" });
+      setNewReview({ comment: "" });
     }
   };
 
@@ -134,6 +135,17 @@ function SneakerDetail() {
 
         <div className="SneakerDetail__reviews" fade data-aos="fade-right">
           <h3>Отзывы:</h3>
+          <form className="SneakerDetail__reviewForm" onSubmit={handleAddReview}>
+            <h3>Оставьте отзыв:</h3>
+            <textarea
+              name="comment"
+              placeholder="Ваш отзыв"
+              value={newReview.comment}
+              onChange={handleReviewChange}
+              required
+            ></textarea>
+            <button type="submit">Отправить отзыв</button>
+          </form>
           {reviews.map((review, index) => (
             <div
               className="SneakerDetail__reviewsItem"
@@ -154,26 +166,6 @@ function SneakerDetail() {
             </div>
           ))}
         </div>
-
-        <form className="SneakerDetail__reviewForm" onSubmit={handleAddReview}>
-          <h3>Оставьте отзыв:</h3>
-          <input
-            type="text"
-            name="name"
-            placeholder="Ваше имя"
-            value={newReview.name}
-            onChange={handleReviewChange}
-            required
-          />
-          <textarea
-            name="comment"
-            placeholder="Ваш отзыв"
-            value={newReview.comment}
-            onChange={handleReviewChange}
-            required
-          ></textarea>
-          <button type="submit">Отправить отзыв</button>
-        </form>
 
         {showNotification && (
           <Link to="/basket">
