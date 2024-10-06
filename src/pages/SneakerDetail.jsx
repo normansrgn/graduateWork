@@ -157,13 +157,15 @@ function SneakerDetail() {
 
         {activeSection === "reviews" && (
           <div className="SneakerDetail__reviews" data-aos="fade-right">
+            <h4>Оставить отзыв</h4>
+
             <form
               className="SneakerDetail__reviewForm"
               onSubmit={handleAddReview}
             >
               <input
                 name="comment"
-                placeholder="Оставить отзыв"
+                placeholder="Ваш отзыв"
                 value={newReview.comment}
                 onChange={handleReviewChange}
                 required
