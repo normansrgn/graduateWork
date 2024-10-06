@@ -182,12 +182,11 @@
     cursor: pointer;
     font-weight: 600;
 
-    // Убираем transition отсюда
     &:hover,
     &.active {
       & span {
         background: linear-gradient(
-          739.1239deg,
+          401deg,
           rgb(10, 193, 252) 2.254%,
           rgb(205, 66, 255) 33.741%,
           rgb(255, 0, 214) 57.356%,
@@ -226,6 +225,31 @@
   &__reviewsItemText {
     display: flex;
     flex-direction: column;
+  }
+
+  &__reviewForm {
+    display: flex;
+    & input {
+      color: white;
+      border-radius: 19px;
+      border: 1px solid rgb(35, 35, 35);
+      background: none;
+      padding: 10px;
+      height: 45px;
+
+      &::placeholder {
+        color: white;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    & button {
+      background: none;
+      border:none ;
+    }
   }
 }
 

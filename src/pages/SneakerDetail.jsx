@@ -3,6 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import { menSneakers } from "../components/MenSneakerPage/SneakersPromoMen/data";
 import { womenSneakers } from "../components/WomenSneakerPage/SneakersPromoMen/data";
 import { Container } from "react-bootstrap";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
 import "./SneakerDetail.scss";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -153,26 +157,23 @@ function SneakerDetail() {
 
         {activeSection === "reviews" && (
           <div className="SneakerDetail__reviews" data-aos="fade-right">
-            <h3>Отзывы:</h3>
             <form
               className="SneakerDetail__reviewForm"
               onSubmit={handleAddReview}
             >
-              <h3>Оставьте отзыв:</h3>
-              <textarea
+              <input
                 name="comment"
-                placeholder="Ваш отзыв"
+                placeholder="Оставить отзыв"
                 value={newReview.comment}
                 onChange={handleReviewChange}
                 required
-              ></textarea>
-              <button type="submit">Отправить отзыв</button>
+              ></input>
+              <button type="submit">
+                <FontAwesomeIcon icon={faPlus} style={{ color: "#ffff" }} />
+              </button>
             </form>
             {reviews.map((review, index) => (
-              <div
-                className="SneakerDetail__reviewsItem"
-                key={index}
-              >
+              <div className="SneakerDetail__reviewsItem" key={index}>
                 <div className="SneakerDetail__reviewsItemImg">
                   <img src={user} alt={review.name} />
                 </div>
