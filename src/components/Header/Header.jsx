@@ -28,11 +28,7 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollUp]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+  
   return (
     <header
       className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
