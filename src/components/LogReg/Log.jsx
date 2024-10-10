@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebaseСonfig";
-import { onAuthStateChanged } from "firebase/auth"; // Импортируем onAuthStateChanged
+import { onAuthStateChanged } from "firebase/auth"; 
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "./__logReg.scss";
@@ -11,20 +11,20 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [user, setUser] = useState(null); // Статус пользователя
+  const [user, setUser] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        navigate("/profile"); // Перенаправляем на страницу профиля, если пользователь авторизован
+        navigate("/profile"); 
       } else {
-        setUser(null); // Если пользователь не авторизован
+        setUser(null); 
       }
     });
 
-    return () => unsubscribe(); // Очистка подписки при размонтировании
+    return () => unsubscribe(); 
   }, [navigate]);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // Перенаправление будет выполнено в useEffect выше
+
     } catch (error) {
       setError("Ошибка: " + error.message);
     }
@@ -51,7 +51,6 @@ function Login() {
       <div className="welcome-message">
         <h1>Добро пожаловать, {user.displayName || user.email}!</h1>
         <Link to="/profile">Перейти к профилю</Link>
-        {/* Вы можете добавить кнопку выхода здесь, если хотите */}
       </div>
     );
   }

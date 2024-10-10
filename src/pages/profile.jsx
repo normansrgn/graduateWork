@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../firebaseСonfig";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -33,11 +34,13 @@ function Profile() {
   }
 
   return (
-    <div>
-      <h1>Профиль пользователя</h1>
-      <p>Добро пожаловать, {user.displayName || user.email}!</p>
-      <button onClick={handleLogout}>Выйти</button>
-    </div>
+    <>
+      <Container>
+        <h1>Профиль пользователя</h1>
+        <p>Добро пожаловать, {user.displayName || user.email}!</p>
+        <button onClick={handleLogout}>Выйти</button>
+      </Container>
+    </>
   );
 }
 

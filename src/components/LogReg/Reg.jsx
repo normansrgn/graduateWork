@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
-import { auth } from "../../firebaseСonfig"; // Импортируем auth из вашего файла конфигурации
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../firebaseСonfig"; 
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "./__logReg.scss";
 
 function Registr() {
-  const [name, setName] = useState(""); // Состояние для имени пользователя
+  const [name, setName] = useState(""); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null); // Состояние для сообщений
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,19 +34,15 @@ function Registr() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Обновление профиля пользователя с именем
       await updateProfile(user, {
         displayName: name,
       });
 
-      // Отправка письма для подтверждения email
-      await sendEmailVerification(user);
+      navigate("/user");
 
-      setMessage("Письмо для подтверждения отправлено. Проверьте вашу почту.");
-      setError(null); // Сброс ошибки
+      setError(null); 
     } catch (error) {
       setError(error.message);
-      setMessage(null); // Сброс сообщения
     }
   };
 
@@ -58,11 +53,9 @@ function Registr() {
           <h1 className="reg__title">Регистрация</h1>
           <form className="login__form" onSubmit={handleRegister}>
             {error && <p className="error">{error}</p>}
-            {message && <p className="message">{message}</p>} {/* Сообщение о письме */}
             
             <div className="login__input">
               <i className="login__icon">
-                {/* Иконка для имени */}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,254,254,1)">
                   <path d="M12 2C10.3431 2 9 3.34315 9 5C9 6.65685 10.3431 8 12 8C13.6569 8 15 6.65685 15 5C15 3.34315 13.6569 2 12 2ZM5 20C5 16.6863 8.68629 14 12 14C15.3137 14 19 16.6863 19 20H5Z"></path>
                 </svg>
@@ -137,4 +130,4 @@ function Registr() {
   );
 }
 
-export default Registr;
+export default Registr
