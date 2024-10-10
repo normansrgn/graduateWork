@@ -17,6 +17,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
+    "firebase": "^10.14.0",
     "install": "^0.13.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",

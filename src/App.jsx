@@ -16,6 +16,8 @@ import AboutUs from "./pages/AboutUs";
 import CheckoutPage from "./components/Check/CheckoutPage";
 import NewFeautered from "./pages/NewFeautered";
 import SneakerDetail from "./pages/SneakerDetail";
+import Profile from "./pages/profile";
+
 
 function App() {
   const location = useLocation();
@@ -40,6 +42,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/new-featured" element={<NewFeautered />} />
           <Route path="/sneaker/:id" element={<SneakerDetail />} />
+          <Route path="/profile" element={<Profile />} />
           {/* <Route path="*" element={<Home />} /> */}
         </Routes>
       </main>
