@@ -25,26 +25,26 @@ function App() {
 // );
 
   return (
-    <React.Fragment>
+    <>
       <Header />
       <ScrollToTop />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="men" element={<Men />} />
-          <Route path="women" element={<Women />} />
-          <Route path="basket" element={<Basket />} />
-          <Route path="log" element={<Log />} />
-          <Route path="reg" element={<Reg />} />
-          <Route path="AboutUs" element={<AboutUs />} />
+          <Route path="/men" element={<Men />} />
+          <Route path="/women" element={<Women />} />
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/log" element={<Log />} />
+          <Route path="/reg" element={<Reg />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/new-featured" element={<NewFeautered />} />
           <Route path="/sneaker/:id" element={<SneakerDetail />} />
-          <Route path="*" element={<Home />} />
+          {/* <Route path="*" element={<Home />} /> */}
         </Routes>
       </main>
       <Footer />
-    </React.Fragment>
+    </>
   );
 }
 
