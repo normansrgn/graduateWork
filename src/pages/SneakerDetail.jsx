@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { menSneakers } from "../components/MenSneakerPage/SneakersPromoMen/data";
 import { womenSneakers } from "../components/WomenSneakerPage/SneakersPromoMen/data";
 import { Container } from "react-bootstrap";
-
+import { auth } from "../firebaseСonfig"; // импортируем auth
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -65,9 +65,12 @@ function SneakerDetail() {
 
   const handleAddReview = (e) => {
     e.preventDefault();
+    const currentUserName = auth.currentUser
+      ? auth.currentUser.displayName
+      : "Anonymous"; // имя текущего пользователя
     if (newReview.comment) {
       const updatedReviews = [
-        { name: "user", comment: newReview.comment },
+        { name: currentUserName, comment: newReview.comment }, // используем имя зарегистрированного пользователя
         ...reviews,
       ];
       setReviews(updatedReviews);

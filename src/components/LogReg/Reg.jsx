@@ -38,7 +38,7 @@ function Registr() {
         displayName: name,
       });
 
-      navigate("/user");
+      navigate("/");
 
       setError(null); 
     } catch (error) {
