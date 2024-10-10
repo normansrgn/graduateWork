@@ -13,24 +13,24 @@ function Profile() {
       if (user) {
         setUser(user);
       } else {
-        navigate("/"); // Перенаправление на главную страницу, если пользователь не авторизован
+        navigate("/"); 
       }
     });
 
-    return () => unsubscribe(); // Очистка подписки при размонтировании
+    return () => unsubscribe(); 
   }, [navigate]);
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/"); // Перенаправление на главную страницу после выхода
+      navigate("/"); 
     } catch (error) {
       console.error("Ошибка при выходе: ", error);
     }
   };
 
   if (!user) {
-    return null; // Если нет пользователя, не отображаем ничего
+    return null; 
   }
 
   return (
