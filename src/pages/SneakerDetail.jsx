@@ -121,6 +121,7 @@ function SneakerDetail() {
                   ))}
                 </div>
               </div>
+              
             </div>
             <div className="SneakerDetail__cardPrice">
               <span>{sneaker.price}₽</span>

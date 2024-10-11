@@ -23,7 +23,7 @@ function Profile() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/"); 
+      navigate("/log"); 
     } catch (error) {
       console.error("Ошибка при выходе: ", error);
     }
