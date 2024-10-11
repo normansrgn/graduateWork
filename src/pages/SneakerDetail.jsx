@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { menSneakers } from "../components/MenSneakerPage/SneakersPromoMen/data";
 import { womenSneakers } from "../components/WomenSneakerPage/SneakersPromoMen/data";
-import { Container } from "react-bootstrap";
-import { auth } from "../firebaseСonfig"; // импортируем auth
+import { Container, Row } from "react-bootstrap";
+import { auth } from "../firebaseСonfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import SneakerCard from "../components/SneakersPromo/SneakersCard";
+import { sneakers } from "../components/SneakersPromo/data";
 
 import "./SneakerDetail.scss";
 import Aos from "aos";
@@ -14,13 +16,22 @@ import "aos/dist/aos.css";
 import user from "../components/snealerDetImg/user.png";
 
 function SneakerDetail() {
-  Aos.init({ duration: 600 });
   const { id } = useParams();
   const [showNotification, setShowNotification] = useState(false);
   const [activeSize, setActiveSize] = useState(41);
   const [newReview, setNewReview] = useState({ comment: "" });
-  const [activeSection, setActiveSection] = useState("about"); // новое состояние для отслеживания активного раздела
+  const [activeSection, setActiveSection] = useState("about");
+  const [randomSneakers, setRandomSneakers] = useState([]);
   const sneakerId = parseInt(id);
+
+  useEffect(() => {
+    Aos.init({ duration: 600 });
+  }, []);
+
+  useEffect(() => {
+    const shuffledSneakers = [...sneakers].sort(() => 0.5 - Math.random());
+    setRandomSneakers(shuffledSneakers.slice(0, 3));
+  }, []);
 
   let sneaker = menSneakers.find((s) => s.id === sneakerId);
 
@@ -65,12 +76,10 @@ function SneakerDetail() {
 
   const handleAddReview = (e) => {
     e.preventDefault();
-    const currentUserName = auth.currentUser
-      ? auth.currentUser.displayName
-      : "Anonymous"; // имя текущего пользователя
+    const currentUserName = auth?.currentUser?.displayName || "Anonymous";
     if (newReview.comment) {
       const updatedReviews = [
-        { name: currentUserName, comment: newReview.comment }, // используем имя зарегистрированного пользователя
+        { name: currentUserName, comment: newReview.comment },
         ...reviews,
       ];
       setReviews(updatedReviews);
@@ -83,7 +92,7 @@ function SneakerDetail() {
   };
 
   const handleSectionChange = (section) => {
-    setActiveSection(section); // смена активного раздела
+    setActiveSection(section);
   };
 
   return (
@@ -195,10 +204,21 @@ function SneakerDetail() {
           </div>
         )}
 
+        <div className="SneakerDetail__likes">
+          <div className="SneakerDetail__likeTitle">
+            Вам также могут понравиться:
+          </div>
+          <Row className="sneaker__row">
+            {randomSneakers.map((sneaker) => (
+              <SneakerCard key={sneaker.id} {...sneaker} />
+            ))}
+          </Row>
+        </div>
+
         {showNotification && (
-          <Link to="/basket">
-            <div className="notification">Товар добавлен в корзину!</div>
-          </Link>
+          <div className="SneakerDetail__notification" data-aos="fade-left">
+            Товар добавлен в корзину!
+          </div>
         )}
       </Container>
     </section>

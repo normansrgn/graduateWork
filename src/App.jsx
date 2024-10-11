@@ -28,8 +28,8 @@ function App() {
 
   return (
     <>
-      <Header />
       <ScrollToTop />
+      <Header />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

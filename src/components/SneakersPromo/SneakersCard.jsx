@@ -1,11 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-
 function SneakerCard(props) {
-  Aos.init({ duration: 1000 });
+  const location = useLocation();
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
+  const handleCardClick = () => {
+    // Перезагрузка страницы после клика
+    setTimeout(() => {
+      window.location.reload();
+    }, 100); // Небольшая задержка, чтобы дать время роутингу
+  };
+
   return (
     <div className="col-xxl-4 col-sm-6 col-md-7" data-aos="fade-up">
       <div className="sneaker__card">
