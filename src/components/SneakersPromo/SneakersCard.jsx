@@ -11,10 +11,9 @@ function SneakerCard(props) {
   }, []);
 
   const handleCardClick = () => {
-    // Перезагрузка страницы после клика
     setTimeout(() => {
       window.location.reload();
-    }, 100); // Небольшая задержка, чтобы дать время роутингу
+    }, 100); 
   };
 
   return (

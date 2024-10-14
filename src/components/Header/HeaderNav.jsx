@@ -23,7 +23,6 @@ function HeaderNav() {
             </NavLink>
           </ol>
         </nav>
-
         <div className="header__navIc">
           <Link to="/log">
             <div

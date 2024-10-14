@@ -14,7 +14,7 @@ const brands = ["air jordan", "nike", "dior", "zara", "adidas"];
 export default class SneakersPromo extends Component {
   componentDidMount() {
     aos.init();
-
+ 
     window.addEventListener("resize", this.handleResize);
   }
   componentWillUnmount() {

@@ -32,8 +32,7 @@ export default function Header() {
 
   return (
     <header
-      className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
-    >
+      className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}>
       <Container className="header__container">
         <div className="header__logo">
           <Link to="/">
