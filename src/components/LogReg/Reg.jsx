@@ -10,6 +10,8 @@ import "./__logReg.scss";
 function Registr() {
   const [name, setName] = useState(""); 
   const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
@@ -31,7 +33,7 @@ function Registr() {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email,setNumber, password);
       const user = userCredential.user;
 
       await updateProfile(user, {
@@ -66,6 +68,21 @@ function Registr() {
                 placeholder="Имя"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div className="login__input">
+              <i className="login__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,254,254,1)">
+                  <path d="M3 6H21V18H3V6ZM2 4C1.44772 4 1 4.44772 1 5V19C1 19.5523 1.44772 20 2 20H22C22.5523 20 23 19.5523 23 19V5C23 4.44772 22.5523 4 22 4H2ZM13 8H19V10H13V8ZM18 12H13V14H18V12ZM10.5 10C10.5 11.3807 9.38071 12.5 8 12.5C6.61929 12.5 5.5 11.3807 5.5 10C5.5 8.61929 6.61929 7.5 8 7.5C9.38071 7.5 10.5 8.61929 10.5 10ZM8 13.5C6.067 13.5 4.5 15.067 4.5 17H11.5C11.5 15.067 9.933 13.5 8 13.5Z"></path>
+                </svg>
+              </i>
+              <input
+                type="tel"
+                className="login__input"
+                placeholder="Номер телефона"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
               />
             </div>
             
