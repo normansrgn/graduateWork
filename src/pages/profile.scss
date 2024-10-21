@@ -1,36 +1,41 @@
 .profile {
+  &__dataBlock {
+    background-color: #151515;
+    border-radius: 19px;
+    width: 400px;
+    padding: 15px;
+    display: flex;
+    gap: 15px;
 
-    &__dataBlock {
-        background-color: #151515;
-        border-radius: 19px;
-        width: 400px;
-        padding: 15px;
-        display: flex;
-        gap: 15px;
-
-        & span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 16px;
-        }
-
-        & img {
-            width: 80px;
-            border-radius: 90%;
-        }
+    & span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 16px;
     }
 
-    &__data {
-        display: flex;
-        gap: 5px;
-        flex-direction: column;
+    & img {
+      width: 80px;
+      border-radius: 90%;
     }
+  }
 
-    &__btn {
-        background: none;
-        padding: 6px;
-        border-radius: 10px;
-        border: 1px solid white;
+  &__data {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  &__btn {
+    background: none;
+    padding: 6px;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid black;
+    transition: 0.1s ease-in;
+
+    &:hover {
+      border: 1px solid white;
     }
+  }
 }
