@@ -26,15 +26,13 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-    }
+    };
+  }, [scrollUp]);
 
-  },
-  
-  [scrollUp]);
- 
-  return (  
+  return (
     <header
-      className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}>
+      className={`header ${scrollUp ? "header--visible" : "header--hidden"}`}
+    >
       <Container className="header__container">
         <div className="header__logo">
           <Link to="/">
@@ -46,4 +44,6 @@ export default function Header() {
       </Container>
     </header>
   );
+
+ 
 }
