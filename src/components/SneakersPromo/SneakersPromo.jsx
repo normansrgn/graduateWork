@@ -28,7 +28,7 @@ export default class SneakersPromo extends Component {
       sneaker.title.toLowerCase().includes(brand)
     );
     this.setState({ filteredSneakers: filtered, activeBrand: brand });
-  };
+  };    
 
   handleSelectChange = (event) => {
     const brand = event.target.value;
