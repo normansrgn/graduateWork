@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { menSneakers } from "../components/MenSneakerPage/SneakersPromoMen/data";
 import { womenSneakers } from "../components/WomenSneakerPage/SneakersPromoMen/data";
 import { Container, Row } from "react-bootstrap";
@@ -60,6 +60,7 @@ function SneakerDetail() {
     localStorage.setItem("cart", JSON.stringify(currentCart));
 
     setShowNotification(true);
+
     setTimeout(() => {
       setShowNotification(false);
     }, 3000);
@@ -90,10 +91,11 @@ function SneakerDetail() {
       setNewReview({ comment: "" });
     }
   };
-
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
+
+  
 
   return (
     <section className="SneakerDetail">
@@ -121,7 +123,6 @@ function SneakerDetail() {
                   ))}
                 </div>
               </div>
-              
             </div>
             <div className="SneakerDetail__cardPrice">
               <span>{sneaker.price}₽</span>
@@ -217,9 +218,9 @@ function SneakerDetail() {
         </div>
 
         {showNotification && (
-          <div className="SneakerDetail__notification" data-aos="fade-left">
-            Товар добавлен в корзину!
-          </div>
+          <Link to="/basket">
+            <div className="notification">Товар добавлен в корзину!</div>
+          </Link>
         )}
       </Container>
     </section>
