@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./__BasketCard.scss";
-import trash from "./trash.svg";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -13,12 +12,13 @@ function BasketCard() {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(cart);
-
-    const total = cart.reduce(
-      (sum, item) => sum + parseFloat(item.price.replace(/\D/g, "")),
-      0
-    );
-
+  
+    const total = cart.reduce((sum, item) => {
+      // Приводим цену к строке и удаляем все нецифровые символы
+      const priceString = String(item.price).replace(/\D/g, "");
+      return sum + parseFloat(priceString);
+    }, 0);
+  
     setTotalPrice(total);
   }, []);
 
@@ -70,33 +70,20 @@ function BasketCard() {
               }`}
             >
               <section className="basketCard">
-                <div className="basketCard__overlay">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="basketCard__image"
-                  />
-                  <div className="basketCard__titleBl">
-                    <div className="basketCard__title">{item.title}</div>
-                    <div className="basketCard__size"> {item.size}</div>
-                  </div>
-                </div>
-                <div className="basketCard__priceBlock">
-                  <div className="basketCard__price">{item.price}₽</div>
-                  <div
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="basketCard__image"
+                />
+                <div className="basketCard__title">{item.title}</div>
+                <div className="basketCard__price">
+                  {item.price}₽
+                  <button
                     onClick={() => removeFromCart(index)}
                     className="basketCard__removeButton"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="19"
-                      height="19"
-                      fill="rgba(255,255,255,1)"
-                    >
-                      <path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path>
-                    </svg>
-                  </div>
+                    x
+                  </button>
                 </div>
               </section>
             </div>
