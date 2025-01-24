@@ -95,7 +95,7 @@ function SneakerDetail() {
     setActiveSection(section);
   };
 
-  
+
 
   return (
     <section className="SneakerDetail">
