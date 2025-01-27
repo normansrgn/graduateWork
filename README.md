@@ -43,7 +43,7 @@
    yarn dev
    ```
 
-## Скрипты npm
+## Скрипты npm / yarn
 
 - `npm start` / `yarn dev` - Запуск проекта в режиме разработки.
 - `npm run build` / `yarn build` - Сборка проекта для продакшена.
