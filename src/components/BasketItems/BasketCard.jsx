@@ -14,7 +14,6 @@ function BasketCard() {
     setCartItems(cart);
   
     const total = cart.reduce((sum, item) => {
-      // Приводим цену к строке и удаляем все нецифровые символы
       const priceString = String(item.price).replace(/\D/g, "");
       return sum + parseFloat(priceString);
     }, 0);
