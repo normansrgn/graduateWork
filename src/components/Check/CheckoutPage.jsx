@@ -1,4 +1,3 @@
-// src/components/CheckoutPage.jsx
 import React from "react";
 
 import { Container } from "react-bootstrap";
