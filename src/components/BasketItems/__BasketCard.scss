@@ -16,6 +16,21 @@
     background-color: #1b1b1b;
   }
 
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    & button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-size: 20px;
+    }
+  }
+
   &__overlay {
     display: flex;
     gap: 10px;
@@ -49,6 +64,7 @@
 
   &__price {
     display: flex;
+    width: 103px;
     align-items: center;
     font-weight: 600;
     font-size: 20px;
@@ -174,6 +190,41 @@
   // border: none;
   // cursor: pointer;
   // transition: background-color 0.3s;
+}
+
+.basketCard__empty {
+  justify-self: center;
+  align-items: center;
+  // margin-top: 40px;
+  display: flex;
+  height: 40vh;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+
+  & span {
+    font-size: 25px;
+  }
+
+  & button {
+    width: 300px;
+    max-width: 100%;
+    border: none;
+    font-size: 17px;
+    padding: 14px;
+    border-radius: 17px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(
+      118.79deg,
+      rgb(210, 6, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(237, 28, 224) 57.356%,
+      rgb(177, 0, 255) 90.232%
+    );
+    background-size: 200% 200%;
+    animation: gradientShift 6s linear infinite;
+  }
 }
 
 @media (max-width: 767px) {
