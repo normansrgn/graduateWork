@@ -17,32 +17,28 @@ function BasketCard() {
   }, []);
 
   const calculateTotal = (cart) => {
-    const total = cart.reduce((sum, item) => {
-      const priceString = String(item.price).replace(/\D/g, "");
-      return sum + item.quantity * parseFloat(priceString);
-    }, 0);
+    const total = cart.reduce((sum, item) => sum + item.quantity * parseFloat(item.price.replace(/\D/g, "")), 0);
     setTotalPrice(total);
+  };
+
+  const updateCart = (updatedCart) => {
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    calculateTotal(updatedCart);
   };
 
   const removeFromCart = (indexToRemove) => {
     setRemovingItems([...removingItems, indexToRemove]);
-
     setTimeout(() => {
       const updatedCart = cartItems.filter((_, index) => index !== indexToRemove);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      setCartItems(updatedCart);
-      calculateTotal(updatedCart);
-      setRemovingItems(removingItems.filter((index) => index !== indexToRemove));
+      updateCart(updatedCart);
+      setRemovingItems(removingItems.filter(index => index !== indexToRemove));
     }, 500);
   };
 
   const updateQuantity = (index, change) => {
-    const updatedCart = cartItems.map((item, i) =>
-      i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
-    );
-    setCartItems(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    calculateTotal(updatedCart);
+    const updatedCart = cartItems.map((item, i) => i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item);
+    updateCart(updatedCart);
   };
 
   const handleCheckout = () => {
@@ -61,20 +57,10 @@ function BasketCard() {
       ) : (
         <>
           <h1 className="basketItem__title">Корзина</h1>
-
           {cartItems.map((item, index) => (
-            <div
-              key={index}
-              className={`col-xxl-6 basketCard__container ${
-                removingItems.includes(index) ? "basketCard__removing" : ""
-              }`}
-            >
+            <div key={index} className={`col-xxl-6 basketCard__container ${removingItems.includes(index) ? "basketCard__removing" : ""}`}>
               <section className="basketCard">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="basketCard__image"
-                />
+                <img src={item.img} alt={item.title} className="basketCard__image" />
                 <div className="basketCard__title">{item.title}</div>
                 <div className="basketCard__controls">
                   <button onClick={() => updateQuantity(index, -1)}>-</button>
@@ -83,12 +69,7 @@ function BasketCard() {
                 </div>
                 <div className="basketCard__price">
                   {item.price * item.quantity}₽
-                  <button
-                    onClick={() => removeFromCart(index)}
-                    className="basketCard__removeButton"
-                  >
-                    x
-                  </button>
+                  <button onClick={() => removeFromCart(index)} className="basketCard__removeButton">x</button>
                 </div>
               </section>
             </div>
@@ -100,9 +81,7 @@ function BasketCard() {
             </section>
           </div>
           <div className="col-xxl-6">
-            <button className="basketButton" onClick={handleCheckout}>
-              ПЕРЕЙТИ К ОФОРМЛЕНИЮ
-            </button>
+            <button className="basketButton" onClick={handleCheckout}>ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>
           </div>
         </>
       )}
