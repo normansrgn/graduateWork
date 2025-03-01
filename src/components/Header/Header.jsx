@@ -17,6 +17,7 @@ export default function Header() {
       const currentScrollPos = window.pageYOffset;
       if (currentScrollPos === 0) {
         setScrollUp(true);
+        
       } else {
         setScrollUp(currentScrollPos < lastScrollPos.current);
       }
