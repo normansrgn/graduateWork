@@ -9,7 +9,7 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import logo from "./logo.svg";
 
 export default function Header() {
-
+  
   const [scrollUp, setScrollUp] = useState(true);
   const lastScrollPos = useRef(0);
   useEffect(() => {
