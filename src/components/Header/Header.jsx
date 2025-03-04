@@ -12,9 +12,12 @@ export default function Header() {
   
   const [scrollUp, setScrollUp] = useState(true);
   const lastScrollPos = useRef(0);
+
   useEffect(() => {
+
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
+
       if (currentScrollPos === 0) {
         setScrollUp(true);
       } else {
@@ -26,7 +29,6 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-    
   }, [scrollUp]);
 
   return (
