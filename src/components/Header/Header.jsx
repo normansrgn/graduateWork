@@ -14,7 +14,6 @@ export default function Header() {
   const lastScrollPos = useRef(0);
 
   useEffect(() => {
-
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
 
