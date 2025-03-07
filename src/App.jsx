@@ -21,10 +21,6 @@ import Profile from "./pages/profile";
 
 function App() {
   const location = useLocation();
-  // const noHeaderFooterRoutes = ["/reg", "/log", "/checkout"];
-  // const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(
-  //   location.pathname
-// );
 
   return (
     <>
