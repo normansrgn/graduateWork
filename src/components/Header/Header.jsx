@@ -28,7 +28,9 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollUp]);
+
+  },
+    [scrollUp]  );
 
   return (
     <header
