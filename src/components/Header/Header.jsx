@@ -9,6 +9,7 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import logo from "./logo.svg";
 
 export default function Header() {
+
   const [scrollUp, setScrollUp] = useState(true);
   const lastScrollPos = useRef(0);
 
@@ -37,6 +38,7 @@ export default function Header() {
     >
       <Container className="header__container">
         <div className="header__logo">
+      
           <Link to="/">
             <img src={logo} alt="Logo" />
           </Link>
