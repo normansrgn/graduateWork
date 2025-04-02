@@ -4,6 +4,8 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 function SneakerCard(props) {
+
+
   const location = useLocation();
 
   useEffect(() => {
@@ -13,8 +15,10 @@ function SneakerCard(props) {
   const handleCardClick = () => {
     setTimeout(() => {
       window.location.reload();
-    }, 100); 
+    }, 100);
   };
+
+  // console.log("Clicked product ID:", id);
 
   return (
     <div className="col-xxl-4 col-sm-6 col-md-7" data-aos="fade-up">

@@ -77,7 +77,13 @@ function SneakerDetail() {
 
   const handleAddReview = (e) => {
     e.preventDefault();
-    const currentUserName = auth?.currentUser?.displayName || "Anonymous";
+    
+    if (!auth.currentUser) {
+      alert('Пожалуйста, войдите в систему, чтобы оставить отзыв');
+      return;
+    }
+
+    const currentUserName = auth.currentUser.displayName || "Анонимный пользователь";
     if (newReview.comment) {
       const updatedReviews = [
         { name: currentUserName, comment: newReview.comment },
@@ -91,11 +97,10 @@ function SneakerDetail() {
       setNewReview({ comment: "" });
     }
   };
+
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
-
-
 
   return (
     <section className="SneakerDetail">
@@ -173,21 +178,35 @@ function SneakerDetail() {
           <div className="SneakerDetail__reviews" data-aos="fade-right">
             <h4>Оставить отзыв</h4>
 
-            <form
-              className="SneakerDetail__reviewForm"
-              onSubmit={handleAddReview}
-            >
-              <input
-                name="comment"
-                placeholder="Ваш отзыв"
-                value={newReview.comment}
-                onChange={handleReviewChange}
-                required
-              ></input>
-              <button type="submit">
-                <FontAwesomeIcon icon={faPlus} style={{ color: "#ffff" }} />
-              </button>
-            </form>
+            {auth.currentUser ? (
+              <form
+                className="SneakerDetail__reviewForm"
+                onSubmit={handleAddReview}
+              >
+                <input
+                  name="comment"
+                  placeholder="Ваш отзыв"
+                  value={newReview.comment}
+                  onChange={handleReviewChange}
+                  required
+                ></input>
+                <button type="submit">
+                  <FontAwesomeIcon icon={faPlus} style={{ color: "#ffff" }} />
+                </button>
+              </form>
+            ) : (
+              <div className="SneakerDetail__authWarning">
+                <p>Чтобы оставить отзыв, пожалуйста:</p>
+                <Link to="/log" className="SneakerDetail__authLink">
+                  Войдите в аккаунт
+                </Link>
+                <span> или </span>
+                <Link to="/reg" className="SneakerDetail__authLink">
+                  Зарегистрируйтесь
+                </Link>
+              </div>
+            )}
+
             {reviews.map((review, index) => (
               <div className="SneakerDetail__reviewsItem" key={index}>
                 <div className="SneakerDetail__reviewsItemImg">

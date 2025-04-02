@@ -4,141 +4,79 @@ import "aos/dist/aos.css";
 
 import "./__SlideBarCatalog.scss";
 
-export default function SlideBarCatalog() {
+const BRANDS = ["Nike", "Adidas", "Dior", "Zara"];
+const MODELS = ["Air Jordan", "Air Max", "Ultraboost", "B23", "Casual"];
+const SIZES = ["41", "42", "43", "44"];
+
+export default function SlideBarCatalog({ onFilterChange, activeFilters }) {
   Aos.init({ duration: 1000 });
+
+  const handleCheckboxChange = (filterType, value) => (e) => {
+    onFilterChange(filterType, value, e.target.checked);
+  };
+
   return (
-    <>
-      <section className="slideee" data-aos="fade-up">
-        <div className="SlideBarCatalog">
-          <div className="SlideBarCatalog__brands">
-            <h1 className="SlideBarCatalog__title">Бренд:</h1>
-            <div className="SlideBarCatalog__filterList">
-              <div className="SlideBarCatalog__filterItem">
+    <section className="slideee" data-aos="fade-up">
+      <div className="SlideBarCatalog">
+        <div className="SlideBarCatalog__brands">
+          <h1 className="SlideBarCatalog__title">Бренд:</h1>
+          <div className="SlideBarCatalog__filterList">
+            {BRANDS.map(brand => (
+              <div className="SlideBarCatalog__filterItem" key={brand}>
                 <input
                   type="checkbox"
-                  readonly
-                  name="Nike"
+                  id={brand}
+                  name={brand}
                   className="SlideBarCatalog__filterItemChecbox"
+                  checked={activeFilters.brands.includes(brand)}
+                  onChange={handleCheckboxChange("brands", brand)}
                 />
-                <label for="nike">Nike</label>
+                <label htmlFor={brand}>{brand}</label>
               </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="Osiris"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="Osiris">Osiris</label>
-              </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="Adidas"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="Adidas">Adidas</label>
-              </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="Puma"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="Puma">Puma</label>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-        <div className="SlideBarCatalog">
-          <div className="SlideBarCatalog__brands">
-            <h1 className="SlideBarCatalog__title">Модель:</h1>
-            <div className="SlideBarCatalog__filterList">
-              <div className="SlideBarCatalog__filterItem">
+      </div>
+      <div className="SlideBarCatalog">
+        <div className="SlideBarCatalog__brands">
+          <h1 className="SlideBarCatalog__title">Модель:</h1>
+          <div className="SlideBarCatalog__filterList">
+            {MODELS.map(model => (
+              <div className="SlideBarCatalog__filterItem" key={model}>
                 <input
                   type="checkbox"
-                  readonly
-                  name="Jordan"
+                  id={model}
+                  name={model}
                   className="SlideBarCatalog__filterItemChecbox"
+                  checked={activeFilters.models.includes(model)}
+                  onChange={handleCheckboxChange("models", model)}
                 />
-                <label for="Jordan">Jordan</label>
+                <label htmlFor={model}>{model}</label>
               </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="Dunk"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="Dunk">Dunk</label>
-              </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="Air Max"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="Air Max">Air Max</label>
-              </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="Air Max"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="Air Max">Air Max</label>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-        <div className="SlideBarCatalog">
-          <div className="SlideBarCatalog__brands">
-            <h1 className="SlideBarCatalog__title">Размер:</h1>
-            <div className="SlideBarCatalog__filterList">
-              <div className="SlideBarCatalog__filterItem">
+      </div>
+      <div className="SlideBarCatalog">
+        <div className="SlideBarCatalog__brands">
+          <h1 className="SlideBarCatalog__title">Размер:</h1>
+          <div className="SlideBarCatalog__filterList">
+            {SIZES.map(size => (
+              <div className="SlideBarCatalog__filterItem" key={size}>
                 <input
                   type="checkbox"
-                  readonly
-                  name="41"
+                  id={`size-${size}`}
+                  name={size}
                   className="SlideBarCatalog__filterItemChecbox"
+                  checked={activeFilters.sizes.includes(size)}
+                  onChange={handleCheckboxChange("sizes", size)}
                 />
-                <label for="41">41</label>
+                <label htmlFor={`size-${size}`}>{size}</label>
               </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="42"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="42">42</label>
-              </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="43"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="43">43</label>
-              </div>
-              <div className="SlideBarCatalog__filterItem">
-                <input
-                  type="checkbox"
-                  readonly
-                  name="44"
-                  className="SlideBarCatalog__filterItemChecbox"
-                />
-                <label for="44">44</label>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
