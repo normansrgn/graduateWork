@@ -10,14 +10,18 @@ function BasketCard() {
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const updatedCart = cart.map(item => ({ ...item, quantity: item.quantity || 1 }));
+    const updatedCart = cart.map(item => ({ 
+      ...item, 
+      quantity: item.quantity || 1,
+      price: typeof item.price === 'string' ? parseFloat(item.price.replace(/\D/g, "")) : item.price
+    }));
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     calculateTotal(updatedCart);
   }, []);
 
   const calculateTotal = (cart) => {
-    const total = cart.reduce((sum, item) => sum + item.quantity * parseFloat(item.price.replace(/\D/g, "")), 0);
+    const total = cart.reduce((sum, item) => sum + (item.quantity * item.price), 0);
     setTotalPrice(total);
   };
 
@@ -37,12 +41,18 @@ function BasketCard() {
   };
 
   const updateQuantity = (index, change) => {
-    const updatedCart = cartItems.map((item, i) => i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item);
+    const updatedCart = cartItems.map((item, i) => 
+      i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
+    );
     updateCart(updatedCart);
   };
 
   const handleCheckout = () => {
     navigate("/checkout", { state: { cartItems, totalPrice } });
+  };
+
+  const formatPrice = (price) => {
+    return price.toLocaleString('ru-RU') + '₽';
   };
 
   return (
@@ -68,7 +78,7 @@ function BasketCard() {
                   <button onClick={() => updateQuantity(index, 1)}>+</button>
                 </div>
                 <div className="basketCard__price">
-                  {item.price * item.quantity}₽
+                  {formatPrice(item.price * item.quantity)}
                   <button onClick={() => removeFromCart(index)} className="basketCard__removeButton">x</button>
                 </div>
               </section>
@@ -77,7 +87,7 @@ function BasketCard() {
           <div className="col-xxl-6">
             <section className="basketCardInfo">
               <div className="basketCardInfo__title">ИТОГО:</div>
-              <div className="basketCardInfo__price">{totalPrice}₽</div>
+              <div className="basketCardInfo__price">{formatPrice(totalPrice)}</div>
             </section>
           </div>
           <div className="col-xxl-6">
