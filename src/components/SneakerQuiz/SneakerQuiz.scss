@@ -1,7 +1,7 @@
 .sneaker-quiz {
     padding: 100px 0;
     // background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    background-color: #151515;
+    background-color: #232323;
     position: relative;
     overflow: hidden;
   
@@ -191,66 +191,60 @@
     }
     
     .recommendations {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
-      
-      .sneaker-card {
-        cursor: pointer;
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        // transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-        transition: 0.3s ease;
-        position: relative;
-        animation: fadeInUp 0.6s ease-out;
-        transform: translateY(20px);
-        opacity: 0;
-        animation-fill-mode: forwards;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
         
-        &:nth-child(1) { animation-delay: 0.2s; }
-        &:nth-child(2) { animation-delay: 0.4s; }
-        &:nth-child(3) { animation-delay: 0.6s; }
-        
-        &:hover {
-          transform: translateY(-10px) !important;
-          box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-          
-          .sneaker-image::after {
-            opacity: 1;
-          }
-          
-          .sneaker-info {
-            transform: translateY(0);
-          }
-        }
-        
-        .sneaker-image {
-          height: 250px;
-          position: relative;
+        .sneaker-card {
+          cursor: pointer;
+          background: white;
+          border-radius: 16px;
           overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+          transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+          position: relative;
+          animation: fadeInUp 0.6s ease-out;
+          opacity: 0;
+          animation-fill-mode: forwards;
           
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
+          &:nth-child(1) { animation-delay: 0.2s; }
+          &:nth-child(2) { animation-delay: 0.4s; }
+          &:nth-child(3) { animation-delay: 0.6s; }
+          
+          &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            
+            .sneaker-image::after {
+              opacity: 1;
+            }
           }
           
-          &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+          .sneaker-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: transform 0.8s ease;
+            }
+            
+            &::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+              opacity: 0;
+              transition: opacity 0.4s ease;
+            }
           }
-        }
         
         .sneaker-info {
           padding: 25px;

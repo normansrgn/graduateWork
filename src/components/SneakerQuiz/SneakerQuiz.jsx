@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { menSneakers } from "../MenSneakerPage/SneakersPromoMen/data";
 import './SneakerQuiz.scss';
 
@@ -39,10 +40,8 @@ const SneakerQuiz = () => {
     ];
 
     const getRecommendation = (answers) => {
-        // Фильтрация кроссовок на основе ответов
         let filtered = [...menSneakers];
 
-        // Фильтр по назначению
         if (answers[0] === "sport") {
             filtered = filtered.filter(item =>
                 item.title.includes("Air Max") ||
@@ -63,14 +62,12 @@ const SneakerQuiz = () => {
             );
         }
 
-        // Фильтр по бренду
         if (answers[1] && answers[1] !== "other") {
             filtered = filtered.filter(item =>
                 item.title.toLowerCase().includes(answers[1])
             );
         }
 
-        // Фильтр по цене
         if (answers[2] === "low") {
             filtered = filtered.filter(item =>
                 parseInt(item.price.replace(/,/g, '')) < 10000
@@ -86,7 +83,6 @@ const SneakerQuiz = () => {
             );
         }
 
-        // Если ничего не найдено, возвращаем случайные модели
         if (filtered.length === 0) {
             return [
                 menSneakers[0],
@@ -95,7 +91,6 @@ const SneakerQuiz = () => {
             ];
         }
 
-        // Возвращаем 3 подходящие модели
         return filtered.slice(0, 3);
     };
 
@@ -125,11 +120,14 @@ const SneakerQuiz = () => {
 
                 {!result ? (
                     <div className="quiz-container">
-                        <div className="progress-bar">
-                            <div
-                                className="progress"
-                                style={{ width: `${(step / questions.length) * 100}%` }}
-                            ></div>
+                        <div className="progress-info">
+                            <span>Вопрос {step + 1}/{questions.length}</span>
+                            <div className="progress-bar">
+                                <div
+                                    className="progress"
+                                    style={{ width: `${(step / questions.length) * 100}%` }}
+                                ></div>
+                            </div>
                         </div>
 
                         <div className="question">
@@ -138,7 +136,7 @@ const SneakerQuiz = () => {
                                 {questions[step].options.map((option, i) => (
                                     <Button
                                         key={i}
-                                        variant="outline-dark"
+                                        className="quiz-option"
                                         onClick={() => handleAnswer(option.value)}
                                     >
                                         {option.text}
@@ -149,29 +147,36 @@ const SneakerQuiz = () => {
                     </div>
                 ) : (
                     <div className="quiz-result">
-                        <h3>Мы подобрали для вас</h3>
-                        <p>На основе ваших ответов рекомендуем следующие модели:</p>
+                        <div className="result-header">
+                            <h3>Мы подобрали для вас</h3>
+                            <p>На основе ваших ответов рекомендуем:</p>
+                        </div>
 
                         <div className="recommendations">
                             {result.map((sneaker) => (
-                                <div className="col-xxl-12">
-                                    <div key={sneaker.id} className="sneaker-card">
-                                        <img src={sneaker.img} alt={sneaker.title} />
-                                        <div className="sneaker-info">
-                                            <h4>{sneaker.title}</h4>
-                                            <div className="price">{sneaker.price}₽</div>
-                                            <p className="description">{sneaker.description.substring(0, 100)}...</p>
-                                            <Button variant="dark" href={`/product/${sneaker.id}`}>Подробнее</Button>
-                                        </div>
+                                <div key={sneaker.id} className="sneaker-card">
+                                    <div className="sneaker-image">
+                                        <img src={sneaker.img} alt={sneaker.title} loading="lazy" />
+                                    </div>
+                                    <div className="sneaker-info">
+                                        <h4>{sneaker.title}</h4>
+                                        <div className="price">{sneaker.price}₽</div>
+                                        <Button 
+                                            variant="primary" 
+                                            as={Link}
+                                            to={`/product/${sneaker.id}`}
+                                            className="details-btn"
+                                        >
+                                            Подробнее
+                                        </Button>
                                     </div>
                                 </div>
                             ))}
                         </div>
 
                         <Button
-                            variant="outline-secondary"
-                            onClick={restartQuiz}
                             className="restart-btn"
+                            onClick={restartQuiz}
                         >
                             Пройти тест еще раз
                         </Button>
