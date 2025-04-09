@@ -2,7 +2,8 @@
   padding: 25px 0px 129px 0px;
   &__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 60px;
   }
 
   &__dowlandIcons {

@@ -9,7 +9,7 @@ export default class Footer extends Component {
     return (
       <footer className="footer">
         <Container className="footer__container">
-          <div className="footer__links">
+          {/* <div className="footer__links">
             <div className="footer__linkTitle">Shoesy</div>
             <ol>
               <li>Download Now :</li>
@@ -40,23 +40,27 @@ export default class Footer extends Component {
                 />
               </svg>
             </div>
-          </div>
+          </div> */}
 
           <div className="footer__links">
-            <div className="footer__linkTitle">COMPANY</div>
+            <div className="footer__linkTitle">Навигаци</div>
             <ol>
-              <li>About</li>
-              <li>Categories</li>
+              <Link to="AboutUs">
+                <li>О нас</li>
+              </Link>
               <Link to="men">
-                <li>Men</li>
+                <li>Каталог</li>
+              </Link>
+              <Link to="men">
+                <li>Мужские</li>
               </Link>
               <Link to="women">
-                <li>Women</li>
+                <li>Женские</li>
               </Link>
-              <li>Find a store</li>
+
             </ol>
           </div>
-          <div className="footer__links">
+          {/* <div className="footer__links">
             <div className="footer__linkTitle">USEFUL LINKS</div>
             <ol>
               <li>Brands</li>
@@ -65,9 +69,9 @@ export default class Footer extends Component {
               <li>Legal</li>
               <li>Help</li>
             </ol>
-          </div>
+          </div> */}
           <div className="footer__links">
-            <div className="footer__linkTitle">SOCIALIZE WITH ANGHAMI</div>
+            <div className="footer__linkTitle">Социальные сети</div>
             <div className="footer__icons">
               <Link to="https://t.me/wartsneakerbot?start=1">
                 <svg

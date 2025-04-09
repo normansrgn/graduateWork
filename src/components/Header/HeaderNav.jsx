@@ -10,17 +10,14 @@ function HeaderNav() {
       <div className="header__navBlock">
         <nav>
           <ol>
-            <NavLink to="/new-featured" activeClassName="active">
-              <li>NEW & FEATURED</li>
+            <NavLink to="/" activeClassName="active">
+              <li>ГЛАВНАЯ</li>
             </NavLink>
             <NavLink to="/men" activeClassName="active">
-              <li>MEN</li>
-            </NavLink>
-            <NavLink to="/women" activeClassName="active">
-              <li>WOMEN</li>
+              <li>каталог</li>
             </NavLink>
             <NavLink to="/AboutUs" activeClassName="active">
-              <li>About us</li>
+              <li>О НАС</li>
             </NavLink>
           </ol>
         </nav>

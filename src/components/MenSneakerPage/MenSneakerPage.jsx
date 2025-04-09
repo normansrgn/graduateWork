@@ -7,7 +7,7 @@ export default function MenPage() {
 
     return (
       <div className="menPage" >
-        <h1 className="menPage__title" data-aos="fade-up">MEN SNEAKERS</h1>
+        <h1 className="menPage__title" data-aos="fade-up">Каталог</h1>
       </div>
     );
 }

@@ -18,14 +18,13 @@ export default class Prom extends Component {
       <section className="prom">
         <Container className="prom__container">
           <h1 className="promo_title" data-aos="fade-up">
-            All <span> the sneakers </span> You want are here
+            Все <span> кроссовки </span> которые ты хочешь здесь
           </h1>
           <p data-aos="fade-up">
-            Lorem ipsum dolor sit amet consectetur. Lorem sit aenean erat
-            tincidunt nulla potenti vulputate.{" "}
+          Твои кроссы — твои правила. Мы не просто продаём обувь, мы двигаем стиль вперёд.{" "}
           </p>
           <div className="prom__buttons" data-aos="fade-up">
-            <button className="prom__shopBtn">SHOP NOW</button>
+            <button className="prom__shopBtn">перейти к каталогу</button>
             {/* <button className="prom__collectiobBtn">ALL COLLECTIONS</button> */}
           </div>
         </Container>

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+
 import { Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 import aos from "aos";
 
 import "aos/dist/aos.css";
@@ -14,7 +17,7 @@ const brands = ["air jordan", "nike", "dior", "zara", "adidas"];
 export default class SneakersPromo extends Component {
   componentDidMount() {
     aos.init();
- 
+
     window.addEventListener("resize", this.handleResize);
   }
   componentWillUnmount() {
@@ -28,7 +31,7 @@ export default class SneakersPromo extends Component {
       sneaker.title.toLowerCase().includes(brand)
     );
     this.setState({ filteredSneakers: filtered, activeBrand: brand });
-  };    
+  };
 
   handleSelectChange = (event) => {
     const brand = event.target.value;
@@ -53,11 +56,9 @@ export default class SneakersPromo extends Component {
         <section className="sneaker">
           <Container className="sneaker__container">
             <div className="sneaker__text" data-aos="fade-up">
-              <h1>Browse our best collections</h1>
+              <h1>Просмотрите наши лучшие коллекции</h1>
               <p>
-                Lorem ipsum dolor sit amet consectetur. Est eros in commodo
-                pellentesque neque tempus imperdiet enim a. Sit morbi convallis
-                suscipit vitae lacus vitae id urna pharetra.
+                Твоя обувь, твои правила. Здесь нет ограничений — только стиль, скорость и свобода. Взгляни на кроссовки, которые созданы для тех, кто не боится быть первым.
               </p>
               {isMobile ? (
                 <select
@@ -93,7 +94,9 @@ export default class SneakersPromo extends Component {
               ))}
             </Row>
             <div className="sneaker__button">
-              <button className="sneaker__btn">View all</button>
+              <Link to="/men">
+                <button className="sneaker__btn">Посмотреть все</button>
+              </Link>
             </div>
           </Container>
         </section>

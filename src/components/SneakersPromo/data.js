@@ -1,11 +1,11 @@
-import img01 from "./images/1.png";
+import img01 from "./images/Nike Air Jordan 1.png";
+import img03 from "./images/Nike Air Jordan 1.png";
 import img02 from "./images/2.png";
-import img03 from "./images/3.png";
 
 export const sneakers = [
   {
     id: 1,
-    title: "Nike Air Jordan",
+    title: "Nike Air Jordan 1",
     price: "6299",
     img: img01,
   },
