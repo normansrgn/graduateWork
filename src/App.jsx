@@ -17,6 +17,7 @@ import CheckoutPage from "./components/Check/CheckoutPage";
 import NewFeautered from "./pages/NewFeautered";
 import SneakerDetail from "./pages/SneakerDetail";
 import Profile from "./pages/profile";
+// import Marquee from "./components/Marquee/Marquee";
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
 
   return (
     <>
+            {/* <Marquee /> */}
+  
       <ScrollToTop />
       <Header />
       <main>

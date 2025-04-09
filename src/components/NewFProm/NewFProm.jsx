@@ -19,8 +19,8 @@ export default function NewFProm() {
       <Container className="newFeautered__container">
         <section className="newFeautered">
           <div className="newFeautered__title">
-            <h1>Step Into Style with Our Trendy Shoes!</h1>
-            <button>SHOP NOW</button>
+            <h1>Будьте стильными с нашей модной обувью!</h1>
+            {/* <button>SHOP NOW</button> */}
           </div>
           <div className="newFeautered__slider">
             <Swiper

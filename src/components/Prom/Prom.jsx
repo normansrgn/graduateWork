@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -21,10 +22,12 @@ export default class Prom extends Component {
             Все <span> кроссовки </span> которые ты хочешь здесь
           </h1>
           <p data-aos="fade-up">
-          Твои кроссы — твои правила. Мы не просто продаём обувь, мы двигаем стиль вперёд.{" "}
+            Твои кроссы — твои правила. Мы не просто продаём обувь, мы двигаем стиль вперёд.{" "}
           </p>
           <div className="prom__buttons" data-aos="fade-up">
-            <button className="prom__shopBtn">перейти к каталогу</button>
+            <Link to="/men">
+              <button className="prom__shopBtn">перейти к каталогу</button>
+            </Link>
             {/* <button className="prom__collectiobBtn">ALL COLLECTIONS</button> */}
           </div>
         </Container>

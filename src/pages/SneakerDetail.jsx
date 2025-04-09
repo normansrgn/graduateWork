@@ -7,7 +7,6 @@ import { auth } from "../firebaseСonfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import SneakerCard from "../components/SneakersPromo/SneakersCard";
-import { sneakers } from "../components/SneakersPromo/data";
 
 import "./SneakerDetail.scss";
 import Aos from "aos";
@@ -21,7 +20,7 @@ function SneakerDetail() {
   const [activeSize, setActiveSize] = useState(41);
   const [newReview, setNewReview] = useState({ comment: "" });
   const [activeSection, setActiveSection] = useState("about");
-  const [randomSneakers, setRandomSneakers] = useState([]);
+  const [randomMenSneakers, setRandomMenSneakers] = useState([]);
   const sneakerId = parseInt(id);
 
   useEffect(() => {
@@ -29,8 +28,8 @@ function SneakerDetail() {
   }, []);
 
   useEffect(() => {
-    const shuffledSneakers = [...sneakers].sort(() => 0.5 - Math.random());
-    setRandomSneakers(shuffledSneakers.slice(0, 3));
+    const shuffledMenSneakers = [...menSneakers].sort(() => 0.5 - Math.random());
+    setRandomMenSneakers(shuffledMenSneakers.slice(0, 3));
   }, []);
 
   let sneaker = menSneakers.find((s) => s.id === sneakerId);
@@ -230,8 +229,8 @@ function SneakerDetail() {
             Вам также могут понравиться:
           </div>
           <Row className="sneaker__row">
-            {randomSneakers.map((sneaker) => (
-              <SneakerCard key={sneaker.id} {...sneaker} />
+            {randomMenSneakers.map((menSneaker) => (
+              <SneakerCard key={menSneaker.id} {...menSneaker} />
             ))}
           </Row>
         </div>

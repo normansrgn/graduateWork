@@ -1,0 +1,455 @@
+.sneaker-quiz {
+    padding: 100px 0;
+    // background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-color: #151515;
+    position: relative;
+    overflow: hidden;
+  
+    &::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%);
+      z-index: 0;
+      animation: pulse 15s infinite alternate;
+    }
+  
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+  
+    h2 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      animation: fadeInUp 0.8s ease-out;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+  
+    p {
+      text-align: center;
+      color: #cfcfcf;
+      margin-bottom: 60px;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+  
+    .quiz-container {
+      background: #151515;
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      max-width: 900px;
+      color: white !important;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.6s ease-out;
+      border: 1px solid rgba(0,0,0,0.05);
+  
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ffd166, #06d6a0, #118ab2, #073b4c);
+        background-size: 300% 100%;
+        animation: gradientBG 8s ease infinite;
+      }
+    }
+  
+    .progress-bar {
+      height: 10px;
+      background: #e9ecef;
+      border-radius: 5px;
+      margin-bottom: 40px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+      
+      .progress {
+        height: 100%;
+        background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+        width: 0;
+        transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+        
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(90deg, 
+            rgba(255,255,255,0) 0%, 
+            rgba(255,255,255,0.3) 50%, 
+            rgba(255,255,255,0) 100%);
+          animation: shimmer 2s infinite;
+        }
+      }
+    }
+  
+    .question {
+      h3 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 1.6rem;
+        color: white;
+        font-weight: 600;
+        animation: fadeInUp 0.5s ease-out;
+      }
+      
+      .options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        
+        @media (max-width: 576px) {
+          grid-template-columns: 1fr;
+        }
+        
+        .btn {
+          padding: 18px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 1.1rem;
+          transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+          border: none;
+          background: #f8f9fa;
+          color: #495057;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+          
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000 0%, #343a40 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+          
+          &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            color: white;
+            
+            &::before {
+              opacity: 1;
+            }
+          }
+          
+          &:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          }
+          
+          &:nth-child(1):hover { color: white; &::before { background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); } }
+          &:nth-child(2):hover { color: white; &::before { background: linear-gradient(135deg, #06d6a0 0%, #118ab2 100%); } }
+          &:nth-child(3):hover { color: white; &::before { background: linear-gradient(135deg, #ffd166 0%, #ff9a56 100%); } }
+          &:nth-child(4):hover { color: white; &::before { background: linear-gradient(135deg, #9d4edd 0%, #5a189a 100%); } }
+        }
+      }
+    }
+    
+    .quiz-result {
+      animation: fadeIn 0.8s ease-out;
+      
+      h3 {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: white;
+        animation: fadeInUp 0.6s ease-out;
+      }
+      
+      > p {
+        margin-bottom: 50px;
+        animation: fadeInUp 0.6s ease-out 0.2s both;
+      }
+    }
+    
+    .recommendations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+      
+      .sneaker-card {
+        cursor: pointer;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        // transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition: 0.3s ease;
+        position: relative;
+        animation: fadeInUp 0.6s ease-out;
+        transform: translateY(20px);
+        opacity: 0;
+        animation-fill-mode: forwards;
+        
+        &:nth-child(1) { animation-delay: 0.2s; }
+        &:nth-child(2) { animation-delay: 0.4s; }
+        &:nth-child(3) { animation-delay: 0.6s; }
+        
+        &:hover {
+          transform: translateY(-10px) !important;
+          box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+          
+          .sneaker-image::after {
+            opacity: 1;
+          }
+          
+          .sneaker-info {
+            transform: translateY(0);
+          }
+        }
+        
+        .sneaker-image {
+          height: 250px;
+          position: relative;
+          overflow: hidden;
+          
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+          }
+          
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+          }
+        }
+        
+        .sneaker-info {
+          padding: 25px;
+          transition: transform 0.4s ease;
+          
+          h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #212529;
+            font-weight: 700;
+          }
+          
+          .price {
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #000;
+            display: inline-block;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          
+          .description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+          }
+          
+          .btn {
+            width: 100%;
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 8px;
+            background: #000;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+              z-index: -1;
+              opacity: 0;
+              transition: opacity 0.3s ease;
+            }
+            
+            &:hover {
+              &::before {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .restart-btn {
+      display: block;
+      margin: 0 auto;
+      padding: 12px 40px;
+      font-weight: 600;
+      border-radius: 50px;
+      border: 2px solid white;
+      background: transparent;
+      color: white;
+      transition: all 0.4s ease;
+      animation: fadeIn 0.8s ease-out 0.8s both;
+      
+      &:hover {
+        background: white;
+        color: black;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+      
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+  }
+  
+  /* Keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(20, 20);
+      opacity: 0;
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 992px) {
+    .sneaker-quiz {
+      padding: 80px 0;
+      
+      h2 {
+        font-size: 2.4rem;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sneaker-quiz {
+      padding: 60px 0;
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+      }
+      
+      .quiz-container {
+        padding: 30px;
+      }
+      
+      .question {
+        h3 {
+          font-size: 1.4rem;
+          margin-bottom: 30px;
+        }
+      }
+      
+      .recommendations {
+        gap: 20px;
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .sneaker-quiz {
+      padding: 40px 0;
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .quiz-container {
+        padding: 25px 20px;
+      }
+      
+      .question {
+        .options {
+          .btn {
+            padding: 15px;
+            font-size: 1rem;
+          }
+        }
+      }
+      
+      .sneaker-card {
+        .sneaker-image {
+          height: 200px;
+        }
+      }
+    }
+  }
