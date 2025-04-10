@@ -17,16 +17,20 @@ import CheckoutPage from "./components/Check/CheckoutPage";
 import NewFeautered from "./pages/NewFeautered";
 import SneakerDetail from "./pages/SneakerDetail";
 import Profile from "./pages/profile";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 // import Marquee from "./components/Marquee/Marquee";
 
 
 function App() {
   const location = useLocation();
+  const stripePromise = loadStripe("pk_test_51RCI0R2akLwMO1Cu2QIDXanXHsqP8NN8o2S22Eb2HFzCmLxgIPUWOedjpWIzN6QOBqrnZkUKbwiX13I1va7sAdZQ00JNPFdQWW");
+
 
   return (
     <>
-            {/* <Marquee /> */}
-  
+      {/* <Marquee /> */}
+
       <ScrollToTop />
       <Header />
       <main>
@@ -38,7 +42,14 @@ function App() {
           <Route path="/log" element={<Log />} />
           <Route path="/reg" element={<Reg />} />
           <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route
+            path="/checkout"
+            element={
+              <Elements stripe={stripePromise}>
+                <CheckoutPage />
+              </Elements>
+            }
+          />
           <Route path="/new-featured" element={<NewFeautered />} />
           <Route path="/sneaker/:id" element={<SneakerDetail />} />
           <Route path="/profile" element={<Profile />} />

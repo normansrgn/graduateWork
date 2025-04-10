@@ -1,0 +1,21 @@
+// PaymentModal.scss
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    border: none;
+    padding: 12px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+  
+    &:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Modal, Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./__check.scss";
 
 function CheckoutPage() {
@@ -9,6 +10,7 @@ function CheckoutPage() {
   const { cartItems = [], totalPrice = 0 } = location.state || {};
   const [phone, setPhone] = useState("");
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handlePhoneChange = (e) => {
     const value = e.target.value;
@@ -36,10 +38,34 @@ function CheckoutPage() {
     return new Intl.NumberFormat('ru-RU').format(price) + '₽';
   };
 
-  const handleConfirmOrder = (e) => {
+  const handleOpenPaymentModal = () => {
+    setShowModal(true);
+  };
+
+  const handleClosePaymentModal = () => {
+    setShowModal(false);
+  };
+
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleConfirmPayment = async (e) => {
     e.preventDefault();
-    
-    if (cartItems.length === 0) return;
+
+    if (!stripe || !elements) return;
+
+    const cardElement = elements.getElement(CardElement);
+    if (!cardElement) return;
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+    });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
 
     const newOrder = {
       id: `#${Date.now()}`,
@@ -53,15 +79,12 @@ function CheckoutPage() {
       status: "В обработке"
     };
 
-    // Сохраняем заказ в историю
     const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
     localStorage.setItem('orders', JSON.stringify([newOrder, ...existingOrders]));
-    
-    // Очищаем корзину
     localStorage.removeItem('cart');
-    
-    // Перенаправляем в профиль
+
     navigate('/profile');
+    setShowModal(false);
   };
 
   return (
@@ -71,7 +94,7 @@ function CheckoutPage() {
       <Container>
         <h2 className="userInfo__title">Личные данные</h2>
       </Container>
-      
+
       <Container className="checkCont">
         <div className="userInfo">
           <div className="userInfo__content">
@@ -89,7 +112,6 @@ function CheckoutPage() {
                   required
                 />
               </div>
-              
               <div className="login__input">
                 <i className="login__icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
@@ -109,43 +131,10 @@ function CheckoutPage() {
                   title="Формат: +7XXXXXXXXXX"
                 />
               </div>
-              
-              <div className="login__input">
-                <i className="login__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
-                    <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
-                  </svg>
-                </i>
-                <input
-                  type="email"
-                  className="login__input"
-                  placeholder="Электронная почта"
-                  required
-                />
-              </div>
-            </form>
-          </div>
-          
-          <div className="userInfo__content">
-            <h2 className="userInfo__titleAdres">Адрес доставки</h2>
-            <form className="userInfo__form">
-              <div className="login__input">
-                <i className="login__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
-                    <path d="M19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20C20 20.5523 19.5523 21 19 21ZM6 19H18V9.15745L12 3.7029L6 9.15745V19ZM8 15H16V17H8V15Z"></path>
-                  </svg>
-                </i>
-                <input
-                  type="text"
-                  className="login__input"
-                  placeholder="Ваш адрес"
-                  required
-                />
-              </div>
             </form>
           </div>
         </div>
-        
+
         <div className="checkoutPage">
           {cartItems.length > 0 ? (
             <div className="checkoutPage__card">
@@ -153,52 +142,26 @@ function CheckoutPage() {
                 {cartItems.map((item, index) => (
                   <div key={index} className="checkoutPage__item">
                     <div className="checkoutPage__imageee">
-                      <img
-                        src={item.img}
-                        alt={item.title}
-                        className="checkoutPage__image"
-                      />
+                      <img src={item.img} alt={item.title} className="checkoutPage__image" />
                       <div className="checkoutPage__titleBl">
-                        <span className="checkoutPage__itemTitle">
-                          {item.title}
-                        </span>
-                        {item.size && (
-                          <div className="basketCard__size">{item.size}</div>
-                        )}
+                        <span className="checkoutPage__itemTitle">{item.title}</span>
                       </div>
                     </div>
                     <div className="checkoutPage__details">
-                      <span className="checkoutPage__itemPrice">
-                        {formatPrice(item.price * (item.quantity || 1))}
-                      </span>
+                      <span className="checkoutPage__itemPrice">{formatPrice(item.price * (item.quantity || 1))}</span>
                     </div>
                   </div>
                 ))}
               </div>
-              
-              <form className="userInfo__form">
-                <div className="login__input">
-                  <i className="login__icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,254,254,1)">
-                      <path d="M2.00488 9.49979V3.99979C2.00488 3.4475 2.4526 2.99979 3.00488 2.99979H21.0049C21.5572 2.99979 22.0049 3.4475 22.0049 3.99979V9.49979C20.6242 9.49979 19.5049 10.6191 19.5049 11.9998C19.5049 13.3805 20.6242 14.4998 22.0049 14.4998V19.9998C22.0049 20.5521 21.5572 20.9998 21.0049 20.9998H3.00488C2.4526 20.9998 2.00488 20.5521 2.00488 19.9998V14.4998C3.38559 14.4998 4.50488 13.3805 4.50488 11.9998C4.50488 10.6191 3.38559 9.49979 2.00488 9.49979ZM4.00488 7.96755C5.4866 8.7039 6.50488 10.2329 6.50488 11.9998C6.50488 13.7666 5.4866 15.2957 4.00488 16.032V18.9998H20.0049V16.032C18.5232 15.2957 17.5049 13.7666 17.5049 11.9998C17.5049 10.2329 18.5232 8.7039 20.0049 7.96755V4.99979H4.00488V7.96755ZM9.00488 8.99979H15.0049V10.9998H9.00488V8.99979ZM9.00488 12.9998H15.0049V14.9998H9.00488V12.9998Z"></path>
-                    </svg>
-                  </i>
-                  <input
-                    type="text"
-                    className="login__input"
-                    placeholder="Введите промокод"
-                  />
-                </div>
-              </form>
-              
+
               <div className="checkoutPage__total">
                 <div>К оплате:</div>
                 <span>{formatPrice(totalPrice)}</span>
               </div>
-              
+
               <button 
                 className="checkoutPage__confirmButton"
-                onClick={handleConfirmOrder}
+                onClick={handleOpenPaymentModal}
                 disabled={cartItems.length === 0}
               >
                 Перейти к оплате
@@ -209,6 +172,75 @@ function CheckoutPage() {
           )}
         </div>
       </Container>
+
+      {/* Модальное окно оплаты */}
+      <Modal 
+        show={showModal} 
+        onHide={handleClosePaymentModal} 
+        centered
+        className="payment-modal"
+      >
+        <Modal.Header closeButton className="payment-modal__header">
+          <Modal.Title className="payment-modal__title">Оплата заказа</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="payment-modal__body">
+          <div className="payment-modal__order-summary">
+            <h4 className="payment-modal__summary-title">Ваш заказ:</h4>
+            <div className="payment-modal__order-items">
+              {cartItems.map((item, index) => (
+                <div key={index} className="payment-modal__order-item">
+                  <div className="payment-modal__item-image-container">
+                    <img 
+                      src={item.img} 
+                      alt={item.title} 
+                      className="payment-modal__item-image" 
+                    />
+                    <span className="payment-modal__item-quantity">{item.quantity || 1}</span>
+                  </div>
+                  <div className="payment-modal__item-details">
+                    <h5 className="payment-modal__item-title">{item.title}</h5>
+                    <p className="payment-modal__item-price">{formatPrice(item.price * (item.quantity || 1))}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="payment-modal__order-total">
+              <span>Итого:</span>
+              <span className="payment-modal__total-price">{formatPrice(totalPrice)}</span>
+            </div>
+          </div>
+
+          <form onSubmit={handleConfirmPayment} className="payment-modal__form">
+            <h4 className="payment-modal__form-title">Данные карты</h4>
+            <div className="payment-modal__card-element">
+              <CardElement 
+                options={{
+                  style: {
+                    base: {
+                      fontSize: '16px',
+                      color: '#424770',
+                      '::placeholder': {
+                        color: '#aab7c4',
+                      },
+                    },
+                    invalid: {
+                      color: '#9e2146',
+                    },
+                  },
+                }}
+              />
+            </div>
+            <Button 
+              variant="primary" 
+              type="submit" 
+              disabled={!stripe} 
+              className="payment-modal__submit-button"
+            >
+              Оплатить {formatPrice(totalPrice)}
+            </Button>
+          </form>
+        </Modal.Body>
+      </Modal>
     </>
   );
 }
