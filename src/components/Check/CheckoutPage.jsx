@@ -1,46 +1,67 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./__check.scss";
 
 function CheckoutPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { cartItems = [], totalPrice = 0 } = location.state || {};
   const [phone, setPhone] = useState("");
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
 
   const handlePhoneChange = (e) => {
     const value = e.target.value;
-    
     const cleanedValue = value.replace(/[^\d+]/g, '');
     
     if (!cleanedValue.startsWith("+7")) {
-
       const digits = cleanedValue.replace(/\D/g, '');
-
       setPhone("+7" + digits.slice(0, 10));
     } else {
-
       setPhone(cleanedValue.slice(0, 12));
     }
   };
 
   const handlePhoneFocus = () => {
     setIsPhoneFocused(true);
-    if (!phone) {
-      setPhone("+7");
-    }
+    if (!phone) setPhone("+7");
   };
 
   const handlePhoneBlur = () => {
     setIsPhoneFocused(false);
-    if (phone === "+7") {
-      setPhone("");
-    }
+    if (phone === "+7") setPhone("");
   };
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('ru-RU').format(price) + '₽';
+  };
+
+  const handleConfirmOrder = (e) => {
+    e.preventDefault();
+    
+    if (cartItems.length === 0) return;
+
+    const newOrder = {
+      id: `#${Date.now()}`,
+      date: new Date().toISOString(),
+      items: cartItems.map(item => ({
+        ...item,
+        price: Number(item.price),
+        quantity: Number(item.quantity)
+      })),
+      total: totalPrice,
+      status: "В обработке"
+    };
+
+    // Сохраняем заказ в историю
+    const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    localStorage.setItem('orders', JSON.stringify([newOrder, ...existingOrders]));
+    
+    // Очищаем корзину
+    localStorage.removeItem('cart');
+    
+    // Перенаправляем в профиль
+    navigate('/profile');
   };
 
   return (
@@ -175,7 +196,11 @@ function CheckoutPage() {
                 <span>{formatPrice(totalPrice)}</span>
               </div>
               
-              <button className="checkoutPage__confirmButton">
+              <button 
+                className="checkoutPage__confirmButton"
+                onClick={handleConfirmOrder}
+                disabled={cartItems.length === 0}
+              >
                 Перейти к оплате
               </button>
             </div>
