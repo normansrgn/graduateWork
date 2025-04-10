@@ -13,17 +13,27 @@
     font-size: 3.5rem;
     color: white;
     font-weight: bold;
-    // background: linear-gradient(45deg, #9d50bb, #6e48aa);
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #9d50bb, #6e48aa);
+    }
   }
 
   &__subtitle {
     font-size: 1.2rem;
     color: #cccccc;
+    margin-top: 1.5rem;
   }
 
   &__features {
@@ -41,9 +51,12 @@
     text-align: center;
     transition: transform 0.3s ease;
     border: 1px solid #2d2d2d;
+    position: relative;
+    overflow: hidden;
 
     &:hover {
       transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
     h3 {
@@ -62,47 +75,146 @@
     font-size: 2.5rem;
     color: #9d50bb;
     margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: rotate(15deg);
+    }
   }
 
   &__contacts {
-    display: flex;
-    // flex-direction: column;
-    justify-content: space-between;
-    // grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 3rem;
     max-width: 1200px;
     margin: 0 auto;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .contact-info {
     background: #1a1a1a;
     padding: 2rem;
-    width: 100%;
     border-radius: 15px;
     border: 1px solid #2d2d2d;
+    position: relative;
+    overflow: hidden;
+
+    // &::before {
+    //   content: '';
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100%;
+    //   height: 4px;
+    //   background: linear-gradient(90deg, #9d50bb, #6e48aa);
+    // }
 
     h2 {
       color: #fff;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       font-size: 1.8rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 1rem;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, #9d50bb, #6e48aa);
+      }
+    }
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateX(10px);
     }
 
-    p {
-      color: #ccc;
-      margin: 1rem 0;
-      font-size: 1.1rem;
+    .icon-wrapper {
+      background: linear-gradient(45deg, #9d50bb, #6e48aa);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon {
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    .contact-type {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-value {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .contact-note {
+      color: #666;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+    }
+  }
+
+  .divider {
+    height: 1px;
+    background: #2d2d2d;
+    margin: 1.5rem 0;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .social-link {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 50%;
+    
+    &:hover {
+      color: #9d50bb;
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.05);
     }
   }
 
   .map-container {
-    width: 100%;
     background: #1a1a1a;
     padding: 1.5rem;
     border-radius: 15px;
-    border: 1px solid #2d2d2d;
+    border: 1px solid #2d2d2d;;
   }
 
   .map-title {
@@ -144,6 +256,10 @@
 
     &__title {
       font-size: 2.5rem;
+      
+      &::after {
+        width: 60px;
+      }
     }
 
     &__contacts {
@@ -151,7 +267,6 @@
     }
 
     .contact-info {
-      order: 2;
       margin-top: 2rem;
     }
 
@@ -177,6 +292,11 @@
 
     .contact-info p {
       font-size: 1rem;
+    }
+
+    &__btn {
+      padding: 12px 25px;
+      font-size: 0.9rem;
     }
   }
 }

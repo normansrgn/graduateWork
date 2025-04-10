@@ -1,6 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaShippingFast, FaHeadset, FaShieldAlt } from "react-icons/fa";
+import { 
+  FaShippingFast, 
+  FaHeadset, 
+  FaShieldAlt,
+  FaRegClock,
+  FaInstagram,
+  FaVk,
+  FaTelegram
+} from "react-icons/fa";
 import "./__aboutus.scss";
 
 export default function AboutUsComponent() {
@@ -25,17 +33,62 @@ export default function AboutUsComponent() {
         <div className="feature-card">
           <FaHeadset className="feature-icon" />
           <h3>Поддержка 24/7</h3>
-          <p>Круглосуточная онлайн-помощь</p>
+          <p>Круглосуточная онлайн-помощь в чате боте</p>
         </div>
       </div>
 
       <div className="aboutus__contacts">
         <div className="contact-info">
           <h2>Наши контакты</h2>
-          <p>📞 +7 (999) 123-45-67</p>
-          <p>✉️ support@sneakershub.ru</p>
-          <p>📍 Москва, ул. Спортивная, 15</p>
+          
+          <div className="contact-item">
+            <div className="icon-wrapper">
+              <FaHeadset className="contact-icon" />
+            </div>
+            <div>
+              <p className="contact-type">Телефон</p>
+              <p className="contact-value">+7 (999) 123-45-67</p>
+            </div>
+          </div>
+
+          <div className="divider"></div>
+
+          <div className="contact-item">
+            <div className="icon-wrapper">
+              <FaRegClock className="contact-icon" />
+            </div>
+            <div>
+              <p className="contact-type">График работы</p>
+              <p className="contact-value">Пн-Вс: 10:00 - 22:00</p>
+            </div>
+          </div>
+
+          <div className="divider"></div>
+
+          <div className="contact-item">
+            <div className="icon-wrapper">
+              <FaShippingFast className="contact-icon" />
+            </div>
+            <div>
+              <p className="contact-type">Адрес</p>
+              <p className="contact-value">Москва, ул. Спортивная, 15</p>
+              <p className="contact-note">(магазин на 1 этаже)</p>
+            </div>
+          </div>
+
+          <div className="social-links">
+            <a href="#" className="social-link">
+              <FaInstagram className="social-icon" />
+            </a>
+            <a href="#" className="social-link">
+              <FaVk className="social-icon" />
+            </a>
+            <a href="#" className="social-link">
+              <FaTelegram className="social-icon" />
+            </a>
+          </div>
         </div>
+
         <div className="map-container">
           <h2 className="map-title">Мы на карте</h2>
           <iframe
