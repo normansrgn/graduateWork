@@ -29,7 +29,6 @@ function App() {
 
   return (
     <>
-      {/* <Marquee /> */}
 
       <ScrollToTop />
       <Header />
@@ -42,21 +41,14 @@ function App() {
           <Route path="/log" element={<Log />} />
           <Route path="/reg" element={<Reg />} />
           <Route path="/AboutUs" element={<AboutUs />} />
-          <Route
-            path="/checkout"
-            element={
-              <Elements stripe={stripePromise}>
-                <CheckoutPage />
-              </Elements>
-            }
-          />
+          <Route path="/checkout" element={<Elements stripe={stripePromise}> <CheckoutPage /> </Elements>} />
           <Route path="/new-featured" element={<NewFeautered />} />
           <Route path="/product/:id" element={<SneakerDetail />} />
           <Route path="/profile" element={<Profile />} />
-          {/* <Route path="*" element={<Home />} /> */}
         </Routes>
       </main>
       <Footer />
+      
     </>
   );
 }

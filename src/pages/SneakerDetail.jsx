@@ -22,11 +22,9 @@ function SneakerDetail() {
   const [randomMenSneakers, setRandomMenSneakers] = useState([]);
   const sneakerId = parseInt(id);
 
-  // Get sneaker from location.state if available (from SneakerQuiz), otherwise fetch from arrays
   const sneakerFromState = location.state?.sneaker;
   let sneaker = sneakerFromState;
 
-  // If no sneaker from state, fetch from menSneakers or womenSneakers
   if (!sneaker) {
     sneaker = menSneakers.find((s) => s.id === sneakerId);
     if (!sneaker) {
