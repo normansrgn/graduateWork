@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebaseСonfig";
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import ava from "../components/snealerDetImg/user.png";
 import {
@@ -146,6 +146,10 @@ function Profile() {
                   className="orders__empty-image"
                 />
                 <p className="orders__empty-text">У вас пока нет завершенных покупок</p>
+                <Link to="/men">
+                  <button className="profile__sale">Перейти в каталог</button>
+                </Link>
+
               </div>
             ) : (
               <div className="orders__list">

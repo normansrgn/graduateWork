@@ -5,14 +5,13 @@
   color: #fff;
 
   &__container {
-
   }
 
   &__grid {
     display: grid;
     grid-template-columns: 320px 1fr;
     gap: 2rem;
-    
+
     @media (max-width: 992px) {
       grid-template-columns: 1fr;
     }
@@ -60,6 +59,26 @@
     box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
   }
 
+  &__sale {
+    padding: 12px;
+    border-radius: 14px;
+    font-size: 14px;
+    color: white;
+    width: 300px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    background: linear-gradient(
+      118.79deg,
+      rgb(210, 6, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(237, 28, 224) 57.356%,
+      rgb(177, 0, 255) 90.232%
+    );
+    background-size: 200% 200%;
+    animation: gradientShift 6s linear infinite;
+  }
+
   &__status-indicator {
     position: absolute;
     bottom: 8px;
@@ -96,7 +115,7 @@
     background: #1a1a1a;
     border-radius: 12px;
     transition: transform 0.2s ease;
-    
+
     &:hover {
       transform: translateX(8px);
     }
@@ -134,7 +153,7 @@
     gap: 0.5rem;
     font-weight: 500;
     transition: all 0.2s ease;
-    
+
     &:hover {
       background: rgba(255, 77, 77, 0.2);
       transform: translateY(-1px);
@@ -172,7 +191,7 @@
     &__empty {
       text-align: center;
       padding: 4rem 0;
-      
+
       &-image {
         width: 200px;
         margin-bottom: 1.5rem;
@@ -194,7 +213,7 @@
       margin-bottom: 1.5rem;
       border: 1px solid #2a2a2a;
       transition: transform 0.2s ease;
-      
+
       &:hover {
         transform: translateY(-3px);
       }
@@ -228,12 +247,12 @@
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 500;
-      
+
       &--доставлен {
         background: rgba(76, 175, 80, 0.15);
         color: #4caf50;
       }
-      
+
       &--в\ обработке {
         background: rgba(255, 193, 7, 0.15);
         color: #ffc107;
@@ -250,7 +269,7 @@
       gap: 1rem;
       padding: 1rem 0;
       border-bottom: 1px solid #2a2a2a;
-      
+
       &:last-child {
         border-bottom: none;
       }
@@ -310,7 +329,7 @@
       justify-content: space-between;
       align-items: center;
       font-weight: 500;
-      
+
       &-price {
         color: #6c63ff;
         font-size: 1.1rem;
@@ -337,7 +356,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {
