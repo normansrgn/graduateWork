@@ -147,7 +147,7 @@ function Profile() {
                 />
                 <p className="orders__empty-text">У вас пока нет завершенных покупок</p>
                 <Link to="/men">
-                  <button className="profile__sale">Перейти в каталог</button>
+                  <button className="profile__sale">Перейти к покупкам</button>
                 </Link>
 
               </div>
