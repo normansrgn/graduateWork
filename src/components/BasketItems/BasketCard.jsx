@@ -40,12 +40,13 @@ function BasketCard() {
     }, 500);
   };
 
-  const updateQuantity = (index, change) => {
-    const updatedCart = cartItems.map((item, i) => 
-      i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
-    );
-    updateCart(updatedCart);
-  };
+  // В функции updateQuantity (уже есть в вашем коде)
+const updateQuantity = (index, change) => {
+  const updatedCart = cartItems.map((item, i) => 
+    i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
+  );
+  updateCart(updatedCart);
+};
 
   const handleCheckout = () => {
     navigate("/checkout", { state: { cartItems, totalPrice } });

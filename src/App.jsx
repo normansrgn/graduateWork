@@ -51,7 +51,7 @@ function App() {
             }
           />
           <Route path="/new-featured" element={<NewFeautered />} />
-          <Route path="/sneaker/:id" element={<SneakerDetail />} />
+          <Route path="/product/:id" element={<SneakerDetail />} />
           <Route path="/profile" element={<Profile />} />
           {/* <Route path="*" element={<Home />} /> */}
         </Routes>

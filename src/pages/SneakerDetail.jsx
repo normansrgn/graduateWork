@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom"; // Added useLocation
 import { menSneakers } from "../components/MenSneakerPage/SneakersPromoMen/data";
 import { womenSneakers } from "../components/WomenSneakerPage/SneakersPromoMen/data";
 import { Container, Row } from "react-bootstrap";
@@ -7,21 +7,32 @@ import { auth } from "../firebaseСonfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import SneakerCard from "../components/SneakersPromo/SneakersCard";
-
 import "./SneakerDetail.scss";
 import Aos from "aos";
 import "aos/dist/aos.css";
-
 import user from "../components/snealerDetImg/user.png";
 
 function SneakerDetail() {
   const { id } = useParams();
+  const location = useLocation(); // Added to access state from Link
   const [showNotification, setShowNotification] = useState(false);
   const [activeSize, setActiveSize] = useState(41);
   const [newReview, setNewReview] = useState({ comment: "" });
   const [activeSection, setActiveSection] = useState("about");
   const [randomMenSneakers, setRandomMenSneakers] = useState([]);
   const sneakerId = parseInt(id);
+
+  // Get sneaker from location.state if available (from SneakerQuiz), otherwise fetch from arrays
+  const sneakerFromState = location.state?.sneaker;
+  let sneaker = sneakerFromState;
+
+  // If no sneaker from state, fetch from menSneakers or womenSneakers
+  if (!sneaker) {
+    sneaker = menSneakers.find((s) => s.id === sneakerId);
+    if (!sneaker) {
+      sneaker = womenSneakers.find((s) => s.id === sneakerId);
+    }
+  }
 
   useEffect(() => {
     Aos.init({ duration: 600 });
@@ -32,32 +43,44 @@ function SneakerDetail() {
     setRandomMenSneakers(shuffledMenSneakers.slice(0, 3));
   }, []);
 
-  let sneaker = menSneakers.find((s) => s.id === sneakerId);
-
+  // Handle case where sneaker is not found
   if (!sneaker) {
-    sneaker = womenSneakers.find((s) => s.id === sneakerId);
-  }
-
-  if (!sneaker) {
-    return <h2>Товар не найден</h2>;
+    return (
+      <Container className="SneakerDetail">
+        <h2>Товар не найден</h2>
+        <Link to="/sneaker-quiz" className="btn btn-primary">
+          Вернуться к квизу
+        </Link>
+      </Container>
+    );
   }
 
   const [reviews, setReviews] = useState(() => {
     const savedReviews = localStorage.getItem(`reviews-${sneakerId}`);
-    return savedReviews ? JSON.parse(savedReviews) : sneaker.reviews;
+    return savedReviews ? JSON.parse(savedReviews) : sneaker.reviews || [];
   });
 
   const handleAddToCart = () => {
     const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const newItem = {
-      img: sneaker.img,
-      title: sneaker.title,
-      price: sneaker.price,
-      size: activeSize,
-    };
-    currentCart.push(newItem);
-    localStorage.setItem("cart", JSON.stringify(currentCart));
+    const existingItemIndex = currentCart.findIndex(
+      (item) => item.title === sneaker.title && item.size === activeSize
+    );
 
+    if (existingItemIndex !== -1) {
+      currentCart[existingItemIndex].quantity =
+        (currentCart[existingItemIndex].quantity || 1) + 1;
+    } else {
+      const newItem = {
+        img: sneaker.img,
+        title: sneaker.title,
+        price: sneaker.price,
+        size: activeSize,
+        quantity: 1,
+      };
+      currentCart.push(newItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(currentCart));
     setShowNotification(true);
 
     setTimeout(() => {
@@ -76,9 +99,9 @@ function SneakerDetail() {
 
   const handleAddReview = (e) => {
     e.preventDefault();
-    
+
     if (!auth.currentUser) {
-      alert('Пожалуйста, войдите в систему, чтобы оставить отзыв');
+      alert("Пожалуйста, войдите в систему, чтобы оставить отзыв");
       return;
     }
 
@@ -89,10 +112,7 @@ function SneakerDetail() {
         ...reviews,
       ];
       setReviews(updatedReviews);
-      localStorage.setItem(
-        `reviews-${sneakerId}`,
-        JSON.stringify(updatedReviews)
-      );
+      localStorage.setItem(`reviews-${sneakerId}`, JSON.stringify(updatedReviews));
       setNewReview({ comment: "" });
     }
   };
@@ -154,7 +174,7 @@ function SneakerDetail() {
             }`}
             onClick={() => handleSectionChange("about")}
           >
-            <span> О товаре</span>
+            <span>О товаре</span>
           </div>
           <div
             className={`SneakerDetail__choiceBtn ${
@@ -162,7 +182,7 @@ function SneakerDetail() {
             }`}
             onClick={() => handleSectionChange("reviews")}
           >
-            <span> Отзывы</span>
+            <span>Отзывы</span>
           </div>
         </div>
 
@@ -188,7 +208,7 @@ function SneakerDetail() {
                   value={newReview.comment}
                   onChange={handleReviewChange}
                   required
-                ></input>
+                />
                 <button type="submit">
                   <FontAwesomeIcon icon={faPlus} style={{ color: "#ffff" }} />
                 </button>

@@ -45,6 +45,10 @@
     }
   }
 }
+.modal-header .btn-close  {
+  // background-color: white !important;
+  color: white !important;
+}
 
 .checkoutPage {
   width: 100%;
@@ -306,7 +310,7 @@
     margin: 0;
     font-size: 14px;
     font-weight: 500;
-    color: #333;
+    color: white;
   }
 
   &__item-price {

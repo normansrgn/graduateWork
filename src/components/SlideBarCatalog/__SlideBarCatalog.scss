@@ -6,71 +6,151 @@
   gap: 20px;
   align-self: flex-start;
   height: fit-content;
+  width: 25%; // Задаем ширину для сайдбара
+
+  &--open {
+    display: block !important; // Показываем фильтры на мобильных при открытии
+  }
 }
 
 .SlideBarCatalog {
-  background-color: #151515;
-  padding: 30px 100px 30px 30px;
+  background-color: #111111;
+  padding: 30px;
   border-radius: 19px;
-  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(172, 66, 255, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(172, 66, 255, 0.4);
+  }
+
+  &__section {
+    margin-bottom: 20px;
+  }
 
   &__title {
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
   }
 
   &__filterList {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 10px;
   }
 
   &__filterItem {
-    align-items: center;
     display: flex;
+    align-items: center;
     gap: 10px;
+    transition: all 0.3s ease;
 
-    & input {
-      width: 15px;
+    &:hover {
+      transform: translateX(5px);
     }
 
-    & label {
-      font-size: 19px;
+    label {
+      font-size: 1.2rem;
+      color: #b0b0b0;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #fff;
+      }
     }
   }
 
-  &__filterItemChecbox {
+  &__filterItemCheckbox {
     appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ac42ff;
+    border-radius: 5px;
     outline: none;
     cursor: pointer;
     position: relative;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
 
     &:checked {
-      background-color: #000;
-      border-color: #000;
+      background: linear-gradient(135deg, #ac42ff, #ff00d6);
+      border-color: #ff00d6;
 
       &::after {
         content: "";
         position: absolute;
-        left: 5px;
-        top: 1px;
-        width: 5px;
-        height: 10px;
+        left: 6px;
+        top: 2px;
+        width: 6px;
+        height: 12px;
         border: solid white;
         border-width: 0 2px 2px 0;
         transform: rotate(45deg);
       }
     }
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(172, 66, 255, 0.5);
+    }
+  }
+
+  &__mobileToggle {
+    display: none;
+  }
+
+  &__toggleBtn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(
+      118.79deg,
+      #06c1fc 2.254%,
+      #ac42ff 33.741%,
+      #ff00d6 57.356%,
+      #ff003d 90.232%
+    );
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 }
 
 @media (max-width: 1000px) {
+  .slideee {
+    display: none; // Скрываем сайдбар по умолчанию на мобильных
+    width: 100%;
+    position: static;
+    padding: 15px;
+    background-color: #111111;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
   .SlideBarCatalog {
-    display: none;
+    border-radius: 10px;
+    padding: 20px;
+    border: none;
+    box-shadow: none;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  .SlideBarCatalog__mobileToggle {
+    display: block;
+    margin-bottom: 15px;
   }
 }

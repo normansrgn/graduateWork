@@ -1,45 +1,77 @@
-import React, { useState } from "react";
-import { Container, Modal, Button } from "react-bootstrap";
+import React, { useState, useRef } from "react";
+import { Container, Modal, Button, Alert } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { FaCheckCircle } from "react-icons/fa"; // иконка галочки
+
+import emailjs from "@emailjs/browser";
 import "./__check.scss";
 
 function CheckoutPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { cartItems = [], totalPrice = 0 } = location.state || {};
-  const [phone, setPhone] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    address: ""
+  });
+  const [errors, setErrors] = useState({});
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  const [alert, setAlert] = useState({ show: false, message: "", variant: "danger" });
+  const formRef = useRef();
 
-  const handlePhoneChange = (e) => {
-    const value = e.target.value;
-    const cleanedValue = value.replace(/[^\d+]/g, '');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     
-    if (!cleanedValue.startsWith("+7")) {
-      const digits = cleanedValue.replace(/\D/g, '');
-      setPhone("+7" + digits.slice(0, 10));
+    if (name === "phone") {
+      const cleanedValue = value.replace(/[^\d+]/g, '');
+      setFormData(prev => ({ ...prev, [name]: cleanedValue }));
     } else {
-      setPhone(cleanedValue.slice(0, 12));
+      setFormData(prev => ({ ...prev, [name]: value }));
     }
   };
 
   const handlePhoneFocus = () => {
     setIsPhoneFocused(true);
-    if (!phone) setPhone("+7");
   };
 
   const handlePhoneBlur = () => {
     setIsPhoneFocused(false);
-    if (phone === "+7") setPhone("");
   };
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('ru-RU').format(price) + '₽';
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) newErrors.name = "Введите имя и фамилию";
+    if (!formData.phone.trim()) newErrors.phone = "Введите номер телефона";
+    else if (!/^\+?\d{10,15}$/.test(formData.phone)) newErrors.phone = "Введите корректный номер";
+    if (!formData.email.trim()) newErrors.email = "Введите email";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Введите корректный email";
+    if (!formData.address.trim()) newErrors.address = "Введите адрес";
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleOpenPaymentModal = () => {
-    setShowModal(true);
+    if (validateForm()) {
+      setShowModal(true);
+    } else {
+      setAlert({
+        show: true,
+        message: "Пожалуйста, заполните все обязательные поля корректно",
+        variant: "danger"
+      });
+    }
   };
 
   const handleClosePaymentModal = () => {
@@ -49,42 +81,89 @@ function CheckoutPage() {
   const stripe = useStripe();
   const elements = useElements();
 
+  const sendEmail = async (orderId) => {
+    try {
+      const templateParams = {
+        order_id: orderId,
+        customer_name: formData.name,
+        customer_phone: formData.phone,
+        customer_email: formData.email,
+        customer_address: formData.address,
+        order_total: formatPrice(totalPrice),
+        order_items: cartItems.map(item => 
+          `${item.title} (${item.quantity || 1} шт.) - ${formatPrice(item.price * (item.quantity || 1))}`
+        ).join('<br>') // Изменено на <br> для HTML-форматирования
+      };
+  
+      await emailjs.send(
+        'service_gzc6eih',
+        'template_m7neetv',
+        templateParams,
+        'ftPHJ1HRGmkVrqz-H'
+      );
+    } catch (error) {
+      console.error("Ошибка при отправке email:", error);
+    }
+  };
+
   const handleConfirmPayment = async (e) => {
     e.preventDefault();
 
     if (!stripe || !elements) return;
 
-    const cardElement = elements.getElement(CardElement);
-    if (!cardElement) return;
+    setLoading(true);
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-    });
+    try {
+      const cardElement = elements.getElement(CardElement);
+      if (!cardElement) return;
 
-    if (error) {
-      alert(error.message);
-      return;
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      const orderId = `#${Date.now()}`;
+      const newOrder = {
+        id: orderId,
+        date: new Date().toISOString(),
+        items: cartItems.map(item => ({
+          ...item,
+          price: Number(item.price),
+          quantity: Number(item.quantity || 1)
+        })),
+        total: totalPrice,
+        status: "В обработке",
+        customer: {
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          address: formData.address
+        }
+      };
+
+      // Сохраняем заказ в localStorage
+      const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+      localStorage.setItem('orders', JSON.stringify([newOrder, ...existingOrders]));
+      localStorage.removeItem('cart');
+
+      // Отправляем email с данными заказа
+      await sendEmail(orderId);
+
+      navigate('/profile');
+      setShowModal(false);
+    } catch (error) {
+      setAlert({
+        show: true,
+        message: error.message || "Произошла ошибка при оплате",
+        variant: "danger"
+      });
+    } finally {
+      setLoading(false);
     }
-
-    const newOrder = {
-      id: `#${Date.now()}`,
-      date: new Date().toISOString(),
-      items: cartItems.map(item => ({
-        ...item,
-        price: Number(item.price),
-        quantity: Number(item.quantity)
-      })),
-      total: totalPrice,
-      status: "В обработке"
-    };
-
-    const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    localStorage.setItem('orders', JSON.stringify([newOrder, ...existingOrders]));
-    localStorage.removeItem('cart');
-
-    navigate('/profile');
-    setShowModal(false);
   };
 
   return (
@@ -95,10 +174,23 @@ function CheckoutPage() {
         <h2 className="userInfo__title">Личные данные</h2>
       </Container>
 
+      {alert.show && (
+        <Container>
+          <Alert 
+            variant={alert.variant} 
+            onClose={() => setAlert({ ...alert, show: false })} 
+            dismissible
+            className="mt-3"
+          >
+            {alert.message}
+          </Alert>
+        </Container>
+      )}
+
       <Container className="checkCont">
         <div className="userInfo">
           <div className="userInfo__content">
-            <form className="userInfo__form">
+            <form className="userInfo__form" ref={formRef}>
               <div className="login__input">
                 <i className="login__icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,254,254,1)">
@@ -107,11 +199,16 @@ function CheckoutPage() {
                 </i>
                 <input
                   type="text"
-                  className="login__input"
+                  name="name"
+                  className={`login__input `}
                   placeholder="Имя и Фамилия"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
                 />
+
               </div>
+              
               <div className="login__input">
                 <i className="login__icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
@@ -120,16 +217,62 @@ function CheckoutPage() {
                 </i>
                 <input
                   type="tel"
-                  className="login__input"
+                  name="phone"
+                  className={`login__input `}
+
                   placeholder={isPhoneFocused ? "" : "Номер телефона"}
-                  value={phone}
-                  onChange={handlePhoneChange}
+                  value={formData.phone}
+                  onChange={handleChange}
                   onFocus={handlePhoneFocus}
                   onBlur={handlePhoneBlur}
                   required
-                  pattern="\+7\d{10}"
-                  title="Формат: +7XXXXXXXXXX"
+                  pattern="\+?\d{10,15}"
+
                 />
+                {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
+              </div>
+              
+              <div className="login__input">
+                <i className="login__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
+                    <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
+                  </svg>
+                </i>
+                <input
+                  type="email"
+                  name="email"
+                  className={`login__input `}
+
+                  placeholder="Электронная почта"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+
+              </div>
+            </form>
+          </div>
+          
+          <div className="userInfo__content">
+            <h2 className="userInfo__titleAdres">Адрес доставки</h2>
+            <form className="userInfo__form">
+              <div className="login__input">
+                <i className="login__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
+                    <path d="M19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20C20 20.5523 19.5523 21 19 21ZM6 19H18V9.15745L12 3.7029L6 9.15745V19ZM8 15H16V17H8V15Z"></path>
+                  </svg>
+                </i>
+                <input
+                  type="text"
+                  name="address"
+                  className={`login__input `}
+
+                  placeholder="Ваш адрес"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                />
+
               </div>
             </form>
           </div>
@@ -210,6 +353,14 @@ function CheckoutPage() {
             </div>
           </div>
 
+          {/* <div className="payment-modal__customer-info">
+            <h4 className="payment-modal__info-title">Данные покупателя:</h4>
+            <p><strong>Имя:</strong> {formData.name}</p>
+            <p><strong>Телефон:</strong> {formData.phone}</p>
+            <p><strong>Email:</strong> {formData.email}</p>
+            <p><strong>Адрес:</strong> {formData.address}</p>
+          </div> */}
+
           <form onSubmit={handleConfirmPayment} className="payment-modal__form">
             <h4 className="payment-modal__form-title">Данные карты</h4>
             <div className="payment-modal__card-element">
@@ -233,10 +384,10 @@ function CheckoutPage() {
             <Button 
               variant="primary" 
               type="submit" 
-              disabled={!stripe} 
+              disabled={!stripe || loading} 
               className="payment-modal__submit-button"
             >
-              Оплатить {formatPrice(totalPrice)}
+              {loading ? 'Обработка...' : `Оплатить ${formatPrice(totalPrice)}`}
             </Button>
           </form>
         </Modal.Body>
