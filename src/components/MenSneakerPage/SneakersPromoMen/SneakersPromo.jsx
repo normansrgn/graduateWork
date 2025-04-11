@@ -7,7 +7,6 @@ import SneakerCard from "../../SneakersPromo/SneakersCard";
 import { menSneakers } from "./data";
 import SlideBarCatalog from "../../SlideBarCatalog/SlideBarCatalog";
 
-
 export default function SneakersPromoMen() {
   Aos.init({ duration: 1000 });
 
@@ -17,90 +16,132 @@ export default function SneakersPromoMen() {
     models: [],
     sizes: [],
   });
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("none");
 
-  // Применение фильтров с задержкой (debounce) для оптимизации
-  const applyFilters = useCallback(
-    debounce(() => {
-      let result = [...menSneakers];
+  // Применение фильтров
+  const applyFilters = useCallback(() => {
+    let result = [...menSneakers];
 
-      // Фильтр по брендам
-      if (filters.brands.length > 0) {
-        result = result.filter((sneaker) =>
-          filters.brands.includes(sneaker.title.split(" ")[0])
-        );
-      }
+    if (filters.brands.length > 0) {
+      result = result.filter((sneaker) =>
+        filters.brands.includes(sneaker.title.split(" ")[0])
+      );
+    }
 
-      // Фильтр по моделям
-      if (filters.models.length > 0) {
-        result = result.filter((sneaker) =>
-          filters.models.some((model) =>
-            sneaker.title.toLowerCase().includes(model.toLowerCase())
-          )
-        );
-      }
+    if (filters.models.length > 0) {
+      result = result.filter((sneaker) =>
+        filters.models.some((model) =>
+          sneaker.title.toLowerCase().includes(model.toLowerCase())
+        )
+      );
+    }
 
-      // Фильтр по размерам (если добавить availableSizes в данные)
-      if (filters.sizes.length > 0) {
-        result = result.filter((sneaker) =>
-          filters.sizes.some((size) =>
-            sneaker.availableSizes?.includes(size) || true
-          )
-        );
-      }
+    if (filters.sizes.length > 0) {
+      result = result.filter((sneaker) =>
+        sneaker.availableSizes?.some((size) => filters.sizes.includes(size))
+      );
+    }
 
-      // Сортировка по цене
-      if (sortOrder === "asc") {
-        result.sort((a, b) => parseInt(a.price.replace(",", "")) - parseInt(b.price.replace(",", "")));
-      } else {
-        result.sort((a, b) => parseInt(b.price.replace(",", "")) - parseInt(a.price.replace(",", "")));
-      }
+    if (sortOrder === "asc") {
+      result.sort((a, b) =>
+        parseInt(a.price.replace(/,/g, "")) - parseInt(b.price.replace(/,/g, ""))
+      );
+    } else if (sortOrder === "desc") {
+      result.sort((a, b) =>
+        parseInt(b.price.replace(/,/g, "")) - parseInt(a.price.replace(/,/g, ""))
+      );
+    }
 
-      setFilteredSneakers(result);
-    }, 300),
-    [filters, sortOrder]
+    setFilteredSneakers(result);
+  }, [filters, sortOrder]);
+
+  const debouncedApplyFilters = useCallback(
+    debounce(applyFilters, 300),
+    [applyFilters]
   );
 
   useEffect(() => {
-    applyFilters();
-  }, [filters, sortOrder, applyFilters]);
+    debouncedApplyFilters();
+    return () => {
+      debouncedApplyFilters.cancel();
+    };
+  }, [filters, sortOrder, debouncedApplyFilters]);
 
-  // Обработка изменений фильтров
   const handleFilterChange = (filterType, value, isChecked) => {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
       if (isChecked) {
         newFilters[filterType] = [...newFilters[filterType], value];
       } else {
-        newFilters[filterType] = newFilters[filterType].filter((item) => item !== value);
+        newFilters[filterType] = newFilters[filterType].filter(
+          (item) => item !== value
+        );
       }
       return newFilters;
     });
   };
 
-  // Очистка фильтров
   const clearFilters = () => {
+    debouncedApplyFilters.cancel();
     setFilters({ brands: [], models: [], sizes: [] });
+    let resetSneakers = [...menSneakers];
+    if (sortOrder === "asc") {
+      resetSneakers.sort((a, b) =>
+        parseInt(a.price.replace(/,/g, "")) - parseInt(b.price.replace(/,/g, ""))
+      );
+    } else if (sortOrder === "desc") {
+      resetSneakers.sort((a, b) =>
+        parseInt(b.price.replace(/,/g, "")) - parseInt(a.price.replace(/,/g, ""))
+      );
+    }
+    setFilteredSneakers(resetSneakers);
   };
 
   return (
     <section className="sneaker__cnt">
-      <SlideBarCatalog onFilterChange={handleFilterChange} activeFilters={filters} />
+      <SlideBarCatalog
+        onFilterChange={handleFilterChange}
+        activeFilters={filters}
+      />
       <div className="sneaker__CardCont">
         <div className="sneaker__filterControls" data-aos="fade-up">
           <Dropdown onSelect={(eventKey) => setSortOrder(eventKey)}>
-            <Dropdown.Toggle variant="outline-light" id="dropdown-sort">
-              Сортировка: {sortOrder === "asc" ? "по возрастанию" : "по убыванию"}
+            <Dropdown.Toggle className="sneaker__dropdown-toggle">
+              Сортировка:{" "}
+              {sortOrder === "asc"
+                ? "по возрастанию"
+                : sortOrder === "desc"
+                ? "по убыванию"
+                : "без сортировки"}
             </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item eventKey="asc">По возрастанию</Dropdown.Item>
-              <Dropdown.Item eventKey="desc">По убыванию</Dropdown.Item>
+            <Dropdown.Menu className="sneaker__dropdown-menu">
+              <Dropdown.Item
+                eventKey="none"
+                className="sneaker__dropdown-item"
+              >
+                Без сортировки
+              </Dropdown.Item>
+              <Dropdown.Item
+                eventKey="asc"
+                className="sneaker__dropdown-item"
+              >
+                По возрастанию
+              </Dropdown.Item>
+              <Dropdown.Item
+                eventKey="desc"
+                className="sneaker__dropdown-item"
+              >
+                По убыванию
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <Button variant="outline-danger" onClick={clearFilters} className="clear-filters-btn">
+          <Button
+            onClick={clearFilters}
+            className="sneaker__clear-btn"
+          >
             Очистить фильтры
           </Button>
-          <span className="results-count">{filteredSneakers.length} результатов</span>
+          <span className="sneaker__results-count">{filteredSneakers.length} результатов</span>
         </div>
         {filteredSneakers.length === 0 ? (
           <div className="no-results">
