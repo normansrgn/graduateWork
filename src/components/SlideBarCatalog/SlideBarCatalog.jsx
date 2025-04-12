@@ -74,7 +74,7 @@ export default function SlideBarCatalog({ onFilterChange, activeFilters }) {
             </div>
           </div>
         </div>
-        <div className="SlideBarCatalog">
+        {/* <div className="SlideBarCatalog">
           <div className="SlideBarCatalog__section">
             <h1 className="SlideBarCatalog__title">Размер:</h1>
             <div className="SlideBarCatalog__filterList">
@@ -93,7 +93,7 @@ export default function SlideBarCatalog({ onFilterChange, activeFilters }) {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
     </>
   );

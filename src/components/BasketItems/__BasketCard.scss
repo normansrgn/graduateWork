@@ -4,7 +4,6 @@
   border-radius: 19px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   // width: 600px;
   padding: 22px;
   gap: 30px;
@@ -16,6 +15,11 @@
     background-color: #1b1b1b;
   }
 
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 
   &__controls {
     display: flex;
@@ -235,11 +239,17 @@
 
   .basketCard {
     &__title {
-      font-size: 15px;
+      font-size: 14px !important;
+      text-align: start;
+
     }
 
     &__image {
       width: 120px;
+    }
+
+    &__text {
+      flex-direction: column;
     }
   }
 }
@@ -251,7 +261,6 @@
 
   .basketCard {
     &__title {
-      text-align: center;
       font-size: 15px;
     }
 

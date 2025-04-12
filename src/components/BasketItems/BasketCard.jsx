@@ -10,8 +10,8 @@ function BasketCard() {
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const updatedCart = cart.map(item => ({ 
-      ...item, 
+    const updatedCart = cart.map(item => ({
+      ...item,
       quantity: item.quantity || 1,
       price: typeof item.price === 'string' ? parseFloat(item.price.replace(/\D/g, "")) : item.price
     }));
@@ -41,12 +41,12 @@ function BasketCard() {
   };
 
   // В функции updateQuantity (уже есть в вашем коде)
-const updateQuantity = (index, change) => {
-  const updatedCart = cartItems.map((item, i) => 
-    i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
-  );
-  updateCart(updatedCart);
-};
+  const updateQuantity = (index, change) => {
+    const updatedCart = cartItems.map((item, i) =>
+      i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
+    );
+    updateCart(updatedCart);
+  };
 
   const handleCheckout = () => {
     navigate("/checkout", { state: { cartItems, totalPrice } });
@@ -61,7 +61,7 @@ const updateQuantity = (index, change) => {
       {cartItems.length === 0 ? (
         <section className="basketCard__empty">
           <span>Ваша корзина пуста</span>
-          <Link to="/">
+          <Link to="/men">
             <button>Перейти к покупкам</button>
           </Link>
         </section>
@@ -72,15 +72,17 @@ const updateQuantity = (index, change) => {
             <div key={index} className={`col-xxl-6 basketCard__container ${removingItems.includes(index) ? "basketCard__removing" : ""}`}>
               <section className="basketCard">
                 <img src={item.img} alt={item.title} className="basketCard__image" />
-                <div className="basketCard__title">{item.title}</div>
-                <div className="basketCard__controls">
-                  <button onClick={() => updateQuantity(index, -1)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(index, 1)}>+</button>
-                </div>
-                <div className="basketCard__price">
-                  {formatPrice(item.price * item.quantity)}
-                  <button onClick={() => removeFromCart(index)} className="basketCard__removeButton">x</button>
+                <div className="basketCard__text">
+                  <div className="basketCard__title">{item.title}</div>
+                  <div className="basketCard__controls">
+                    <button onClick={() => updateQuantity(index, -1)}>-</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateQuantity(index, 1)}>+</button>
+                  </div>
+                  <div className="basketCard__price">
+                    {formatPrice(item.price * item.quantity)}
+                    <button onClick={() => removeFromCart(index)} className="basketCard__removeButton">x</button>
+                  </div>
                 </div>
               </section>
             </div>
