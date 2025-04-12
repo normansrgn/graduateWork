@@ -6,9 +6,13 @@ import debounce from "lodash.debounce";
 import SneakerCard from "../../SneakersPromo/SneakersCard";
 import { menSneakers } from "./data";
 import SlideBarCatalog from "../../SlideBarCatalog/SlideBarCatalog";
+import { FaSearch } from "react-icons/fa";
 
 export default function SneakersPromoMen() {
-  Aos.init({ duration: 1000 });
+  // Initialize AOS
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
   const [filteredSneakers, setFilteredSneakers] = useState(menSneakers);
   const [filters, setFilters] = useState({
@@ -17,17 +21,27 @@ export default function SneakersPromoMen() {
     sizes: [],
   });
   const [sortOrder, setSortOrder] = useState("none");
+  const [searchQuery, setSearchQuery] = useState(""); // Состояние для поискового запроса
 
-  // Применение фильтров
+  // Apply filters, search, and sorting
   const applyFilters = useCallback(() => {
     let result = [...menSneakers];
 
+    // Поиск по заголовку
+    if (searchQuery.trim()) {
+      result = result.filter((sneaker) =>
+        sneaker.title.toLowerCase().includes(searchQuery.toLowerCase().trim())
+      );
+    }
+
+    // Фильтры по брендам
     if (filters.brands.length > 0) {
       result = result.filter((sneaker) =>
         filters.brands.includes(sneaker.title.split(" ")[0])
       );
     }
 
+    // Фильтры по моделям
     if (filters.models.length > 0) {
       result = result.filter((sneaker) =>
         filters.models.some((model) =>
@@ -36,12 +50,14 @@ export default function SneakersPromoMen() {
       );
     }
 
+    // Фильтры по размерам
     if (filters.sizes.length > 0) {
       result = result.filter((sneaker) =>
         sneaker.availableSizes?.some((size) => filters.sizes.includes(size))
       );
     }
 
+    // Сортировка
     if (sortOrder === "asc") {
       result.sort((a, b) =>
         parseInt(a.price.replace(/,/g, "")) - parseInt(b.price.replace(/,/g, ""))
@@ -53,7 +69,7 @@ export default function SneakersPromoMen() {
     }
 
     setFilteredSneakers(result);
-  }, [filters, sortOrder]);
+  }, [filters, sortOrder, searchQuery]);
 
   const debouncedApplyFilters = useCallback(
     debounce(applyFilters, 300),
@@ -65,7 +81,7 @@ export default function SneakersPromoMen() {
     return () => {
       debouncedApplyFilters.cancel();
     };
-  }, [filters, sortOrder, debouncedApplyFilters]);
+  }, [filters, sortOrder, searchQuery, debouncedApplyFilters]);
 
   const handleFilterChange = (filterType, value, isChecked) => {
     setFilters((prevFilters) => {
@@ -84,17 +100,17 @@ export default function SneakersPromoMen() {
   const clearFilters = () => {
     debouncedApplyFilters.cancel();
     setFilters({ brands: [], models: [], sizes: [] });
-    let resetSneakers = [...menSneakers];
-    if (sortOrder === "asc") {
-      resetSneakers.sort((a, b) =>
-        parseInt(a.price.replace(/,/g, "")) - parseInt(b.price.replace(/,/g, ""))
-      );
-    } else if (sortOrder === "desc") {
-      resetSneakers.sort((a, b) =>
-        parseInt(b.price.replace(/,/g, "")) - parseInt(a.price.replace(/,/g, ""))
-      );
-    }
-    setFilteredSneakers(resetSneakers);
+    setSearchQuery(""); // Очищаем поисковый запрос
+    setFilteredSneakers([...menSneakers]);
+    setSortOrder("none");
+  };
+
+  const handleSortSelect = (eventKey) => {
+    setSortOrder(eventKey);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value); // Обновляем поисковый запрос
   };
 
   return (
@@ -105,48 +121,40 @@ export default function SneakersPromoMen() {
       />
       <div className="sneaker__CardCont">
         <div className="sneaker__filterControls" data-aos="fade-up">
-          <Dropdown onSelect={(eventKey) => setSortOrder(eventKey)}>
-            <Dropdown.Toggle className="sneaker__dropdown-toggle">
-              Сортировка:{" "}
+          <span>Сортировка:</span>
+          <Dropdown onSelect={handleSortSelect}>
+            <Dropdown.Toggle
+              className="sneaker__toggle"
+              variant="outline-secondary"
+              id="dropdown-sort"
+            >
               {sortOrder === "asc"
-                ? "по возрастанию"
+                ? "По возрастанию цены"
                 : sortOrder === "desc"
-                ? "по убыванию"
-                : "без сортировки"}
+                ? "По убыванию цены"
+                : "Без сортировки"}
             </Dropdown.Toggle>
-            <Dropdown.Menu className="sneaker__dropdown-menu">
-              <Dropdown.Item
-                eventKey="none"
-                className="sneaker__dropdown-item"
-              >
-                Без сортировки
-              </Dropdown.Item>
-              <Dropdown.Item
-                eventKey="asc"
-                className="sneaker__dropdown-item"
-              >
-                По возрастанию
-              </Dropdown.Item>
-              <Dropdown.Item
-                eventKey="desc"
-                className="sneaker__dropdown-item"
-              >
-                По убыванию
-              </Dropdown.Item>
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="none">Без сортировки</Dropdown.Item>
+              <Dropdown.Item eventKey="asc">По возрастанию цены</Dropdown.Item>
+              <Dropdown.Item eventKey="desc">По убыванию цены</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <Button
-            onClick={clearFilters}
-            className="sneaker__clear-btn"
-          >
-            Очистить фильтры
-          </Button>
-          <span className="sneaker__results-count">{filteredSneakers.length} результатов</span>
+        
+        </div>
+        <div className="sneaker__search" data-aos="fade-up">
+          <FaSearch className="sneaker__search-icon" />
+          <input
+            type="text"
+            placeholder="Поиск"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
         </div>
         {filteredSneakers.length === 0 ? (
           <div className="no-results">
             <h3>Ничего не найдено</h3>
-            <p>Попробуйте изменить фильтры или сбросить их.</p>
+            <p>Попробуйте изменить фильтры, поисковый запрос или сбросить их.</p>
           </div>
         ) : (
           <Row className="sneaker__row">

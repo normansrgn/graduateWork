@@ -5,6 +5,66 @@
     gap: 20px;
   }
 
+  &__filterControls {
+    display: flex;
+    padding: 15px;
+
+    gap: 8px;
+    background-color: #151515;
+    border-radius: 19px;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    z-index: 10; /* Ensure the filter controls are above other content */
+  }
+
+  &__toggle {
+    border: none;
+    color: white;
+
+    &:hover {
+      background-color: #2a2a2a;
+    }
+  }
+
+  &__toggle:focus {
+    outline: none;
+  }
+
+  &__search {
+    padding: 15px;
+    width: 100%;
+    background-color: #151515;
+    border-radius: 19px;
+    display: flex; /* Добавляем flex для размещения иконки и поля */
+    align-items: center; /* Центрируем по вертикали */
+    gap: 10px; /* Расстояние между иконкой и полем ввода */
+
+    & input {
+      background: none;
+      border: none;
+      color: white;
+      padding: 2px;
+      text-align: start;
+      width: 100%;
+      border-radius: 19px;
+
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: white;
+        opacity: 0.5;
+      }
+    }
+
+    /* Стили для иконки поиска */
+    &-icon {
+      color: white;
+      opacity: 0.5; /* Чтобы иконка гармонировала с плейсхолдером */
+      font-size: 16px; /* Размер иконки */
+    }
+  }
   &__PriceFiltr {
     width: 100%;
     padding: 15px;
@@ -83,10 +143,9 @@
   }
   &__row {
     // margin-left: calc(-0.8* var(--bs-gutter-x)) !important;
-    // margin-right: 0;
-    margin-top: 20px;
+
     display: flex;
-    justify-content: center;
+    justify-content: start;
   }
 
   &__card {
@@ -226,6 +285,24 @@
   }
 }
 
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  background: none;
+}
+
+.dropdown-menu {
+  background: #151515;
+}
+
+.dropdown-item {
+  &:hover {
+    background-color: black;
+  }
+}
+
 .sneaker__nav ol li {
   cursor: pointer;
   padding: 5px 10px;
@@ -274,8 +351,6 @@
   cursor: pointer;
 }
 
-
-
 @keyframes fadeInOut {
   0% {
     opacity: 0;
@@ -306,6 +381,7 @@
 @media (max-width: 1000px) {
   .sneaker {
     &__cnt {
+      flex-direction: column;
       gap: 0;
     }
   }
