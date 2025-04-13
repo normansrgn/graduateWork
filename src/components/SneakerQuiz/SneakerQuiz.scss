@@ -1,419 +1,419 @@
 .sneaker-quiz {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #151515 0%, #232323 100%);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(172, 66, 255, 0.1) 0%, transparent 70%);
-      z-index: 0;
-      animation: pulse 20s infinite alternate;
+    padding: 80px 0;
+    background: linear-gradient(135deg, #151515 0%, #232323 100%);
+    position: relative;
+    overflow: hidden;
+  
+    &::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(172, 66, 255, 0.1) 0%, transparent 70%);
+        z-index: 0;
+        animation: pulse 20s infinite alternate;
+    }
+  
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+  
+    h2 {
+        font-size: 2.8rem;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #fff;
+        font-weight: 800;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(
+            118.79deg,
+            #06C1FC 2.254%,
+            #AC42FF 33.741%,
+            #FF00D6 57.356%,
+            #FF003D 90.232%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInUp 0.8s ease-out;
+    }
+  
+    p {
+        text-align: center;
+        color: #b0b0b0;
+        margin-bottom: 50px;
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+  
+    .quiz-card {
+        background: rgba(21, 21, 21, 0.95);
+        border-radius: 20px;
+        border: 1px solid rgba(172, 66, 255, 0.2);
+        padding: 40px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        max-width: 800px;
+        margin: 0 auto;
+        animation: fadeIn 0.6s ease-out;
+  
+        .progress-info {
+            margin-bottom: 30px;
+            span {
+                display: block;
+                text-align: center;
+                color: #b0b0b0;
+                margin-bottom: 10px;
+                font-size: 1.1rem;
+            }
+  
+            .quiz-progress {
+                height: 10px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 5px;
+                overflow: hidden;
+  
+                .progress-bar {
+                    background: linear-gradient(90deg, #AC42FF, #FF00D6);
+                    transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+                    position: relative;
+                    overflow: hidden;
+  
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: linear-gradient(
+                            90deg,
+                            rgba(255, 255, 255, 0) 0%,
+                            rgba(255, 255, 255, 0.3) 50%,
+                            rgba(255, 255, 255, 0) 100%
+                        );
+                        animation: shimmer 2s infinite;
+                    }
+                }
+            }
+        }
+  
+        .question-container {
+            h3 {
+                text-align: center;
+                margin-bottom: 30px;
+                font-size: 1.8rem;
+                color: #fff;
+                font-weight: 600;
+                animation: fadeInUp 0.5s ease-out;
+            }
+  
+            .options {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+                margin-bottom: 20px;
+  
+                .quiz-option {
+                    padding: 15px;
+                    border-radius: 10px;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    color: #fff;
+                    border: 2px solid #AC42FF;
+                    background: rgba(172, 66, 255, 0.05);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+  
+                    &:hover {
+                        background: linear-gradient(135deg, #AC42FF, #FF00D6);
+                        transform: translateY(-3px);
+                        box-shadow: 0 4px 15px rgba(172, 66, 255, 0.4);
+                        color: #fff;
+                    }
+  
+                    &:active {
+                        transform: translateY(0);
+                    }
+                }
+            }
+  
+            .navigation {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+  
+                .back-btn,
+                .skip-btn {
+                    color: #FF00D6;
+                    font-weight: 500;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+  
+                    &:hover {
+                        color: #FF003D;
+                        text-decoration: underline;
+                    }
+  
+                    svg {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+  
+    .quiz-result {
+        animation: fadeIn 0.8s ease-out;
+  
+        .text-center {
+            color: #fff;
+            p {
+                color: #b0b0b0;
+            }
+        }
+  
+        .result-header {
+            text-align: center;
+            margin-bottom: 40px;
+  
+            h3 {
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #fff;
+                background: linear-gradient(
+                    118.79deg,
+                    #06C1FC 2.254%,
+                    #AC42FF 33.741%,
+                    #FF00D6 57.356%,
+                    #FF003D 90.232%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: fadeInUp 0.6s ease-out;
+            }
+  
+            p {
+                margin-bottom: 0;
+                animation: fadeInUp 0.6s ease-out 0.2s both;
+            }
+        }
+  
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+  
+            .sneaker-card {
+                background: rgba(21, 21, 21, 0.95);
+                border-radius: 15px;
+                border: 1px solid rgba(172, 66, 255, 0.2);
+                overflow: hidden;
+                transition: transform 0.4s ease, box-shadow 0.4s ease;
+                animation: fadeInUp 0.6s ease-out both;
+  
+                &:nth-child(1) { animation-delay: 0.2s; }
+                &:nth-child(2) { animation-delay: 0.4s; }
+                &:nth-child(3) { animation-delay: 0.6s; }
+  
+                &:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 10px 30px rgba(172, 66, 255, 0.4);
+                }
+  
+                .sneaker-image {
+                    height: 200px;
+                    overflow: hidden;
+  
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: transform 0.8s ease;
+                    }
+  
+                    &:hover img {
+                        transform: scale(1.1);
+                    }
+                }
+  
+                .card-body {
+                    padding: 20px;
+                    color: #fff;
+  
+                    .card-title {
+                        font-size: 1.4rem;
+                        font-weight: 700;
+                        margin-bottom: 10px;
+                    }
+  
+                    .price {
+                        font-size: 1.3rem;
+                        font-weight: 800;
+                        background: linear-gradient(90deg, #AC42FF, #FF00D6);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        margin-bottom: 15px;
+                    }
+  
+                    .details-btn {
+                        width: 100%;
+                        padding: 10px;
+                        border-radius: 8px;
+                        background: linear-gradient(90deg, #AC42FF, #FF00D6);
+                        border: none;
+                        font-weight: 600;
+                        transition: all 0.3s ease;
+  
+                        &:hover {
+                            background: linear-gradient(90deg, #FF00D6, #FF003D);
+                            transform: translateY(-2px);
+                            box-shadow: 0 4px 15px rgba(172, 66, 255, 0.4);
+                        }
+  
+                        &:active {
+                            transform: translateY(0);
+                        }
+                    }
+                }
+            }
+        }
+  
+        .restart-btn {
+            display: block;
+            margin: 0 auto;
+            padding: 12px 40px;
+            font-weight: 600;
+            border-radius: 50px;
+            border: 2px solid #FF00D6;
+            background: transparent;
+            color: #FF00D6;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out 0.8s both;
+  
+            &:hover {
+                background: #FF00D6;
+                color: #151515;
+                transform: translateY(-3px);
+                box-shadow: 0 4px 15px rgba(172, 66, 255, 0.4);
+            }
+  
+            &:active {
+                transform: translateY(0);
+            }
+  
+            svg {
+                margin-right: 5px;
+            }
+        }
+    }
+  
+    /* Keyframes */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+  
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+  
+    @keyframes pulse {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+  
+    @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+  
+    /* Responsive */
+    @media (max-width: 992px) {
+        padding: 60px 0;
+  
+        h2 {
+            font-size: 2.4rem;
+        }
+  
+        .quiz-card {
+            padding: 30px;
+        }
+    }
+  
+    @media (max-width: 768px) {
+        padding: 50px 0;
+  
+        h2 {
+            font-size: 2rem;
+        }
+  
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+  
+        .quiz-card {
+            padding: 25px;
+        }
+  
+        .question-container {
+            h3 {
+                font-size: 1.6rem;
+            }
+  
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+  
+        .recommendations {
+            grid-template-columns: 1fr;
+        }
+    }
+  
+    @media (max-width: 576px) {
+        padding: 40px 0;
+  
+        h2 {
+            font-size: 1.8rem;
+        }
+  
+        p {
+            font-size: 1rem;
+        }
+  
+        .quiz-card {
+            padding: 20px;
+        }
+  
+        .sneaker-card {
+            .sneaker-image {
+                height: 180px;
+            }
+  
+            .card-title {
+                font-size: 1.2rem;
+            }
+  
+            .price {
+                font-size: 1.1rem;
+            }
+        }
+    }
   }
-
-  .container {
-      position: relative;
-      z-index: 1;
-  }
-
-  h2 {
-      font-size: 2.8rem;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #fff;
-      font-weight: 800;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(
-          118.79deg,
-          #06C1FC 2.254%,
-          #AC42FF 33.741%,
-          #FF00D6 57.356%,
-          #FF003D 90.232%
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeInUp 0.8s ease-out;
-  }
-
-  p {
-      text-align: center;
-      color: #b0b0b0;
-      margin-bottom: 50px;
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: fadeInUp 0.8s ease-out 0.2s both;
-  }
-
-  .quiz-card {
-      background: rgba(21, 21, 21, 0.95);
-      border-radius: 20px;
-      border: 1px solid rgba(172, 66, 255, 0.2);
-      padding: 40px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      max-width: 800px;
-      margin: 0 auto;
-      animation: fadeIn 0.6s ease-out;
-
-      .progress-info {
-          margin-bottom: 30px;
-          span {
-              display: block;
-              text-align: center;
-              color: #b0b0b0;
-              margin-bottom: 10px;
-              font-size: 1.1rem;
-          }
-
-          .quiz-progress {
-              height: 10px;
-              background: rgba(255, 255, 255, 0.1);
-              border-radius: 5px;
-              overflow: hidden;
-
-              .progress-bar {
-                  background: linear-gradient(90deg, #AC42FF, #FF00D6);
-                  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-                  position: relative;
-                  overflow: hidden;
-
-                  &::after {
-                      content: "";
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      right: 0;
-                      bottom: 0;
-                      background: linear-gradient(
-                          90deg,
-                          rgba(255, 255, 255, 0) 0%,
-                          rgba(255, 255, 255, 0.3) 50%,
-                          rgba(255, 255, 255, 0) 100%
-                      );
-                      animation: shimmer 2s infinite;
-                  }
-              }
-          }
-      }
-
-      .question-container {
-          h3 {
-              text-align: center;
-              margin-bottom: 30px;
-              font-size: 1.8rem;
-              color: #fff;
-              font-weight: 600;
-              animation: fadeInUp 0.5s ease-out;
-          }
-
-          .options {
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-              gap: 15px;
-              margin-bottom: 20px;
-
-              .quiz-option {
-                  padding: 15px;
-                  border-radius: 10px;
-                  font-weight: 600;
-                  font-size: 1.1rem;
-                  color: #fff;
-                  border: 2px solid #AC42FF;
-                  background: rgba(172, 66, 255, 0.05);
-                  transition: all 0.3s ease;
-                  position: relative;
-                  overflow: hidden;
-
-                  &:hover {
-                      background: linear-gradient(135deg, #AC42FF, #FF00D6);
-                      transform: translateY(-3px);
-                      box-shadow: 0 4px 15px rgba(172, 66, 255, 0.4);
-                      color: #fff;
-                  }
-
-                  &:active {
-                      transform: translateY(0);
-                  }
-              }
-          }
-
-          .navigation {
-              display: flex;
-              justify-content: space-between;
-              margin-top: 20px;
-
-              .back-btn,
-              .skip-btn {
-                  color: #FF00D6;
-                  font-weight: 500;
-                  text-decoration: none;
-                  display: flex;
-                  align-items: center;
-                  gap: 5px;
-
-                  &:hover {
-                      color: #FF003D;
-                      text-decoration: underline;
-                  }
-
-                  svg {
-                      font-size: 1.2rem;
-                  }
-              }
-          }
-      }
-  }
-
-  .quiz-result {
-      animation: fadeIn 0.8s ease-out;
-
-      .text-center {
-          color: #fff;
-          p {
-              color: #b0b0b0;
-          }
-      }
-
-      .result-header {
-          text-align: center;
-          margin-bottom: 40px;
-
-          h3 {
-              font-size: 2.2rem;
-              font-weight: 700;
-              color: #fff;
-              background: linear-gradient(
-                  118.79deg,
-                  #06C1FC 2.254%,
-                  #AC42FF 33.741%,
-                  #FF00D6 57.356%,
-                  #FF003D 90.232%
-              );
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              animation: fadeInUp 0.6s ease-out;
-          }
-
-          p {
-              margin-bottom: 0;
-              animation: fadeInUp 0.6s ease-out 0.2s both;
-          }
-      }
-
-      .recommendations {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 30px;
-          margin-bottom: 50px;
-
-          .sneaker-card {
-              background: rgba(21, 21, 21, 0.95);
-              border-radius: 15px;
-              border: 1px solid rgba(172, 66, 255, 0.2);
-              overflow: hidden;
-              transition: transform 0.4s ease, box-shadow 0.4s ease;
-              animation: fadeInUp 0.6s ease-out both;
-
-              &:nth-child(1) { animation-delay: 0.2s; }
-              &:nth-child(2) { animation-delay: 0.4s; }
-              &:nth-child(3) { animation-delay: 0.6s; }
-
-              &:hover {
-                  transform: translateY(-10px);
-                  box-shadow: 0 10px 30px rgba(172, 66, 255, 0.4);
-              }
-
-              .sneaker-image {
-                  height: 200px;
-                  overflow: hidden;
-
-                  img {
-                      width: 100%;
-                      height: 100%;
-                      object-fit: cover;
-                      transition: transform 0.8s ease;
-                  }
-
-                  &:hover img {
-                      transform: scale(1.1);
-                  }
-              }
-
-              .card-body {
-                  padding: 20px;
-                  color: #fff;
-
-                  .card-title {
-                      font-size: 1.4rem;
-                      font-weight: 700;
-                      margin-bottom: 10px;
-                  }
-
-                  .price {
-                      font-size: 1.3rem;
-                      font-weight: 800;
-                      background: linear-gradient(90deg, #AC42FF, #FF00D6);
-                      -webkit-background-clip: text;
-                      -webkit-text-fill-color: transparent;
-                      margin-bottom: 15px;
-                  }
-
-                  .details-btn {
-                      width: 100%;
-                      padding: 10px;
-                      border-radius: 8px;
-                      background: linear-gradient(90deg, #AC42FF, #FF00D6);
-                      border: none;
-                      font-weight: 600;
-                      transition: all 0.3s ease;
-
-                      &:hover {
-                          background: linear-gradient(90deg, #FF00D6, #FF003D);
-                          transform: translateY(-2px);
-                          box-shadow: 0 4px 15px rgba(172, 66, 255, 0.4);
-                      }
-
-                      &:active {
-                          transform: translateY(0);
-                      }
-                  }
-              }
-          }
-      }
-
-      .restart-btn {
-          display: block;
-          margin: 0 auto;
-          padding: 12px 40px;
-          font-weight: 600;
-          border-radius: 50px;
-          border: 2px solid #FF00D6;
-          background: transparent;
-          color: #FF00D6;
-          transition: all 0.3s ease;
-          animation: fadeIn 0.8s ease-out 0.8s both;
-
-          &:hover {
-              background: #FF00D6;
-              color: #151515;
-              transform: translateY(-3px);
-              box-shadow: 0 4px 15px rgba(172, 66, 255, 0.4);
-          }
-
-          &:active {
-              transform: translateY(0);
-          }
-
-          svg {
-              margin-right: 5px;
-          }
-      }
-  }
-
-  /* Keyframes */
-  @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-  }
-
-  @keyframes fadeInUp {
-      from {
-          opacity: 0;
-          transform: translateY(20px);
-      }
-      to {
-          opacity: 1;
-          transform: translateY(0);
-      }
-  }
-
-  @keyframes pulse {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-  }
-
-  @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-  }
-
-  /* Responsive */
-  @media (max-width: 992px) {
-      padding: 60px 0;
-
-      h2 {
-          font-size: 2.4rem;
-      }
-
-      .quiz-card {
-          padding: 30px;
-      }
-  }
-
-  @media (max-width: 768px) {
-      padding: 50px 0;
-
-      h2 {
-          font-size: 2rem;
-      }
-
-      p {
-          font-size: 1.1rem;
-          margin-bottom: 40px;
-      }
-
-      .quiz-card {
-          padding: 25px;
-      }
-
-      .question-container {
-          h3 {
-              font-size: 1.6rem;
-          }
-
-          .options {
-              grid-template-columns: 1fr;
-          }
-      }
-
-      .recommendations {
-          grid-template-columns: 1fr;
-      }
-  }
-
-  @media (max-width: 576px) {
-      padding: 40px 0;
-
-      h2 {
-          font-size: 1.8rem;
-      }
-
-      p {
-          font-size: 1rem;
-      }
-
-      .quiz-card {
-          padding: 20px;
-      }
-
-      .sneaker-card {
-          .sneaker-image {
-              height: 180px;
-          }
-
-          .card-title {
-              font-size: 1.2rem;
-          }
-
-          .price {
-              font-size: 1.1rem;
-          }
-      }
-  }
-}

@@ -36,19 +36,14 @@ const BurgerMenu = () => {
           <nav className="burger__nav">
             <ol className="burgerMenu_list">
               <Link to="/" onClick={handleLinkClick}>
-                <li>home</li>
+                <li>Главная</li>
               </Link>
-              <Link to="/new-featured" onClick={handleLinkClick}>
-                <li>new & Featured</li>
-              </Link>
+
               <Link to="/men" onClick={handleLinkClick}>
-                <li>men</li>
+                <li>Каталог</li>
               </Link>
-              <Link to="/women" onClick={handleLinkClick}>
-                <li>women</li>
-              </Link>
-              <Link to="/aboutus" onClick={handleLinkClick}>
-                <li>About us</li>
+              <Link to="/AboutUs" onClick={handleLinkClick}>
+                <li>О нас</li>
               </Link>
               <div className="header__navIc burger_menu__bavIcon">
                 <Link to="/Log" onClick={handleLinkClick}>

@@ -1,5 +1,4 @@
 .aboutus {
-  background-color: #0a0a0a;
   color: #fff;
   padding: 4rem 2rem;
   min-height: 100vh;
@@ -7,6 +6,23 @@
   &__header {
     text-align: center;
     margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: -90%;
+    //   left: -50%;
+    //   width: 200%;
+    //   height: 200%;
+    //   background: radial-gradient(
+    //     circle,
+    //     rgba(44, 19, 53, 0.1) 0%,
+    //     transparent 70%
+    //   );
+    //   animation: pulse 6s infinite;
+    // }
   }
 
   &__title {
@@ -17,9 +33,10 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
-    
+    z-index: 1;
+
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -10px;
       left: 50%;
@@ -27,6 +44,7 @@
       width: 80px;
       height: 3px;
       background: linear-gradient(90deg, #9d50bb, #6e48aa);
+      border-radius: 2px;
     }
   }
 
@@ -34,6 +52,8 @@
     font-size: 1.2rem;
     color: #cccccc;
     margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
   }
 
   &__features {
@@ -45,40 +65,55 @@
   }
 
   .feature-card {
-    background: #1a1a1a;
+    background: linear-gradient(
+      135deg,
+      rgba(26, 26, 26, 0.9),
+      rgba(40, 40, 40, 0.9)
+    );
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
-    transition: transform 0.3s ease;
-    border: 1px solid #2d2d2d;
+    border: 1px solid rgba(157, 80, 187, 0.3);
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 20px rgba(157, 80, 187, 0.2);
     }
 
     h3 {
       color: #fff;
       margin: 1rem 0;
       font-size: 1.3rem;
+      font-weight: 600;
     }
 
     p {
-      color: #888;
+      color: #cccccc;
       font-size: 0.9rem;
+      line-height: 1.4;
     }
   }
 
   .feature-icon {
+    padding: 10px;
     font-size: 2.5rem;
-    color: #ac42ff;
-    margin-bottom: 1rem;
+    color: #fff;
+    background: linear-gradient(45deg, #9d50bb, #6e48aa);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    box-shadow: 0 0 15px rgba(157, 80, 187, 0.5);
     transition: transform 0.3s ease;
-    
+
     &:hover {
-      transform: rotate(15deg);
+      transform: scale(1.1) rotate(10deg);
     }
   }
 
@@ -95,22 +130,16 @@
   }
 
   .contact-info {
-    background: #1a1a1a;
+    background: linear-gradient(
+      135deg,
+      rgba(26, 26, 26, 0.9),
+      rgba(40, 40, 40, 0.9)
+    );
     padding: 2rem;
     border-radius: 15px;
-    border: 1px solid #2d2d2d;
+    border: 1px solid rgba(157, 80, 187, 0.3);
     position: relative;
     overflow: hidden;
-
-    // &::before {
-    //   content: '';
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   width: 100%;
-    //   height: 4px;
-    //   background: linear-gradient(90deg, #9d50bb, #6e48aa);
-    // }
 
     h2 {
       color: #fff;
@@ -119,9 +148,9 @@
       text-align: center;
       position: relative;
       padding-bottom: 1rem;
-      
+
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -129,6 +158,104 @@
         width: 60px;
         height: 2px;
         background: linear-gradient(90deg, #9d50bb, #6e48aa);
+        border-radius: 1px;
+      }
+    }
+  }
+
+  .telegram-bot-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: linear-gradient(
+      135deg,
+      rgba(157, 80, 187, 0.1),
+      rgba(110, 72, 170, 0.1)
+    );
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(157, 80, 187, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(157, 80, 187, 0.2);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+
+    .telegram-bot-icon-wrapper {
+      background: linear-gradient(45deg, #9d50bb, #6e48aa);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 15px rgba(157, 80, 187, 0.5);
+    }
+
+    .telegram-bot-icon {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .telegram-bot-content {
+      flex: 1;
+    }
+
+    .telegram-bot-title {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .telegram-bot-text {
+      color: #cccccc;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .telegram-bot-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #9d50bb, #6e48aa);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(45deg, #6e48aa, #9d50bb);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(157, 80, 187, 0.4);
       }
     }
   }
@@ -138,34 +265,48 @@
     align-items: center;
     gap: 1.5rem;
     margin: 1.5rem 0;
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.01)
+    );
+    border: 1px solid rgba(157, 80, 187, 0.2);
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.05);
       transform: translateX(10px);
+      box-shadow: 0 5px 15px rgba(157, 80, 187, 0.2);
     }
 
     .icon-wrapper {
+      padding: 10px;
       background: linear-gradient(45deg, #9d50bb, #6e48aa);
-      width: 45px;
-      height: 45px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 0 10px rgba(157, 80, 187, 0.4);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
 
     .contact-icon {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       color: white;
     }
 
     .contact-type {
-      color: #888;
+      color: #cccccc;
       font-size: 0.9rem;
       margin-bottom: 0.3rem;
     }
@@ -177,7 +318,7 @@
     }
 
     .contact-note {
-      color: #666;
+      color: #888;
       font-size: 0.8rem;
       margin-top: 0.3rem;
     }
@@ -185,8 +326,31 @@
 
   .divider {
     height: 1px;
-    background: #2d2d2d;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(157, 80, 187, 0.3),
+      transparent
+    );
     margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      animation: slideDivider 3s infinite;
+    }
   }
 
   .social-links {
@@ -198,23 +362,46 @@
 
   .social-link {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, #9d50bb, #6e48aa);
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
-    padding: 7px;
-    border-radius: 7px;
-    
+    position: relative;
+    overflow: hidden;
+
     &:hover {
-      color: #9d50bb;
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.05);
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 5px 15px rgba(157, 80, 187, 0.4);
+      background: linear-gradient(45deg, #6e48aa, #9d50bb);
     }
   }
 
+  .social-icon {
+    font-size: 1.5rem;
+  }
+
   .map-container {
-    background: #1a1a1a;
+    height: max-content;
+    background: linear-gradient(
+      135deg,
+      rgba(26, 26, 26, 0.9),
+      rgba(40, 40, 40, 0.9)
+    );
     padding: 1.5rem;
     border-radius: 15px;
-    border: 1px solid #2d2d2d;;
+    border: 1px solid rgba(157, 80, 187, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(157, 80, 187, 0.2);
+    }
   }
 
   .map-title {
@@ -222,12 +409,30 @@
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #9d50bb, #6e48aa);
+      border-radius: 1px;
+    }
   }
 
   &__map {
     border-radius: 10px;
     margin-bottom: 1.5rem;
-    border: 2px solid #363636;
+    border: 2px solid rgba(157, 80, 187, 0.3);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.01);
+    }
   }
 
   &__btn {
@@ -242,21 +447,53 @@
     background: linear-gradient(45deg, #9d50bb, #6e48aa);
     cursor: pointer;
     transition: all 0.3s ease;
-    
+    position: relative;
+    overflow: hidden;
+
     &:hover {
+      background: linear-gradient(45deg, #6e48aa, #9d50bb);
       transform: scale(1.02);
       box-shadow: 0 0 20px rgba(157, 80, 187, 0.4);
     }
   }
 }
 
+/* Анимации */
+// @keyframes pulse {
+//   0% {
+//     transform: scale(1);
+//     opacity: 0.5;
+//   }
+//   50% {
+//     transform: scale(1.2);
+//     opacity: 0.2;
+//   }
+//   100% {
+//     transform: scale(1);
+//     opacity: 0.5;
+//   }
+// }
+
+// @keyframes slideDivider {
+//   0% {
+//     left: -100%;
+//   }
+//   50% {
+//     left: 100%;
+//   }
+//   100% {
+//     left: 100%;
+//   }
+// }
+
+/* Медиа-запросы */
 @media (max-width: 768px) {
   .aboutus {
     padding: 2rem 1rem;
 
     &__title {
       font-size: 2.5rem;
-      
+
       &::after {
         width: 60px;
       }
@@ -273,30 +510,166 @@
     &__features {
       grid-template-columns: 1fr;
     }
-  }
-}
-
-@media (max-width: 480px) {
-  .aboutus {
-    &__title {
-      font-size: 2rem;
-    }
-
-    &__subtitle {
-      font-size: 1rem;
-    }
 
     .feature-card {
       padding: 1.5rem;
+
+      .feature-icon {
+        padding: 10px !important;
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+      }
     }
 
-    .contact-info p {
-      font-size: 1rem;
+    .telegram-bot-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.2rem;
+
+      .telegram-bot-icon-wrapper {
+        margin-bottom: 1rem;
+      }
+
+      .telegram-bot-title {
+        font-size: 1.2rem;
+      }
+
+      .telegram-bot-text {
+        font-size: 0.9rem;
+      }
+
+      .telegram-bot-btn {
+        font-size: 0.85rem;
+        padding: 8px 18px;
+      }
     }
 
-    &__btn {
-      padding: 12px 25px;
-      font-size: 0.9rem;
+    .contact-item {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.2rem;
+
+      .icon-wrapper {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .map-container {
+      padding: 1.2rem;
+    }
+
+    .social-link {
+      //   padding: 8px;
+      //   font-size: 1.5rem;
+      // }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .aboutus {
+      &__title {
+        font-size: 2rem;
+      }
+
+      &__subtitle {
+        font-size: 1rem;
+      }
+
+      .feature-card {
+        padding: 1rem;
+
+        h3 {
+          font-size: 1.2rem;
+        }
+
+        p {
+          font-size: 0.85rem;
+        }
+
+        .feature-icon {
+          width: 45px;
+          height: 45px;
+          font-size: 1.8rem;
+        }
+      }
+
+      .contact-info {
+        padding: 1rem;
+
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      .telegram-bot-card {
+        padding: 1rem;
+
+        .telegram-bot-icon-wrapper {
+          width: 50px;
+          height: 50px;
+        }
+
+        .telegram-bot-icon {
+          font-size: 1.8rem;
+        }
+
+        .telegram-bot-title {
+          font-size: 1.1rem;
+        }
+
+        .telegram-bot-text {
+          font-size: 0.85rem;
+        }
+
+        .telegram-bot-btn {
+          font-size: 0.8rem;
+          padding: 8px 16px;
+        }
+      }
+
+      .contact-item {
+        padding: 1rem;
+
+        .icon-wrapper {
+          width: 45px;
+          height: 45px;
+        }
+
+        .contact-icon {
+          font-size: 1.3rem;
+        }
+
+        .contact-type {
+          font-size: 0.85rem;
+        }
+
+        .contact-value {
+          font-size: 1rem;
+        }
+
+        .contact-note {
+          font-size: 0.75rem;
+        }
+      }
+
+      .map-title {
+        font-size: 1.5rem;
+      }
+
+      &__btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+      }
+
+      .social-link {
+        padding: 7px;
+        font-size: 1.3rem;
+
+        .social-icon {
+          font-size: 1.2rem;
+        }
+      }
     }
   }
 }

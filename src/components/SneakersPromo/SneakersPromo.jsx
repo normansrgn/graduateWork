@@ -102,7 +102,7 @@ export default class SneakersPromo extends Component {
 
           <div className="sneaker__button">
             <Link to="/men">
-              <button className="sneaker__btn">Посмотреть все</button>
+              <button className="sneaker__btn" data-aos="fade-up">Посмотреть все</button>
             </Link>
           </div>
         </Container>

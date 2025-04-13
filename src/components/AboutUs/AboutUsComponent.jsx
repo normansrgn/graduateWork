@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { 
-  FaShippingFast, 
-  FaHeadset, 
+import {
+  FaShippingFast,
+  FaHeadset,
   FaShieldAlt,
   FaRegClock,
   FaInstagram,
   FaVk,
-  FaTelegram
+  FaTelegram,
 } from "react-icons/fa";
 import "./__aboutus.scss";
 
@@ -40,7 +40,30 @@ export default function AboutUsComponent() {
       <div className="aboutus__contacts">
         <div className="contact-info">
           <h2>Наши контакты</h2>
-          
+
+          {/* Новый блок для Telegram-бота */}
+          <div className="telegram-bot-card">
+            <div className="telegram-bot-icon-wrapper">
+              <FaTelegram className="telegram-bot-icon" />
+            </div>
+            <div className="telegram-bot-content">
+              <h3 className="telegram-bot-title">Наш Telegram-бот</h3>
+              <p className="telegram-bot-text">
+                Получайте мгновенные ответы, отслеживайте заказы и узнавайте о новинках первым с нашим умным ботом!
+              </p>
+              <a
+                href="https://t.me/wartsneakerbot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="telegram-bot-btn"
+              >
+                Подключиться к боту
+              </a>
+            </div>
+          </div>
+
+          <div className="divider"></div>
+
           <div className="contact-item">
             <div className="icon-wrapper">
               <FaHeadset className="contact-icon" />
@@ -94,14 +117,14 @@ export default function AboutUsComponent() {
           <iframe
             className="aboutus__map"
             title="store-location"
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae1f7f0c36befb9a52293aadb2324cf8c7583f5b2728c331e89eec73462a48792&amp;source=constructor"
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae1f7f0c36befb9a52293aadb2324cf8c7583f5b2728c331e89eec73462a48792&source=constructor"
             width="100%"
             height="340"
             frameBorder="0"
           ></iframe>
-          <Link 
-            to="https://yandex.ru/maps/-/CDqjbOMo" 
-            target="_blank" 
+          <Link
+            to="https://yandex.ru/maps/-/CDqjbOMo"
+            target="_blank"
             rel="noopener noreferrer"
             className="map-link"
           >
