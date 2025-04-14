@@ -2,8 +2,7 @@ import React, { useState, useRef } from "react";
 import { Container, Modal, Button, Alert } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { FaCheckCircle } from "react-icons/fa"; // иконка галочки
-
+import { FaCheckCircle } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import "./__check.scss";
 
@@ -15,24 +14,30 @@ function CheckoutPage() {
     name: "",
     phone: "",
     email: "",
-    address: ""
+    address: "",
   });
   const [errors, setErrors] = useState({});
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  
   const [alert, setAlert] = useState({ show: false, message: "", variant: "danger" });
   const formRef = useRef();
 
+  // Состояния для промокода
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+
+  // Определяем промокод и размер скидки
+  const PROMO_CODE = "DISCOUNT10";
+  const DISCOUNT_RATE = 0.1; // 10% скидка
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
     if (name === "phone") {
-      const cleanedValue = value.replace(/[^\d+]/g, '');
-      setFormData(prev => ({ ...prev, [name]: cleanedValue }));
+      const cleanedValue = value.replace(/[^\d+]/g, "");
+      setFormData((prev) => ({ ...prev, [name]: cleanedValue }));
     } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -45,19 +50,17 @@ function CheckoutPage() {
   };
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('ru-RU').format(price) + '₽';
+    return new Intl.NumberFormat("ru-RU").format(price) + "₽";
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
     if (!formData.name.trim()) newErrors.name = "Введите имя и фамилию";
     if (!formData.phone.trim()) newErrors.phone = "Введите номер телефона";
     else if (!/^\+?\d{10,15}$/.test(formData.phone)) newErrors.phone = "Введите корректный номер";
     if (!formData.email.trim()) newErrors.email = "Введите email";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Введите корректный email";
     if (!formData.address.trim()) newErrors.address = "Введите адрес";
-    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -69,7 +72,7 @@ function CheckoutPage() {
       setAlert({
         show: true,
         message: "Пожалуйста, заполните все обязательные поля корректно",
-        variant: "danger"
+        variant: "danger",
       });
     }
   };
@@ -89,22 +92,45 @@ function CheckoutPage() {
         customer_phone: formData.phone,
         customer_email: formData.email,
         customer_address: formData.address,
-        order_total: formatPrice(totalPrice),
-        order_items: cartItems.map(item => 
-          `${item.title} (${item.quantity || 1} шт.) - ${formatPrice(item.price * (item.quantity || 1))}`
-        ).join('<br>') // Изменено на <br> для HTML-форматирования
+        order_total: formatPrice(totalPrice - discount),
+        order_items: cartItems
+          .map(
+            (item) =>
+              `${item.title} (Размер: ${item.size}, ${item.quantity || 1} шт.) - ${formatPrice(
+                item.price * (item.quantity || 1)
+              )}`
+          )
+          .join("<br>"),
+        to_email: formData.email, // Добавляем email клиента для явности
       };
   
+      // Отправка письма администратору
       await emailjs.send(
-        'service_gzc6eih',
-        'template_m7neetv',
+        "service_gzc6eih", // Ваш Service ID
+        "template_m7neetv", // Шаблон для администратора
         templateParams,
-        'ftPHJ1HRGmkVrqz-H'
+        "ftPHJ1HRGmkVrqz-H" // Ваш Public Key
       );
+  
+      // Отправка письма клиенту
+      await emailjs.send(
+        "service_gzc6eih", // Тот же Service ID
+        "template_3l5rt3c", // Шаблон для клиента
+        templateParams, // Передаем те же параметры, включая to_email
+        "ftPHJ1HRGmkVrqz-H"
+      );
+  
+      console.log("Письма успешно отправлены: администратору и клиенту");
     } catch (error) {
       console.error("Ошибка при отправке email:", error);
+      setAlert({
+        show: true,
+        message: "Ошибка при отправке подтверждения на email. Ваш заказ принят, но свяжитесь с нами для подтверждения.",
+        variant: "warning",
+      });
     }
   };
+
 
   const handleConfirmPayment = async (e) => {
     e.preventDefault();
@@ -118,7 +144,7 @@ function CheckoutPage() {
       if (!cardElement) return;
 
       const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: 'card',
+        type: "card",
         card: cardElement,
       });
 
@@ -130,39 +156,55 @@ function CheckoutPage() {
       const newOrder = {
         id: orderId,
         date: new Date().toISOString(),
-        items: cartItems.map(item => ({
+        items: cartItems.map((item) => ({
           ...item,
           price: Number(item.price),
-          quantity: Number(item.quantity || 1)
+          quantity: Number(item.quantity || 1),
         })),
-        total: totalPrice,
+        total: totalPrice - discount,
         status: "В обработке",
         customer: {
           name: formData.name,
           phone: formData.phone,
           email: formData.email,
-          address: formData.address
-        }
+          address: formData.address,
+        },
       };
 
-      // Сохраняем заказ в localStorage
-      const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
-      localStorage.setItem('orders', JSON.stringify([newOrder, ...existingOrders]));
-      localStorage.removeItem('cart');
+      const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
+      localStorage.setItem("orders", JSON.stringify([newOrder, ...existingOrders]));
+      localStorage.removeItem("cart");
 
-      // Отправляем email с данными заказа
       await sendEmail(orderId);
 
-      navigate('/profile');
+      navigate("/profile");
       setShowModal(false);
     } catch (error) {
       setAlert({
         show: true,
         message: error.message || "Произошла ошибка при оплате",
-        variant: "danger"
+        variant: "danger",
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const applyPromoCode = () => {
+    if (promoCode === PROMO_CODE) {
+      const discountAmount = totalPrice * DISCOUNT_RATE;
+      setDiscount(discountAmount);
+      setAlert({
+        show: true,
+        message: "Промокод успешно применен! Вы получили 10% скидку.",
+        variant: "success",
+      });
+    } else {
+      setAlert({
+        show: true,
+        message: "Неверный промокод. Пожалуйста, попробуйте еще раз.",
+        variant: "danger",
+      });
     }
   };
 
@@ -176,9 +218,9 @@ function CheckoutPage() {
 
       {alert.show && (
         <Container>
-          <Alert 
-            variant={alert.variant} 
-            onClose={() => setAlert({ ...alert, show: false })} 
+          <Alert
+            variant={alert.variant}
+            onClose={() => setAlert({ ...alert, show: false })}
             dismissible
             className="mt-3"
           >
@@ -193,33 +235,43 @@ function CheckoutPage() {
             <form className="userInfo__form" ref={formRef}>
               <div className="login__input">
                 <i className="login__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,254,254,1)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="28"
+                    height="28"
+                    fill="rgba(255,254,254,1)"
+                  >
                     <path d="M3 6H21V18H3V6ZM2 4C1.44772 4 1 4.44772 1 5V19C1 19.5523 1.44772 20 2 20H22C22.5523 20 23 19.5523 23 19V5C23 4.44772 22.5523 4 22 4H2ZM13 8H19V10H13V8ZM18 12H13V14H18V12ZM10.5 10C10.5 11.3807 9.38071 12.5 8 12.5C6.61929 12.5 5.5 11.3807 5.5 10C5.5 8.61929 6.61929 7.5 8 7.5C9.38071 7.5 10.5 8.61929 10.5 10ZM8 13.5C6.067 13.5 4.5 15.067 4.5 17H11.5C11.5 15.067 9.933 13.5 8 13.5Z"></path>
                   </svg>
                 </i>
                 <input
                   type="text"
                   name="name"
-                  className={`login__input `}
+                  className={`login__input`}
                   placeholder="Имя и Фамилия"
                   value={formData.name}
                   onChange={handleChange}
                   required
                 />
-
               </div>
-              
+
               <div className="login__input">
                 <i className="login__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="28"
+                    height="28"
+                    fill="rgba(255,255,255,1)"
+                  >
                     <path d="M9.36556 10.6821C10.302 12.3288 11.6712 13.698 13.3179 14.6344L14.2024 13.3961C14.4965 12.9845 15.0516 12.8573 15.4956 13.0998C16.9024 13.8683 18.4571 14.3353 20.0789 14.4637C20.599 14.5049 21 14.9389 21 15.4606V19.9234C21 20.4361 20.6122 20.8657 20.1022 20.9181C19.5723 20.9726 19.0377 21 18.5 21C9.93959 21 3 14.0604 3 5.5C3 4.96227 3.02742 4.42771 3.08189 3.89776C3.1343 3.38775 3.56394 3 4.07665 3H8.53942C9.0611 3 9.49513 3.40104 9.5363 3.92109C9.66467 5.54288 10.1317 7.09764 10.9002 8.50444C11.1427 8.9484 11.0155 9.50354 10.6039 9.79757L9.36556 10.6821ZM6.84425 10.0252L8.7442 8.66809C8.20547 7.50514 7.83628 6.27183 7.64727 5H5.00907C5.00303 5.16632 5 5.333 5 5.5C5 12.9558 11.0442 19 18.5 19C18.667 19 18.8337 18.997 19 18.9909V16.3527C17.7282 16.1637 16.4949 15.7945 15.3319 15.2558L13.9748 17.1558C13.4258 16.9425 12.8956 16.6915 12.3874 16.4061L12.3293 16.373C10.3697 15.2587 8.74134 13.6303 7.627 11.6707L7.59394 11.6126C7.30849 11.1044 7.05754 10.5742 6.84425 10.0252Z"></path>
                   </svg>
                 </i>
                 <input
                   type="tel"
                   name="phone"
-                  className={`login__input `}
-
+                  className={`login__input`}
                   placeholder={isPhoneFocused ? "" : "Номер телефона"}
                   value={formData.phone}
                   onChange={handleChange}
@@ -227,52 +279,59 @@ function CheckoutPage() {
                   onBlur={handlePhoneBlur}
                   required
                   pattern="\+?\d{10,15}"
-
                 />
                 {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
               </div>
-              
+
               <div className="login__input">
                 <i className="login__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="28"
+                    height="28"
+                    fill="rgba(255,255,255,1)"
+                  >
                     <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
                   </svg>
                 </i>
                 <input
                   type="email"
                   name="email"
-                  className={`login__input `}
-
+                  className={`login__input`}
                   placeholder="Электронная почта"
                   value={formData.email}
                   onChange={handleChange}
                   required
                 />
-
               </div>
             </form>
           </div>
-          
+
           <div className="userInfo__content">
             <h2 className="userInfo__titleAdres">Адрес доставки</h2>
             <form className="userInfo__form">
               <div className="login__input">
                 <i className="login__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="rgba(255,255,255,1)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="28"
+                    height="28"
+                    fill="rgba(255,255,255,1)"
+                  >
                     <path d="M19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20C20 20.5523 19.5523 21 19 21ZM6 19H18V9.15745L12 3.7029L6 9.15745V19ZM8 15H16V17H8V15Z"></path>
                   </svg>
                 </i>
                 <input
                   type="text"
                   name="address"
-                  className={`login__input `}
-
+                  className={`login__input`}
                   placeholder="Ваш адрес"
                   value={formData.address}
                   onChange={handleChange}
                   required
                 />
-
               </div>
             </form>
           </div>
@@ -288,21 +347,57 @@ function CheckoutPage() {
                       <img src={item.img} alt={item.title} className="checkoutPage__image" />
                       <div className="checkoutPage__titleBl">
                         <span className="checkoutPage__itemTitle">{item.title}</span>
+                        <span className="checkoutPage__itemSize">Размер: {item.size}</span>
                       </div>
                     </div>
                     <div className="checkoutPage__details">
-                      <span className="checkoutPage__itemPrice">{formatPrice(item.price * (item.quantity || 1))}</span>
+                      <span className="checkoutPage__itemQuantity">
+                        {item.quantity || 1} шт.
+                      </span>
+                      <span className="checkoutPage__itemPrice">
+                        {formatPrice(item.price * (item.quantity || 1))}
+                      </span>
                     </div>
                   </div>
                 ))}
               </div>
+              <form className="promoCode__form" onSubmit={(e) => e.preventDefault()}>
+                <div className="promoCode__inputWrapper">
+                  <i className="promoCode__icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="28"
+                      height="28"
+                      fill="rgba(255,254,254,1)"
+                    >
+                      <path d="M2.00488 9.49979V3.99979C2.00488 3.4475 2.4526 2.99979 3.00488 2.99979H21.0049C21.5572 2.99979 22.0049 3.4475 22.0049 3.99979V9.49979C20.6242 9.49979 19.5049 10.6191 19.5049 11.9998C19.5049 13.3805 20.6242 14.4998 22.0049 14.4998V19.9998C22.0049 20.5521 21.5572 20.9998 21.0049 20.9998H3.00488C2.4526 20.9998 2.00488 20.5521 2.00488 19.9998V14.4998C3.38559 14.4998 4.50488 13.3805 4.50488 11.9998C4.50488 10.6191 3.38559 9.49979 2.00488 9.49979ZM4.00488 7.96755C5.4866 8.7039 6.50488 10.2329 6.50488 11.9998C6.50488 13.7666 5.4866 15.2957 4.00488 16.032V18.9998H20.0049V16.032C18.5232 15.2957 17.5049 13.7666 17.5049 11.9998C17.5049 10.2329 18.5232 8.7039 20.0049 7.96755V4.99979H4.00488V7.96755ZM9.00488 8.99979H15.0049V10.9998H9.00488V8.99979ZM9.00488 12.9998H15.0049V14.9998H9.00488V12.9998Z"></path>
+                    </svg>
+                  </i>
+                  <input
+                    type="text"
+                    className="promoCode__input"
+                    placeholder="Введите промокод"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                  />
+                  <button className="promoCode__applyButton" onClick={applyPromoCode}>
+                    Применить
+                  </button>
+                </div>
+              </form>
 
               <div className="checkoutPage__total">
                 <div>К оплате:</div>
-                <span>{formatPrice(totalPrice)}</span>
+                <div className="checkoutPage__priceWrapper">
+                  {discount > 0 && (
+                    <span className="checkoutPage__oldPrice">{formatPrice(totalPrice)}</span>
+                  )}
+                  <span className="checkoutPage__newPrice">{formatPrice(totalPrice - discount)}</span>
+                </div>
               </div>
 
-              <button 
+              <button
                 className="checkoutPage__confirmButton"
                 onClick={handleOpenPaymentModal}
                 disabled={cartItems.length === 0}
@@ -316,13 +411,7 @@ function CheckoutPage() {
         </div>
       </Container>
 
-      {/* Модальное окно оплаты */}
-      <Modal 
-        show={showModal} 
-        onHide={handleClosePaymentModal} 
-        centered
-        className="payment-modal"
-      >
+      <Modal show={showModal} onHide={handleClosePaymentModal} centered className="payment-modal">
         <Modal.Header closeButton className="payment-modal__header">
           <Modal.Title className="payment-modal__title">Оплата заказа</Modal.Title>
         </Modal.Header>
@@ -333,61 +422,62 @@ function CheckoutPage() {
               {cartItems.map((item, index) => (
                 <div key={index} className="payment-modal__order-item">
                   <div className="payment-modal__item-image-container">
-                    <img 
-                      src={item.img} 
-                      alt={item.title} 
-                      className="payment-modal__item-image" 
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="payment-modal__item-image"
                     />
                     <span className="payment-modal__item-quantity">{item.quantity || 1}</span>
                   </div>
                   <div className="payment-modal__item-details">
                     <h5 className="payment-modal__item-title">{item.title}</h5>
-                    <p className="payment-modal__item-price">{formatPrice(item.price * (item.quantity || 1))}</p>
+                    <p className="payment-modal__item-size">Размер: {item.size}</p>
+                    <p className="payment-modal__item-price">
+                      {formatPrice(item.price * (item.quantity || 1))}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
+
             <div className="payment-modal__order-total">
               <span>Итого:</span>
-              <span className="payment-modal__total-price">{formatPrice(totalPrice)}</span>
+              <div className="payment-modal__priceWrapper">
+                {discount > 0 && (
+                  <span className="payment-modal__oldPrice">{formatPrice(totalPrice)}</span>
+                )}
+                <span className="payment-modal__total-price">{formatPrice(totalPrice - discount)}</span>
+              </div>
             </div>
           </div>
-
-          {/* <div className="payment-modal__customer-info">
-            <h4 className="payment-modal__info-title">Данные покупателя:</h4>
-            <p><strong>Имя:</strong> {formData.name}</p>
-            <p><strong>Телефон:</strong> {formData.phone}</p>
-            <p><strong>Email:</strong> {formData.email}</p>
-            <p><strong>Адрес:</strong> {formData.address}</p>
-          </div> */}
 
           <form onSubmit={handleConfirmPayment} className="payment-modal__form">
             <h4 className="payment-modal__form-title">Данные карты</h4>
             <div className="payment-modal__card-element">
-              <CardElement 
+              <CardElement
                 options={{
                   style: {
                     base: {
-                      fontSize: '16px',
-                      color: '#424770',
-                      '::placeholder': {
-                        color: '#aab7c4',
+                      fontSize: "16px",
+                      color: "#424770",
+                      "::placeholder": {
+                        color: "#aab7c4",
                       },
                     },
                     invalid: {
-                      color: '#9e2146',
+                      color: "#9e2146",
                     },
                   },
                 }}
               />
             </div>
-            <Button 
-              variant="primary" 
-              type="submit" 
-              disabled={!stripe || loading} 
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={!stripe || loading}
               className="payment-modal__submit-button"
             >
-              {loading ? 'Обработка...' : `Оплатить ${formatPrice(totalPrice)}`}
+              {loading ? "Обработка..." : `Оплатить ${formatPrice(totalPrice - discount)}`}
             </Button>
           </form>
         </Modal.Body>

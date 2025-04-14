@@ -326,6 +326,87 @@
       text-decoration: underline;
     }
   }
+
+  &__quantityControl {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #292929;
+    border-radius: 10px;
+    padding: 5px 10px;
+    width: 100%;
+    justify-content: center;
+
+    & button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 5px 10px;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #00d4ff;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    & span {
+      font-size: 16px;
+      color: white;
+      font-weight: 600;
+    }
+  }
+
+  &__cardPrice {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    border-radius: 19px;
+    background-color: #151515;
+    height: fit-content;
+    width: 270px;
+
+    & span {
+      font-size: 30px;
+      font-weight: bold;
+      background: linear-gradient(
+        118.79deg,
+        rgb(6, 193, 252) 2.254%,
+        rgb(172, 66, 255) 33.741%,
+        rgb(255, 0, 214) 57.356%,
+        rgb(255, 0, 61) 90.232%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    & button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #292929;
+      border: none;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.1s ease-in;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        background-color: #202020;
+      }
+    }
+  }
 }
 
 @media (max-width: 1187px) {

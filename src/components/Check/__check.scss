@@ -2,8 +2,6 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-
-  
 }
 
 .userInfo {
@@ -45,67 +43,113 @@
     }
   }
 }
-.modal-header .btn-close  {
-  // background-color: white !important;
+
+.modal-header .btn-close {
   color: white !important;
 }
 
 .checkoutPage {
   width: 100%;
+  &__card {
+    background-color: #151515;
+    border-radius: 19px;
+    padding: 20px;
+  }
+
   &__title {
     text-align: center;
     font-size: 55px;
     margin-bottom: 30px;
   }
+
   &__items {
     margin-bottom: 20px;
+  }
+
+  &__item {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a2a;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   &__imageee {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 15px;
   }
 
-  &__item {
-    background-color: #151515;
-    border-radius: 19px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px;
-    gap: 30px;
-    max-width: 100%;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  &__image {
+    width: 80px;
+    height: auto;
+    border-radius: 10px;
+  }
 
-    & img {
-      width: 90px;
-    }
+  &__titleBl {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__itemTitle {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+  }
+
+  &__itemSize {
+    font-size: 14px;
+    color: #888;
   }
 
   &__details {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
   }
 
-  &__itemTitle {
-    font-size: 22px;
-    font-weight: 600;
-    text-transform: uppercase;
+  &__itemQuantity {
+    font-size: 14px;
+    color: #888;
   }
 
   &__itemPrice {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  &__priceWrapper {
     display: flex;
     align-items: center;
+    gap: 10px;
+  }
+
+  &__oldPrice {
+    font-size: 16px;
+    color: #888;
+    text-decoration: line-through;
+  }
+
+  &__newPrice {
+    font-size: 19px;
     font-weight: 600;
-    font-size: 24px;
     background: linear-gradient(
       118.79deg,
       rgb(6, 193, 252) 2.254%,
@@ -117,45 +161,15 @@
     color: transparent;
   }
 
-  &__total {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 17px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background-color: #151515;
-    border-radius: 19px;
-    display: flex;
-    align-items: center;
-    // justify-content: space-between;
-    padding: 22px;
-    gap: 10px;
-    max-width: 100%;
-
-    & span {
-      font-size: 19px;
-      font-weight: 600;
-      background: linear-gradient(
-        118.79deg,
-        rgb(6, 193, 252) 2.254%,
-        rgb(172, 66, 255) 33.741%,
-        rgb(255, 0, 214) 57.356%,
-        rgb(255, 0, 61) 90.232%
-      );
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-  }
-
   &__confirmButton {
-    margin-top: 20px;
-    border: none;
     width: 100%;
-    font-size: 17px;
     padding: 15px;
     border-radius: 17px;
-    font-weight: 600;
+    font-size: 17px;
     color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
     background: linear-gradient(
       118.79deg,
       rgb(210, 6, 252) 2.254%,
@@ -165,114 +179,119 @@
     );
     background-size: 200% 200%;
     animation: gradientShift 6s linear infinite;
-  }
-}
 
-.ElementsApp .InputElement.is-invalid {
-
-  color: white !important;
-}
-@media (max-width: 796px) {
-  .userInfo {
-    &__title {
-      text-align: center;
-    }
-  }
-
-  .checkCont {
-    flex-direction: column;
-  }
-  .checkoutPage__title {
-    margin-top: 28px;
-  }
-
-  .checkoutPage {
-    &__itemTitle {
-      font-size: 20px;
+    &:hover {
+      background-color: #202020;
     }
 
-    &__image {
-      width: 120px;
-    }
-    &__total {
-      justify-content: center;
+    &:disabled {
+      background-color: #444;
+      cursor: not-allowed;
     }
   }
 }
 
-@media (max-width: 509px) {
-  .checkoutPage {
-    &__title {
-      text-align: center;
-      font-size: 20px;
+.promoCode {
+  &__form {
+    margin-bottom: 20px;
+  }
+
+  &__inputWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #111;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+
+    &:focus {
+      outline: none;
     }
 
-    &__image {
-      width: 110px;
-    }
-
-    &__price {
-      font-size: 17px;
-    }
-
-    &__itemTitle {
-      font-size: 14px;
-      text-align: center;
+    &::placeholder {
+      color: #888;
     }
   }
 
-  .userInfo {
-    &__titleAdres {
-      text-align: center;
-      font-size: 20px;
+  &__applyButton {
+    background: linear-gradient(
+      118.79deg,
+      rgb(210, 6, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(237, 28, 224) 57.356%,
+      rgb(177, 0, 255) 90.232%
+    );
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background: #202020;
     }
   }
 }
 
-// Стили для модального окна оплаты
 .payment-modal {
   &__header {
-    background-color: #111;
-    color: white;
+    background-color: #151515;
     border-bottom: none;
   }
 
   &__title {
-    font-weight: 600;
+    color: white;
+    font-size: 20px;
   }
 
   &__body {
-    color: white !important;
-    padding: 25px;
     background-color: #151515;
+    color: white;
+    padding: 25px;
   }
 
   &__order-summary {
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
   }
 
   &__summary-title {
-    margin-bottom: 15px;
     font-size: 18px;
-    font-weight: 600;
-    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 
   &__order-items {
     max-height: 200px;
     overflow-y: auto;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   &__order-item {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #111;
-    border-radius: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a2a;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   &__item-image-container {
@@ -282,20 +301,19 @@
 
   &__item-image {
     width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 4px;
+    height: auto;
+    border-radius: 8px;
   }
 
   &__item-quantity {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    background-color: #2c3e50;
+    top: -5px;
+    right: -5px;
+    background-color: #292929;
     color: white;
-    width: 24px;
-    height: 24px;
     border-radius: 50%;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -303,33 +321,59 @@
   }
 
   &__item-details {
-    flex-grow: 1;
+    flex: 1;
   }
 
   &__item-title {
-    margin: 0;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
-    color: white;
+    margin: 0;
+  }
+
+  &__item-size {
+    font-size: 14px;
+    color: #888;
+    margin: 5px 0;
   }
 
   &__item-price {
-    margin: 5px 0 0;
     font-size: 14px;
-    color: #e74c3c;
-    font-weight: 600;
+    font-weight: bold;
+    color: white;
+    margin: 0;
   }
 
   &__order-total {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: bold;
     padding-top: 10px;
   }
 
+  &__priceWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__oldPrice {
+    font-size: 16px;
+    color: #888;
+    text-decoration: line-through;
+  }
+
   &__total-price {
-    color: #e74c3c;
+    font-size: 19px;
+    background: linear-gradient(
+      118.79deg,
+      rgb(6, 193, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(255, 0, 214) 57.356%,
+      rgb(255, 0, 61) 90.232%
+    );
+    -webkit-background-clip: text;
+    color: transparent;
   }
 
   &__form-title {
@@ -348,54 +392,153 @@
   }
 
   &__submit-button {
-    margin-top: 20px;
-    border: none;
-    width: 100%;
-    font-size: 17px;
     padding: 15px;
     border-radius: 17px;
-    font-weight: 600;
+    font-size: 17px;
     color: white;
-    background: linear-gradient(118.79deg, rgb(210, 6, 252) 2.254%, rgb(172, 66, 255) 33.741%, rgb(237, 28, 224) 57.356%, rgb(177, 0, 255) 90.232%);
-    background-size: 200% 200%;
-    animation: gradientShift 6s linear infinite;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    background: linear-gradient(
+      118.79deg,
+      rgb(210, 6, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(237, 28, 224) 57.356%,
+      rgb(177, 0, 255) 90.232%
+    );
+    background-size: 150% 150%; /* Уменьшен диапазон для мягкости */
+    animation: gradientShift 10s ease-in-out infinite; /* Замедлена и сглажена анимация */
+    transition: all 0.3s ease; /* Плавный переход для ховера */
 
     &:hover {
-      background-color: #2ecc71;
+      background: linear-gradient(
+        118.79deg,
+        rgb(190, 5, 230) 2.254%,
+        rgb(150, 50, 230) 33.741%,
+        rgb(210, 20, 200) 57.356%,
+        rgb(150, 0, 230) 90.232%
+      ); /* Чуть темнее градиент при ховере */
+      background-size: 150% 150%;
+      transform: translateY(-2px); /* Лёгкий подъём для интерактивности */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для глубины */
     }
 
-    &:disabled {
-      background-color: #95a5a6;
-    }
-  }
-}
-
-// Адаптивные стили
-@media (max-width: 576px) {
-  .payment-modal {
-    &__body {
-      padding: 15px;
-    }
-
-    &__order-item {
-      padding: 8px;
-    }
-
-    &__item-image {
-      width: 50px;
-      height: 50px;
+    &:active {
+      transform: translateY(0); /* Возврат при клике */
+      box-shadow: none; /* Убираем тень для эффекта нажатия */
     }
   }
-}
 
-@media (max-width: 400px) {
-  .checkoutPage {
-    &__title {
-      font-size: 27px;
+  .ElementsApp .InputElement.is-invalid {
+    color: white !important;
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @media (max-width: 796px) {
+    .userInfo {
+      &__title {
+        text-align: center;
+      }
     }
 
-    &__image {
-      width: 90px;
+    .checkCont {
+      flex-direction: column;
+    }
+
+    .checkoutPage__title {
+      margin-top: 28px;
+    }
+
+    .checkoutPage {
+      &__itemTitle {
+        font-size: 20px;
+      }
+
+      &__image {
+        width: 120px;
+      }
+
+      &__total {
+        justify-content: center;
+      }
+    }
+
+    .promoCode {
+      &__inputWrapper {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      &__applyButton {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .payment-modal {
+      &__body {
+        padding: 15px;
+      }
+
+      &__order-item {
+        padding: 8px;
+      }
+
+      &__item-image {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+
+  @media (max-width: 509px) {
+    .checkoutPage {
+      &__title {
+        text-align: center;
+        font-size: 20px;
+      }
+
+      &__image {
+        width: 110px;
+      }
+
+      &__itemTitle {
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+
+    .userInfo {
+      &__titleAdres {
+        text-align: center;
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .checkoutPage {
+      &__title {
+        font-size: 27px;
+      }
+
+      &__image {
+        width: 90px;
+      }
     }
   }
 }
