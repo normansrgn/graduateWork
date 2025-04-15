@@ -95,6 +95,11 @@
     height: 60px;
   }
 
+  &__controls-left {
+    display: flex;
+    align-items: center;
+  }
+
   &__CardCont {
     width: 100%;
     display: flex;
@@ -384,6 +389,12 @@
       flex-direction: column;
       gap: 0;
     }
+  }
+}
+
+@media (max-width: 998px) {
+  .sneaker__cardTitle {
+    font-size: 19px !important;
   }
 }
 

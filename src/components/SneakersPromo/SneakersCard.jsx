@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "aos/dist/aos.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is imported
 
+import "./__SneakersPromo.scss"
+
 function SneakerCard({ id, img, title, price }) {
   return (
     <div
