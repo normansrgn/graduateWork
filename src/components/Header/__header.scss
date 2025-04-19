@@ -15,6 +15,24 @@
     transform: translateY(-100%);
   }
 
+  &__navlink {
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &__link_active {
+    background: linear-gradient(
+      118.79deg,
+      rgb(6, 193, 252) 2.254%,
+      rgb(172, 66, 255) 33.741%,
+      rgb(255, 0, 214) 57.356%,
+      rgb(255, 0, 61) 90.232%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
   &__container {
     display: flex;
     align-items: center;
@@ -42,13 +60,13 @@
           font-size: 20px;
           font-weight: bold;
           transition: 0.2s linear;
-        
+
           & li {
             cursor: pointer;
             text-transform: uppercase;
             transition: 0.2s linear;
           }
-        
+
           // Наведение и активное состояние
           &:hover li,
           &.active li {

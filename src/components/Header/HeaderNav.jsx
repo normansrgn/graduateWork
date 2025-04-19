@@ -1,5 +1,12 @@
 import React from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
+import { clsx } from 'clsx'
+
+const routes = [
+  { path: '/', title: 'Главная' },
+  { path: '/men', title: 'Каталог' },
+  { path: '/AboutUs', title: 'О нас' },
+]
 
 function HeaderNav() {
   const location = useLocation();
@@ -12,43 +19,24 @@ function HeaderNav() {
     <div className="header__navBlock">
       <nav>
         <ol>
-          <NavLink 
-            to="/" 
-            exact 
-
-            isActive={(match, location) => {
-              // Только для главной страницы
-              return location.pathname === "/";
-            }}
-          >
-            <li>ГЛАВНАЯ</li>
-          </NavLink>
-          <NavLink 
-            to="/men" 
-            className={`header__navlink ${
-              isCatalogActive ? "active" : ""
-            }`}
-            isActive={(match, location) => {
-              // Все пути, начинающиеся с /men
-              return location.pathname.startsWith("/men");
-            }}
-          >
-            <li>КАТАЛОГ</li>
-          </NavLink>
-          <NavLink 
-            to="/AboutUs" 
-            activeClassName="active"
-          >
-            <li>О НАС</li>
-          </NavLink>
+          {
+            routes.map(({ path, title }) => (
+              <li>
+                <Link to={path} className={clsx('header__navlink', {
+                  'header__link_active': location.pathname === path
+                 })}>
+                      {title}
+                    </Link>
+              </li>
+            ))
+          }
         </ol>
       </nav>
       <div className="header__navIc">
         <Link to="/log">
           <div
-            className={`header__navIcon ${
-              isProfileActive ? "active" : ""
-            }`}
+            className={`header__navIcon ${isProfileActive ? "active" : ""
+              }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -90,9 +78,8 @@ function HeaderNav() {
 
         <Link to="/basket">
           <div
-            className={`header__navIcon ${
-              location.pathname === "/basket" ? "active" : ""
-            }`}
+            className={`header__navIcon ${location.pathname === "/basket" ? "active" : ""
+              }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
