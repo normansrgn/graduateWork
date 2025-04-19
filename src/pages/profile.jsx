@@ -14,6 +14,9 @@ import {
 } from "react-icons/fi";
 import "./profile.scss";
 
+import { IoMdPaper } from "react-icons/io";
+
+
 function Profile() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -147,7 +150,9 @@ function Profile() {
                   
                 /> */}
 
+
                 <p className="orders__empty-text">У вас пока нет завершенных покупок</p>
+                <IoMdPaper size={90} />
                 <Link to="/men">
                   <button className="profile__sale">Перейти к покупкам</button>
                 </Link>

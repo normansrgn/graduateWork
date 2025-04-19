@@ -1,19 +1,22 @@
 .basketItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  min-height: 70vh !important;
 
-    &__container {
-        margin-bottom: 60px;
-    }
+  &__container {
+    margin-bottom: 60px;
+  }
 
-    &__title {
-        margin-top: 70px;
-        font-size: 55px;
-    }
+  &__title {
+    margin-top: 70px;
+    font-size: 55px;
+  }
 }
 
-
 @media (max-width: 600px) {
-    .basketItem__title {
-        text-align: center;
-        font-size: 40px;
-    }
+  .basketItem__title {
+    text-align: center;
+    font-size: 40px;
+  }
 }

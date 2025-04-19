@@ -353,6 +353,18 @@
   }
 }
 
+.orders__empty {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+
+  & p {
+    margin: 0;
+    font-size: 19px !important;
+  }
+}
+
 .profile-loading {
   display: flex;
   align-items: center;

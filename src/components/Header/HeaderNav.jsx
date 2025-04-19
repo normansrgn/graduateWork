@@ -28,7 +28,7 @@ function HeaderNav() {
                       {title}
                     </Link>
               </li>
-            ))
+          ))
           }
         </ol>
       </nav>

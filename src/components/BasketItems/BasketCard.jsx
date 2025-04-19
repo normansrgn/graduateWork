@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./__BasketCard.scss";
 import { Link, useNavigate } from "react-router-dom";
 
+import { BsFillBasket2Fill } from "react-icons/bs";
+
+
 function BasketCard() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -59,7 +62,9 @@ function BasketCard() {
     <>
       {cartItems.length === 0 ? (
         <section className="basketCard__empty">
+
           <span>Ваша корзина пуста</span>
+          <BsFillBasket2Fill size={80} />
           <Link to="/men">
             <button>Перейти к покупкам</button>
           </Link>
