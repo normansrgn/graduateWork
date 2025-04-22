@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { clsx } from "clsx";
 
-// Reusable SVG Icon Components
 const ProfileIcon = ({ isActive, width = 24, height = 24 }) => (
   <svg
     role="img"
@@ -57,6 +56,7 @@ const routes = [
 
 function HeaderNav() {
   const location = useLocation();
+  
   const isCatalogActive = location.pathname.startsWith("/men");
   const isProfileActive = location.pathname.startsWith("/profile") || location.pathname === "/log";
 

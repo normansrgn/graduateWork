@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 import { auth } from "../../firebaseСonfig"; 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -14,6 +14,8 @@ function Registr() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [isVerifying, setIsVerifying] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,8 +26,29 @@ function Registr() {
     });
   }, []);
 
+  useEffect(() => {
+    let interval;
+    if (isVerifying && auth.currentUser) {
+      interval = setInterval(async () => {
+        await auth.currentUser.reload(); 
+        if (auth.currentUser.emailVerified) {
+          clearInterval(interval);
+          setIsVerifying(false);
+          setSuccess("Email подтвержден! Перенаправляем в профиль...");
+          setTimeout(() => {
+            navigate("/profile");
+          }, 2000);
+        }
+      }, 3000); // Проверяем каждые 3 секунды
+    }
+    return () => clearInterval(interval); // Очищаем интервал при размонтировании
+  }, [isVerifying, navigate]);
+
   const handleRegister = async (e) => {
     e.preventDefault();
+    setError(null);
+    setSuccess(null);
+
     if (password !== confirmPassword) {
       setError("Пароли не совпадают");
       return;
@@ -35,15 +58,18 @@ function Registr() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Обновляем профиль пользователя с номером телефона
+      // Обновляем профиль пользователя
       await updateProfile(user, {
         displayName: name,
-        phoneNumber: number, // Здесь сохраняем номер телефона
+        phoneNumber: number,
       });
 
-      navigate("/profile");
+      // Отправляем письмо для подтверждения email
+      await sendEmailVerification(user);
 
-      setError(null); 
+      setSuccess("Регистрация успешна! Пожалуйста, проверьте вашу почту для подтверждения email.");
+      setIsVerifying(true); // Начинаем проверку статуса верификации
+
     } catch (error) {
       setError(error.message);
     }
@@ -56,6 +82,8 @@ function Registr() {
           <h1 className="reg__title">Регистрация</h1>
           <form className="login__form" onSubmit={handleRegister}>
             {error && <p className="error">{error}</p>}
+            {success && <p className="success">{success}</p>}
+            {isVerifying && <p className="info">Ожидание подтверждения email...</p>}
 
             <div className="login__input">
               <i className="login__icon">
