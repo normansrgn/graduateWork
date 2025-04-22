@@ -56,7 +56,7 @@ const routes = [
 
 function HeaderNav() {
   const location = useLocation();
-  
+
   const isCatalogActive = location.pathname.startsWith("/men");
   const isProfileActive = location.pathname.startsWith("/profile") || location.pathname === "/log";
 
