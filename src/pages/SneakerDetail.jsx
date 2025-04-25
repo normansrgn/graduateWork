@@ -175,9 +175,8 @@ function SneakerDetail() {
                   {[41, 42, 43, 44, 45].map((size) => (
                     <div
                       key={size}
-                      className={`SneakerDetail__size ${
-                        activeSize === size ? "active" : ""
-                      }`}
+                      className={`SneakerDetail__size ${activeSize === size ? "active" : ""
+                        }`}
                       onClick={() => handleSizeClick(size)}
                     >
                       <span>{size}</span>
@@ -208,24 +207,28 @@ function SneakerDetail() {
                     />
                   </svg>
                 </button>
+
+
               )}
+              <button>
+                В избранное
+              </button>
+
             </div>
           </div>
         </div>
 
         <div className="SneakerDetail__choiceBtns">
           <div
-            className={`SneakerDetail__choiceBtn ${
-              activeSection === "about" ? "active" : ""
-            }`}
+            className={`SneakerDetail__choiceBtn ${activeSection === "about" ? "active" : ""
+              }`}
             onClick={() => handleSectionChange("about")}
           >
             <span>О товаре</span>
           </div>
           <div
-            className={`SneakerDetail__choiceBtn ${
-              activeSection === "reviews" ? "active" : ""
-            }`}
+            className={`SneakerDetail__choiceBtn ${activeSection === "reviews" ? "active" : ""
+              }`}
             onClick={() => handleSectionChange("reviews")}
           >
             <span>Отзывы</span>
