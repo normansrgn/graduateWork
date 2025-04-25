@@ -7,7 +7,6 @@ import ava from "../components/snealerDetImg/user.png";
 import {
   FiUser,
   FiMail,
-  FiPhone,
   FiClock,
   FiShoppingBag,
   FiLogOut
