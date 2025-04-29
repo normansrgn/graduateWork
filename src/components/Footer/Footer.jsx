@@ -19,8 +19,6 @@ const TeleGramIcon = () => (
 
 )
 
-
-
 const routes = [
   { path: "/", title: "Главная" },
   { path: "/AboutUs", title: "О нас" },
