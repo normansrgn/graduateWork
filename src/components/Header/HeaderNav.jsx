@@ -67,10 +67,12 @@ function HeaderNav() {
                 to={path}
                 className={clsx("header__navlink", {
                   "header__link_active": location.pathname === path,
+
                 })}
               >
                 {title}
               </Link>
+
             </li>
           ))}
         </ol>
