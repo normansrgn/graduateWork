@@ -37,7 +37,7 @@ const BasketIcon = ({ isActive, width = 24, height = 24 }) => (
     <title>Basket</title>
     <defs>
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
- ئ        <stop offset="0%" style={{ stopColor: "rgb(6, 193, 252)", stopOpacity: 1 }} />
+        ئ        <stop offset="0%" style={{ stopColor: "rgb(6, 193, 252)", stopOpacity: 1 }} />
         <stop offset="33%" style={{ stopColor: "rgb(172, 66, 255)", stopOpacity: 1 }} />
         <stop offset="57%" style={{ stopColor: "rgb(255, 0, 214)", stopOpacity: 1 }} />
         <stop offset="90%" style={{ stopColor: "rgb(255, 0, 61)", stopOpacity: 1 }} />
@@ -55,8 +55,6 @@ const routes = [
 
 function HeaderNav() {
   const location = useLocation();
-
-  const isCatalogActive = location.pathname.startsWith("/men");
   const isProfileActive = location.pathname.startsWith("/profile") || location.pathname === "/log";
 
   return (
