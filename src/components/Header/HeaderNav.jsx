@@ -47,6 +47,7 @@ const BasketIcon = ({ isActive, width = 24, height = 24 }) => (
   </svg>
 );
 
+
 const routes = [
   { path: "/", title: "Главная" },
   { path: "/men", title: "Каталог" },

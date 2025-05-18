@@ -1,13 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-import "./__header.scss";
-
-
 import HeaderNav from "./HeaderNav";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import logo from "./logo.svg";
+
+import "./__header.scss";
 
 export default function Header() {
   const [scrollUp, setScrollUp] = useState(true);
@@ -39,7 +37,6 @@ export default function Header() {
     >
       <Container className="header__container">
         <div className="header__logo">
-      
           <Link to="/">
             <img src={logo} alt="Logo" />
           </Link>

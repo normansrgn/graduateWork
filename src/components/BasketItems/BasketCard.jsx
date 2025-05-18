@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./__BasketCard.scss";
 import { Link, useNavigate } from "react-router-dom";
-
 import { BsFillBasket2Fill } from "react-icons/bs";
-
 
 function BasketCard() {
   const [cartItems, setCartItems] = useState([]);
