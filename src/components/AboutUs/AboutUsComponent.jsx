@@ -100,9 +100,9 @@ export default function AboutUsComponent() {
           </div>
 
           <div className="social-links">
-            <a href="#" className="social-link">
+            {/* <a href="#" className="social-link">
               <FaInstagram className="social-icon" />
-            </a>
+            </a> */}
             <a href="#" className="social-link">
               <FaVk className="social-icon" />
             </a>
