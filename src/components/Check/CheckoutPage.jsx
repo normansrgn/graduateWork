@@ -101,22 +101,22 @@ function CheckoutPage() {
               )}`
           )
           .join("<br>"),
-        to_email: formData.email, // Добавляем email клиента для явности
+        to_email: formData.email, 
       };
   
       // Отправка письма администратору
       await emailjs.send(
-        "service_gzc6eih", // Ваш Service ID
-        "template_m7neetv", // Шаблон для администратора
+        "service_gzc6eih", 
+        "template_m7neetv", 
         templateParams,
-        "ftPHJ1HRGmkVrqz-H" // Ваш Public Key
+        "ftPHJ1HRGmkVrqz-H" 
       );
   
       // Отправка письма клиенту
       await emailjs.send(
-        "service_gzc6eih", // Тот же Service ID
-        "template_3l5rt3c", // Шаблон для клиента
-        templateParams, // Передаем те же параметры, включая to_email
+        "service_gzc6eih", 
+        "template_3l5rt3c", 
+        templateParams, 
         "ftPHJ1HRGmkVrqz-H"
       );
   

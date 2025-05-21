@@ -32,7 +32,6 @@ function SneakerDetail() {
     }
   }
 
-  // Новое состояние для количества товара в корзине
   const [cartQuantity, setCartQuantity] = useState(0);
 
   useEffect(() => {
@@ -44,7 +43,6 @@ function SneakerDetail() {
     setRandomMenSneakers(shuffledMenSneakers.slice(0, 3));
   }, []);
 
-  // Загрузка количества товара из корзины при изменении размера или загрузке
   useEffect(() => {
     const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingItem = currentCart.find(
@@ -53,7 +51,6 @@ function SneakerDetail() {
     setCartQuantity(existingItem ? existingItem.quantity : 0);
   }, [activeSize, sneaker]);
 
-  // Handle case where sneaker is not found
   if (!sneaker) {
     return (
       <Container className="SneakerDetail">
