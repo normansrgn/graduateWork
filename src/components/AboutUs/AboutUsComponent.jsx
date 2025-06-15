@@ -94,7 +94,7 @@ export default function AboutUsComponent() {
             </div>
             <div>
               <p className="contact-type">Адрес</p>
-              <p className="contact-value">Москва, ул. Спортивная, 15</p>
+              <p className="contact-value">Краснодар, ул. Российская, 72</p>
               <p className="contact-note">(магазин на 1 этаже)</p>
             </div>
           </div>

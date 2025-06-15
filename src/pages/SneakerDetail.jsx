@@ -207,9 +207,7 @@ function SneakerDetail() {
 
 
               )}
-              <button>
-                В избранное
-              </button>
+             
 
             </div>
           </div>
