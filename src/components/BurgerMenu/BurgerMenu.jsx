@@ -14,7 +14,6 @@ const BurgerMenu = () => {
   };
 
   const closeMenuOnOutsideClick = (e) => {
-    // Если клик произошел вне меню (по фону)
     if (e.target.classList.contains("blur-background")) {
       setIsOpen(false);
     }
@@ -22,7 +21,6 @@ const BurgerMenu = () => {
 
   return (
     <div className="burger_menu">
-      {/* Кнопка открытия/закрытия меню */}
       <button id="burger__btn" type="button" onClick={toggleMenu}>
         <span
           id="burgerSpan"
@@ -142,7 +140,6 @@ const BurgerMenu = () => {
         </div>
       </aside>
 
-      {/* Размытый фон, который закрывает меню при клике */}
       <div
         className={`blur-background ${isOpen ? "show" : ""}`}
         onClick={closeMenuOnOutsideClick}

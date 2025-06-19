@@ -407,9 +407,9 @@
       rgb(237, 28, 224) 57.356%,
       rgb(177, 0, 255) 90.232%
     );
-    background-size: 150% 150%; /* Уменьшен диапазон для мягкости */
-    animation: gradientShift 10s ease-in-out infinite; /* Замедлена и сглажена анимация */
-    transition: all 0.3s ease; /* Плавный переход для ховера */
+    background-size: 150% 150%; 
+    animation: gradientShift 10s ease-in-out infinite; 
+    transition: all 0.3s ease; 
 
     &:hover {
       background: linear-gradient(
@@ -418,15 +418,15 @@
         rgb(150, 50, 230) 33.741%,
         rgb(210, 20, 200) 57.356%,
         rgb(150, 0, 230) 90.232%
-      ); /* Чуть темнее градиент при ховере */
+      ); 
       background-size: 150% 150%;
-      transform: translateY(-2px); /* Лёгкий подъём для интерактивности */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для глубины */
+      transform: translateY(-2px); 
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
     }
 
     &:active {
-      transform: translateY(0); /* Возврат при клике */
-      box-shadow: none; /* Убираем тень для эффекта нажатия */
+      transform: translateY(0); 
+      box-shadow: none; 
     }
   }
 

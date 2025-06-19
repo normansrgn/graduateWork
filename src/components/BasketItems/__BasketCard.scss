@@ -8,7 +8,7 @@
   gap: 20px;
   max-width: 100%;
   transition: background-color 0.2s ease-in-out;
-  position: relative; /* Для абсолютного позиционирования кнопки удаления */
+  position: relative; 
 
   &:hover {
     background-color: #1b1b1b;
@@ -33,7 +33,7 @@
     font-weight: 600;
     color: white;
     text-transform: uppercase;
-    word-break: break-word; /* Обработка длинных заголовков */
+    word-break: break-word; 
   }
 
   &__size {
@@ -92,7 +92,7 @@
     right: 10px;
     width: 24px;
     height: 24px;
-    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для видимости */
+    background-color: rgba(0, 0, 0, 0.5); 
     border-radius: 50%;
     display: flex;
     align-items: center;
